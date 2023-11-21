@@ -1,8 +1,8 @@
 #ifndef BANKALGORITHM_H
 #define BANKALGORITHM_H
 
-#include <QObject>
-#include <QQmlEngine>
+#include <QtCore/qobject.h>
+#include <QtQml/qqml.h>
 #include <vector>
 #include "singleton.h"
 
@@ -45,56 +45,106 @@ private:
     status now;
     // src_names
     std::vector<QString> names;
-public:
-SINGLETON(BankAlgorithm)
 
     explicit BankAlgorithm(QObject *parent = nullptr);
 
-    ~BankAlgorithm() = default;
+public:
 
-    static BankAlgorithm *instance();
+SINGLETON(BankAlgorithm)
 
-    Q_INVOKABLE void reset();
+    ~BankAlgorithm() override;
 
-    Q_INVOKABLE void reset_except_src();
+    void init(char *argv[]);
+
+    // static BankAlgorithm *instance();
+
+    Q_INVOKABLE
+    void reset();
+
+    Q_INVOKABLE
+    void reset_except_src();
 
     void need_ReCalc();
 
     // about resources
-    Q_INVOKABLE int addSrc(const QString &name, int max_cap);
+    Q_INVOKABLE
+    int addSrc(QString name, int max_cap);
 
-    Q_INVOKABLE bool deleteSrc(QString &name);
+    Q_INVOKABLE
+    bool deleteSrc(QString name);
 
-    Q_INVOKABLE bool deleteSrc(int index);
+    Q_INVOKABLE
+    bool deleteSrc(int index);
+
+    Q_INVOKABLE
+    int getIndex(QString name);
 
     // about process
-    Q_INVOKABLE int addProcess(const std::vector<int> &malloced, const std::vector<int> &need);
+    Q_INVOKABLE
+    bool processIdAva(int process_i) const;
 
-    Q_INVOKABLE bool modifyMalloced(int process_i, int src_i, int val);
+    Q_INVOKABLE
+    int addProcess(std::vector<int> malloced, std::vector<int> need);
 
-    Q_INVOKABLE bool modifyMalloced(int process_i, const QString &src_name, int val);
+    Q_INVOKABLE
+    bool modifyMalloced(int process_i, int src_i, int val);
 
-    Q_INVOKABLE bool modifyNeed(int process_i, int src_i, int val);
+    Q_INVOKABLE
+    bool modifyMalloced(int process_i, QString src_name, int val);
 
-    Q_INVOKABLE bool modifyNeed(int process_i, const QString &src_name, int val);
+    Q_INVOKABLE
+    bool modifyNeed(int process_i, int src_i, int val);
 
-    Q_INVOKABLE bool deleteProcess(int process_i);
+    Q_INVOKABLE
+    bool modifyNeed(int process_i, QString src_name, int val);
+
+    Q_INVOKABLE
+    bool deleteProcess(int process_i);
 
     // safety
-    Q_INVOKABLE bool isSafe();
+    Q_INVOKABLE
+    bool isSafe();
 
-    Q_INVOKABLE std::vector<int> getSequence() const;
+    Q_INVOKABLE
+    std::vector<int> getSequence() const;
 
     // status switch
-    Q_INVOKABLE bool nextStatus();
+    Q_INVOKABLE
+    bool nextStatus();
 
-    Q_INVOKABLE bool prevStatus();
+    Q_INVOKABLE
+    bool prevStatus();
 
-    Q_INVOKABLE bool isBegin() const;
+    Q_INVOKABLE
+    bool isBegin() const;
 
-    Q_INVOKABLE bool isEnd() const;
+    Q_INVOKABLE
+    bool isEnd() const;
 
     // get status
+    Q_INVOKABLE
+    std::vector<int> getMalloced(int process_i) const;
+
+    Q_INVOKABLE
+    std::vector<int> getNeed(int process_i) const;
+
+    Q_INVOKABLE
+    std::vector<int> getTotal() const;
+
+    Q_INVOKABLE
+    std::vector<int> getCost() const;
+
+    Q_INVOKABLE
+    std::vector<int> getLeft() const;
+
+    Q_INVOKABLE
+    int getNSrc() const;
+
+    Q_INVOKABLE
+    int getNProcess() const;
+
+    Q_INVOKABLE
+    std::vector<QString> getNames() const;
 
 signals:
 

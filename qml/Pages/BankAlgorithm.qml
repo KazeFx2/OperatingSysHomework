@@ -4,6 +4,10 @@ import FluentUI 1.0
 
 Rectangle {
 
+    id: global_ctx
+
+    property var src_names: []
+
     width: parent.width
     height: parent.height
 
@@ -46,6 +50,8 @@ Rectangle {
                 id: bank_inner_menu
 
                 width: parent.width
+                height: parent.height
+
                 headerSpacing: {
                     var tmp = bank_inner_menu.children[0].contentItem.children
                     var widdest = 0
@@ -80,83 +86,10 @@ Rectangle {
 
                 FluPivotItem{
                     title: "SysStatus"
-                    contentItem: FluScrollablePage {
+                    contentItem: FluLoader {
                         width: parent.width
-
-                        id: sys_status_page
-
-                        property int n_src: 3
-                        property var src_capacity: [100, 100, 100]
-
-
-                        ListView {
-
-                            id: this_list_view
-
-                            implicitWidth: parent.width
-                            implicitHeight: 180
-
-                            orientation: ListView.Horizontal
-
-                            spacing: {
-                                var tmp = children[0].children
-                                var pad = tmp.length > 2 ? (parent.width - tmp[2].width * (tmp.length - 2)) / (tmp.length - 1) : 0
-                                if (pad < 0)
-                                    pad = 0
-                                return pad
-                            }
-
-                            model: ListModel {
-                                id: ring_view
-
-                                ListElement {
-                                    name: ""
-                                    cost: 0
-                                    total: -1
-                                }
-                            }
-
-                            delegate: Column {
-
-                                id: ring_view_col
-
-                                anchors.verticalCenter: parent.verticalCenter
-
-                                visible: total !== -1
-
-                                width: total === -1 ? 0 : ring_item.width
-
-                                FluText {
-                                    text: "" + name
-                                    bottomPadding: 10
-                                    x: (ring_item.width - width) / 2
-                                }
-
-                                FluProgressRing {
-
-                                    id: ring_item
-                                    height: 100
-                                    width: height
-                                    strokeWidth: 10
-                                    indeterminate: false
-                                    progressVisible: true
-                                    value: (total - cost) / total
-                                }
-
-                                FluText {
-                                    topPadding: 10
-                                    text: cost + "/" + (total - cost) + "/" + total
-                                    x: (ring_item.width - width) / 2
-                                }
-                            }
-
-                            Component.onCompleted: {
-                                for (var i = 0; i < sys_status_page.n_src; i++)
-                                    ring_view.append({ name: "Src_" + (i + 1), cost: 0, total: sys_status_page.src_capacity[i] })
-                            }
-
-                        }
-
+                        height: parent.height
+                        source: "qrc:///qml/Pages/BankAlgorithm_SysStatus.qml"
                     }
                 }
                 FluPivotItem{
@@ -184,6 +117,7 @@ Rectangle {
             FluFilledButton {
                 id: prev
                 text: "Prev"
+                disabled: CppBankAlgorithm.isBegin()
             }
 
             FluRectangle {
@@ -195,6 +129,7 @@ Rectangle {
             FluFilledButton {
                 id: next
                 text: "Next"
+                disabled: CppBankAlgorithm.isEnd()
             }
 
         }

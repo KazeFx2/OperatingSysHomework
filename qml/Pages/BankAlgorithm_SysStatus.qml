@@ -1,0 +1,883 @@
+import QtQuick 2.15
+import QtQuick.Templates 2.15 as T
+import QtQuick.Layouts 1.15
+import QtQuick.Controls 2.15
+import FluentUI 1.0
+
+FluScrollablePage {
+
+    width: parent.width
+    height: parent.height
+
+    id: sys_status_page
+
+    property var src_names: []
+
+    FluText {
+
+        topPadding: 10
+        leftPadding: 10
+        bottomPadding: 10
+
+        font.bold: true
+        font.pixelSize: 16
+        text: "Resources and Usage"
+    }
+
+    Rectangle {
+        Layout.alignment: Qt.AlignHCenter
+        Layout.fillWidth: true
+        height: 1
+        radius: 1
+        color: FluColors.Grey110
+    }
+
+    Rectangle {
+        width: parent.width
+        height: 10
+        color: FluColors.Transparent
+    }
+
+    // src ring view
+    T.ScrollBar {
+
+        id: src_ring_view
+
+        implicitWidth: parent.width
+        implicitHeight: this_list_view.height
+        orientation: ListView.Horizontal
+
+        ListView {
+
+            id: this_list_view
+
+            implicitWidth: parent.width
+            implicitHeight: 190
+
+            orientation: ListView.Horizontal
+
+            spacing: {
+                var tmp = children[0].children
+                var pad = tmp.length > 2 ? (parent.width - tmp[2].width * (tmp.length - 2)) / (tmp.length - 1) : 0
+                if (pad < 10)
+                    pad = 10
+                return pad
+            }
+
+            model: ListModel {
+                id: ring_view
+
+                ListElement {
+                    name: ""
+                    cost: 0
+                    total: -1
+                }
+            }
+
+            FluText {
+                visible: parent.children[0].children.length < 3
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.bold: true
+                font.pixelSize: 20
+                text: "No resouces added"
+            }
+
+            delegate: Rectangle {
+
+                id: ring_view_bk
+
+                height: ring_view_col.height + 20
+
+                visible: total !== -1
+
+                width: total === -1 ? 0 : ring_view_col.width + 20
+
+                radius: 10
+
+                color: FluTools.colorAlpha(FluColors.Black, FluTheme.dark ? 0.2 : 0.05)
+
+                Column {
+
+                    id: ring_view_col
+
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: ring_item.width
+
+                    FluText {
+                        text: (index - 1) + ":" + name
+                        bottomPadding: 10
+                        x: (ring_item.width - width) / 2
+                    }
+
+                    FluProgressRing {
+
+                        id: ring_item
+                        height: 100
+                        width: height
+                        strokeWidth: 10
+                        indeterminate: false
+                        progressVisible: true
+                        value: (total - cost) / total
+                    }
+
+                    FluText {
+                        topPadding: 10
+                        text: cost + "/" + (total - cost) + "/" + total
+                        x: (ring_item.width - width) / 2
+                    }
+
+                }
+
+            }
+
+            Component.onCompleted: {
+                // Add defalut
+                sys_status_page.src_names = CppBankAlgorithm.getNames()
+                if (sys_status_page.src_names.length === 0)
+                    return
+                var Cost = CppBankAlgorithm.getCost()
+                var Total = CppBankAlgorithm.getTotal()
+                var n = CppBankAlgorithm.getNSrc()
+                for (var i = 0; i < n; i++)
+                    ring_view.append({name: sys_status_page.src_names[i], cost: Cost[i], total: Total[i]})
+            }
+
+        }
+
+        function refresh_data(){
+            var Cost = CppBankAlgorithm.getCost()
+            var Total = CppBankAlgorithm.getTotal()
+            for (var i = 1; i < ring_view.count; i++){
+                ring_view.set(i, {cost: Cost[i - 1], total: Total[i - 1]})
+            }
+
+        }
+
+    }
+
+    FluText {
+
+        leftPadding: 10
+        bottomPadding: 10
+
+        font.bold: true
+        font.pixelSize: 16
+        text: "Management"
+    }
+
+    Rectangle {
+        Layout.alignment: Qt.AlignHCenter
+        Layout.fillWidth: true
+        height: 1
+        radius: 1
+        color: FluColors.Grey110
+    }
+
+    FluText {
+        padding: 10
+        font.bold: true
+        text: "Add resources"
+    }
+
+    Row {
+
+        FluText {
+            id: src_name_txt
+            padding: 10
+            anchors.verticalCenter: parent.verticalCenter
+            text: "Src Name"
+        }
+
+        FluTextBox {
+            id: src_name_input
+            width: (parent.parent.width - src_name_txt.width - src_size_txt.width - add_src_button.width - src_add_rect.width) / 2
+            anchors.verticalCenter: parent.verticalCenter
+            placeholderText: "Input resource name"
+        }
+
+        FluText {
+            id: src_size_txt
+            padding: 10
+            anchors.verticalCenter: parent.verticalCenter
+            text: "Src Size"
+        }
+
+        FluTextBox {
+            id: src_size_input
+            width: (parent.parent.width - src_name_txt.width - src_size_txt.width - add_src_button.width - src_add_rect.width) / 2
+            anchors.verticalCenter: parent.verticalCenter
+            placeholderText: "Input resource max size"
+            validator: IntValidator {
+                bottom: 1
+                top: 1000
+            }
+        }
+
+        Rectangle {
+            id: src_add_rect
+            width: 10;
+            height: parent.height
+            color: FluColors.Transparent
+        }
+
+        FluFilledButton {
+            id: add_src_button
+            anchors.verticalCenter: parent.verticalCenter
+            text: "Add"
+            disabled: {
+                if (src_name_input.text !== "" && src_size_input.text !== "")
+                    return false
+                return true
+            }
+            onClicked: {
+                if (src_name_input.text === "" || src_size_input.text === "") {
+                    showError("Please set the name and max size of new resource")
+                    return
+                }
+                var name = src_name_input.text
+                var size = parseInt(src_size_input.text)
+                var names = CppBankAlgorithm.getNames()
+                for (var i = 0; i < names.length; i++) {
+                    if (name === names[i]) {
+                        showError("There already exists a resource named '" + name + "'")
+                        return
+                    }
+                }
+                var ret = CppBankAlgorithm.addSrc(name, size)
+                if (ret !== -1) {
+                    var Cost = CppBankAlgorithm.getCost()
+                    var Total = CppBankAlgorithm.getTotal()
+                    sys_status_page.src_names.push(name)
+                    ring_view.append({
+                        name: name,
+                        cost: Cost[ret],
+                        total: Total[ret]
+                    })
+                    src_name_input.text = ""
+                    src_size_input.text = ""
+                    showSuccess("Add resource successfully")
+                    process_add_list.refresh()
+                } else {
+                    showError("Add resource failed")
+                }
+            }
+        }
+
+    }
+
+    Rectangle {
+        width: parent.width
+        height: 10
+        color: FluColors.Transparent
+    }
+
+    Rectangle {
+        Layout.alignment: Qt.AlignHCenter
+        Layout.fillWidth: true
+        height: 1
+        radius: 1
+        color: FluColors.Grey110
+    }
+
+    // Src add txt
+    FluText {
+        padding: 10
+        font.bold: true
+        text: "Delete resources"
+    }
+
+    // Src add row
+    Row {
+
+        FluText {
+            id: type_txt
+            anchors.verticalCenter: parent.verticalCenter
+            padding: 10
+            text: "Type"
+        }
+
+        FluRadioButtons {
+
+            id: delete_type
+
+            anchors.verticalCenter: parent.verticalCenter
+            spacing: 8
+            FluRadioButton {
+                text: "ID"
+            }
+            FluRadioButton {
+                text: "Name"
+            }
+
+            onCurrentIndexChanged: {
+                delete_input.text = ""
+            }
+        }
+
+        IntValidator {
+            id: inx_vali
+            bottom: 0
+            top: CppBankAlgorithm.getNSrc() - 1
+        }
+
+        RegExpValidator {
+            id: def_vali
+        }
+
+        Rectangle {
+            width: (parent.parent.width - type_txt.width - delete_type.width - delete_value_txt.width - delete_input.width - del_src_button.width) / 2
+            height: parent.height
+            color: FluColors.Transparent
+        }
+
+        FluText {
+            id: delete_value_txt
+            anchors.verticalCenter: parent.verticalCenter
+            padding: 10
+            text: "Value"
+        }
+
+        FluTextBox {
+            id: delete_input
+            anchors.verticalCenter: parent.verticalCenter
+            width: 200
+            placeholderText: delete_type.currentIndex === 0 ? "Input the ID of resource" : "Input the name of resource"
+            validator: delete_type.currentIndex === 0 ? inx_vali : def_vali
+        }
+
+        Rectangle {
+            width: (parent.parent.width - type_txt.width - delete_type.width - delete_value_txt.width - delete_input.width - del_src_button.width) / 2
+            height: parent.height
+            color: FluColors.Transparent
+        }
+
+        FluFilledButton {
+            id: del_src_button
+            anchors.verticalCenter: parent.verticalCenter
+            disabled: delete_input.text === "" || CppBankAlgorithm.getNSrc() <= 0
+            text: "Delete"
+            onClicked: {
+                // TO DO PROCESS CONFIRM
+                if (delete_type.currentIndex === 0) {
+                    var ret = CppBankAlgorithm.deleteSrc(parseInt(delete_input.text))
+                    if (!ret) {
+                        showError("Delete failed. May resource with ID '" + parseInt(delete_input.text) + "' not exist")
+                        return
+                    }
+                    ring_view.remove(parseInt(delete_input.text) + 1)
+                } else {
+                    var name = delete_input.text
+                    var names = CppBankAlgorithm.getNames()
+                    var flag = false
+                    for (var i = 0; i < names.length; i++) {
+                        if (name === names[i]) {
+                            flag = true
+                            var ret = CppBankAlgorithm.deleteSrc(name)
+                            if (!ret) {
+                                showError("Delete resource faild")
+                                return
+                            }
+                            break
+                        }
+                    }
+                    if (!flag) {
+                        showError("Delete faild. No such resource named '" + name + "'")
+                        return
+                    }
+                    for (var i = 1; i < ring_view.count; i++)
+                        if (ring_view.get(i).name === name) {
+                            ring_view.remove(i)
+                            break
+                        }
+                }
+                showSuccess("Delete resource successfully")
+                delete_input.text = ""
+                process_add_list.refresh()
+                sys_status_page.refresh()
+            }
+        }
+    }
+
+    Rectangle {
+        width: parent.width
+        height: 10
+        color: FluColors.Transparent
+    }
+
+    Rectangle {
+        Layout.alignment: Qt.AlignHCenter
+        Layout.fillWidth: true
+        height: 1
+        radius: 1
+        color: FluColors.Grey110
+    }
+
+    // Process add txt
+    FluText {
+        padding: 10
+        font.bold: true
+        text: "Add process"
+    }
+
+    // Process add row
+    Row {
+
+        Rectangle {
+            width: parent.parent.width - Math.max(process_add_button.width, process_random_button.width) - process_add_rect.width
+            height: process_add_txt.height
+            color: FluColors.Transparent
+
+            Row {
+
+                Rectangle {
+
+                    width: process_add_txt.width
+
+                    height: parent.parent.height
+
+                    color: FluColors.Transparent
+
+                    Column {
+
+                        id: process_add_txt
+
+                        FluText {
+                            padding: 6
+                            text: "Name"
+                        }
+
+                        FluText {
+                            padding: 6
+                            text: "Malloced"
+                        }
+
+                        FluText {
+                            padding: 6
+                            text: "Need"
+                        }
+
+                    }
+
+                }
+
+                Rectangle {
+
+                    width: parent.parent.width - process_add_txt.width
+
+                    height: parent.parent.height
+
+                    color: FluColors.Transparent
+
+                    T.ScrollBar {
+
+                        width: parent.width
+                        height: parent.height
+                        orientation: ListView.Horizontal
+
+                        ListView {
+
+                            id: process_add_list
+
+                            width: parent.width
+                            height: parent.height + 10
+
+                            clip: true
+
+                            orientation: ListView.Horizontal
+
+                            spacing: {
+                                var tmp = children[0].children
+                                var pad = tmp.length > 2 ? (parent.width - tmp[2].width * (tmp.length - 2)) / (tmp.length - 1) : 0
+                                if (pad < 10)
+                                    pad = 10
+                                return pad
+                            }
+
+                            model: ListModel {
+                                id: process_add_model
+
+                                ListElement {
+                                    name: "";
+                                }
+                            }
+
+                            FluText {
+                                visible: parent.children[0].children.length < 3
+                                anchors.verticalCenter: parent.verticalCenter
+                                anchors.horizontalCenter: parent.horizontalCenter
+                                font.bold: true
+                                font.pixelSize: 20
+                                text: "Please add resource first"
+                            }
+
+                            delegate: Rectangle {
+
+                                id: process_add_item_rect
+
+                                height: process_add_item.height
+
+                                visible: index !== 0
+
+                                width: index === 0 ? 0 : 50
+
+                                // clip: true
+
+                                radius: 5
+
+                                color: FluTools.colorAlpha(FluColors.Black, FluTheme.dark ? 0.2 : 0.05)
+
+                                Column {
+                                    id: process_add_item
+
+                                    FluText {
+                                        padding: 5
+                                        text: name
+                                        x: (50 - width) / 2
+                                    }
+
+                                    FluMenuSeparator {
+                                        width: 50
+                                    }
+
+                                    FluTextBox {
+                                        width: 50
+                                        text: "0"
+                                        background: Rectangle {
+                                            color: FluColors.Transparent
+                                        }
+                                        cleanEnabled: false
+                                        validator: IntValidator {
+                                            bottom: 0
+                                            top: 10000
+                                        }
+                                    }
+
+                                    FluMenuSeparator {
+                                        width: 50
+                                    }
+
+                                    FluTextBox {
+                                        width: 50
+                                        text: "0"
+                                        background: Rectangle {
+                                            color: FluColors.Transparent
+                                        }
+                                        cleanEnabled: false
+                                        validator: IntValidator {
+                                            bottom: 0
+                                            top: 10000
+                                        }
+                                    }
+
+                                }
+
+                            }
+
+                            Component.onCompleted: {
+                                refresh()
+                            }
+
+                            function refresh() {
+                                sys_status_page.src_names = CppBankAlgorithm.getNames()
+                                for (var i = process_add_model.count - 1; i > 0; i--) {
+                                    var tmp = process_add_model.get(i).name
+                                    var flag = false
+                                    for (var j = 0; j < sys_status_page.src_names.length; j++) {
+                                        if (tmp === sys_status_page.src_names[j]) {
+                                            flag = true
+                                            break
+                                        }
+                                    }
+                                    if (!flag)
+                                        process_add_model.remove(i)
+                                }
+                                for (i = 0; i < sys_status_page.src_names.length; i++) {
+                                    tmp = sys_status_page.src_names[i]
+                                    flag = false
+                                    for (j = 0; j < process_add_model.count; j++) {
+                                        if (tmp === process_add_model.get(j).name) {
+                                            flag = true
+                                            break
+                                        }
+                                    }
+                                    if (!flag)
+                                        process_add_model.append({name: tmp})
+                                }
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        Rectangle {
+            id: process_add_rect
+            width: 10
+            height: process_add_txt.height
+            color: FluColors.Transparent
+        }
+
+        Rectangle {
+
+            width: process_random_button.width
+
+            height: parent.height
+
+            color: FluColors.Transparent
+
+            Column {
+
+                anchors.verticalCenter: parent.verticalCenter
+
+                height: process_add_button.height + process_add_random_rect.height + process_random_button.height
+
+                FluFilledButton {
+                    id: process_add_button
+
+                    width: process_random_button.width
+
+                    // anchors.verticalCenter: parent.verticalCenter
+                    text: "Add"
+
+                    disabled: {
+                        var subitems = process_add_list.children[0].children
+                        for (var i = 2; i < subitems.length; i++) {
+                            var n = subitems[i].data[0].data[0].text, m = parseInt(subitems[i].data[0].data[2].text),
+                                nd = parseInt(subitems[i].data[0].data[4].text)
+                            if (isNaN(m) || isNaN(nd))
+                                return true
+                            if (m !== 0 || nd !== 0)
+                                return false
+                        }
+                        return true
+                    }
+
+                    onClicked: {
+                        var subitems = process_add_list.children[0].children
+                        var malloced = []
+                        var need = []
+                        for (var i = 2; i < subitems.length; i++) {
+                            var n = subitems[i].data[0].data[0].text, m = parseInt(subitems[i].data[0].data[2].text),
+                                nd = parseInt(subitems[i].data[0].data[4].text)
+                            malloced.push(m)
+                            need.push(nd)
+                        }
+                        var ret = CppBankAlgorithm.addProcess(malloced, need)
+                        if (ret === -1) {
+                            showError("Add process failed")
+                            return
+                        }
+                        refresh()
+                        for (i = 2; i < subitems.length; i++) {
+                            subitems[i].data[0].data[2].text = "0"
+                            subitems[i].data[0].data[4].text = "0"
+                        }
+                        src_ring_view.refresh_data()
+                        showSuccess("Add process successfully")
+                    }
+
+                }
+
+                Rectangle {
+                    id: process_add_random_rect
+
+                    width: process_random_button.width
+
+                    height: 10
+
+                    color: FluColors.Transparent
+                }
+
+                FluFilledButton {
+                    id: process_random_button
+                    text: "Random fill"
+
+                    onClicked: {
+                        // TO DO
+                        var subitems = process_add_list.children[0].children
+                        var total = CppBankAlgorithm.getTotal()
+                        var left = CppBankAlgorithm.getLeft()
+                        for (var i = 2; i < subitems.length; i++) {
+                            var malloced = parseInt(Math.random() * (left[i - 2] + 1))
+                            var need = parseInt(Math.random() * (total[i - 2] - malloced + 1))
+                            console.log("Random Gen", malloced, need)
+                            subitems[i].data[0].data[2].text = "" + malloced
+                            subitems[i].data[0].data[4].text = "" + need
+                        }
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    Rectangle {
+        width: parent.width
+        height: 10
+        color: FluColors.Transparent
+    }
+
+    Rectangle {
+        Layout.alignment: Qt.AlignHCenter
+        Layout.fillWidth: true
+        height: 1
+        radius: 1
+        color: FluColors.Grey110
+    }
+
+    // Process del txt
+    FluText {
+        padding: 10
+        font.bold: true
+        text: "Delete process"
+    }
+
+    // Process del row
+    Row {
+    }
+
+    Rectangle {
+        width: parent.width
+        height: 10
+        color: FluColors.Transparent
+    }
+
+    FluText {
+
+        topPadding: 10
+        leftPadding: 10
+        bottomPadding: 10
+
+        font.bold: true
+        font.pixelSize: 16
+        text: "Status"
+    }
+
+    Rectangle {
+        Layout.alignment: Qt.AlignHCenter
+        Layout.fillWidth: true
+        height: 1
+        radius: 1
+        color: FluColors.Grey110
+    }
+
+    Rectangle {
+        width: parent.width
+        height: 10
+        color: FluColors.Transparent
+    }
+
+    Row {
+
+        FluText {
+            padding: 10
+            font.bold: true
+            text: "Safety Status: "
+        }
+
+        FluText {
+            id: safe_txt
+            property int status
+            anchors.verticalCenter: parent.verticalCenter
+            text: {
+                if (CppBankAlgorithm.getNProcess() <= 0) {
+                    status = -1
+                    return "No Process"
+                }else if (CppBankAlgorithm.isSafe()) {
+                    status = 1
+                    return "Safe"
+                } else {
+                    status = 0
+                    return "Unsafe"
+                }
+            }
+            color: {
+                if (status === -1)
+                    return FluColors.Grey100
+                if (status === 1)
+                    return FluColors.Green.normal
+                return FluColors.Red.normal
+            }
+
+            function refresh() {
+                if (CppBankAlgorithm.getNProcess() <= 0) {
+                    status = -1
+                    text = "No Process"
+                }else if (CppBankAlgorithm.isSafe()) {
+                    status = 1
+                    text = "Safe"
+                } else {
+                    status = 0
+                    text = "Unsafe"
+                }
+            }
+
+        }
+
+    }
+
+    Row {
+
+        FluText {
+            padding: 10
+            font.bold: true
+            text: "Safe Sequence: "
+        }
+
+        FluText {
+            id: seq_txt
+            property int status
+            anchors.verticalCenter: parent.verticalCenter
+            text: {
+                if (CppBankAlgorithm.getNProcess() <= 0) {
+                    status = -1
+                    return "Not available"
+                }else if (CppBankAlgorithm.isSafe()) {
+                    status = 1
+                    return "" + CppBankAlgorithm.getSequence()
+                } else {
+                    status = 0
+                    return "Not exist"
+                }
+            }
+            color: {
+                if (status === -1)
+                    return FluColors.Grey100
+                if (status === 1)
+                    return FluColors.Green.normal
+                return FluColors.Red.normal
+            }
+
+            function refresh() {
+                if (CppBankAlgorithm.getNProcess() <= 0) {
+                    status = -1
+                    text = "Not available"
+                }else if (CppBankAlgorithm.isSafe()) {
+                    status = 1
+                    text = "" + CppBankAlgorithm.getSequence()
+                } else {
+                    status = 0
+                    text = "Not exist"
+                }
+            }
+
+        }
+
+    }
+
+    function refresh() {
+        safe_txt.refresh()
+        seq_txt.refresh()
+    }
+
+}
