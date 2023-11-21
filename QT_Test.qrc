@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/MainWindow.qml</file>
+        <file>QT_Test_zh_CN.qm</file>
+        <file>qml/NavItems/FootItems.qml</file>
+        <file>qml/Pages/Settings.qml</file>
+        <file>qml/NavItems/qmldir</file>
+        <file>qml/Pages/About.qml</file>
+        <file>qml/Component/ScrollableItems.qml</file>
+        <file>qml/Component/qmldir</file>
+        <file>qml/Component/NamedUrlItem.qml</file>
+        <file>src/ico/FluentUI.ico</file>
+        <file>src/ico/Qt.ico</file>
+        <file>src/svg/GitHub.svg</file>
+        <file>qml/NavItems/OriginalItems.qml</file>
+        <file>qml/Pages/BankAlgorithm.qml</file>
+        <file>src/png/Kaze.png</file>
+        <file>qml/Pages/DynamicPartitions.qml</file>
+        <file>qml/Pages/ProcessSchedule.qml</file>
+        <file>qml/Pages/PageSwapping.qml</file>
+        <file>qml/Pages/BankAlgorithm_SysStatus.qml</file>
+    </qresource>
+</RCC>
