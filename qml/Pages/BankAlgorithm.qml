@@ -94,8 +94,10 @@ Rectangle {
                 }
                 FluPivotItem {
                     title: "PMalloced"
-                    contentItem: FluText {
-                        text: "Unread emails go here."
+                    contentItem: FluLoader {
+                        width: parent.width
+                        height: parent.height
+                        source: "qrc:///qml/Pages/BankAlgorithm_PMalloced.qml"
                     }
                 }
                 FluPivotItem {

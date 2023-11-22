@@ -72,7 +72,7 @@
     </message>
     <message>
         <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="241"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="681"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="682"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
@@ -114,7 +114,7 @@
     </message>
     <message>
         <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="324"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="482"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="483"/>
         <source>Name</source>
         <translation>名称</translation>
     </message>
@@ -160,7 +160,7 @@
     </message>
     <message>
         <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="388"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="834"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="836"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
@@ -185,125 +185,125 @@
         <translation>成功删除资源</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="455"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="456"/>
         <source>Add process</source>
         <translation>添加进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="487"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="488"/>
         <source>Malloced</source>
         <translation>已分配</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="492"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="493"/>
         <source>Need</source>
         <translation>仍需要</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="546"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="547"/>
         <source>Please add resource first</source>
         <translation>请先添加资源</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="708"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="709"/>
         <source>Add process failed</source>
         <translation>添加进程失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="716"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="717"/>
         <source>Add process successfully</source>
         <translation>成功添加进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="733"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="734"/>
         <source>Random fill</source>
         <translation>随机填入</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="774"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="775"/>
         <source>Delete process</source>
         <translation>删除进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="780"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="788"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="781"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="790"/>
         <source>Num of alive processes: </source>
         <translation>未结束进程数量: </translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="803"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="805"/>
         <source>Process ID</source>
         <translation>进程ID</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="816"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="818"/>
         <source>Input the ID of the process</source>
         <translation>请输入进程ID</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="839"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="841"/>
         <source>Illegal input</source>
         <translation>非法输入</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="844"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="846"/>
         <source>Delete process failed</source>
         <translation>删除进程失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="849"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="851"/>
         <source>Delete process successfully</source>
         <translation>成功删除进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="868"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="870"/>
         <source>Status</source>
         <translation>状态</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="890"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="892"/>
         <source>Alive process IDs: </source>
         <translation>未结束进程ID: </translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="898"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="906"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="931"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="951"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="900"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="908"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="933"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="953"/>
         <source>No Process</source>
         <translation>没有进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="921"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="923"/>
         <source>Safety Status: </source>
         <translation>安全状态: </translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="934"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="954"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="936"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="956"/>
         <source>Safe</source>
         <translation>安全</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="937"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="957"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="939"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="959"/>
         <source>Unsafe</source>
         <translation>不安全</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="970"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="972"/>
         <source>Safe Sequence: </source>
         <translation>安全进程序列: </translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="980"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="1000"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="982"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="1002"/>
         <source>Not available</source>
         <translation>不可用</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="986"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="1006"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="988"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="1008"/>
         <source>Not exist</source>
         <translation>不存在</translation>
     </message>
