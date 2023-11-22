@@ -146,6 +146,9 @@ SINGLETON(BankAlgorithm)
     Q_INVOKABLE
     std::vector<QString> getNames() const;
 
+    Q_INVOKABLE
+    std::vector<int> getProcesses() const;
+
 signals:
 
 };

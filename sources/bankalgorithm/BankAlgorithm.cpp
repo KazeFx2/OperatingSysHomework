@@ -73,8 +73,8 @@ void BankAlgorithm::reset_except_src() {
     now_st = 0;
     max_history = MAX_HISTORY;
     now = {0,
-           std::vector<std::vector<int>>(),
-           std::vector<std::vector<int>>(),
+           std::vector<std::vector<int >>(),
+           std::vector<std::vector<int >>(),
            std::vector<bool>(),
            0,
            std::vector<int>()};
@@ -179,9 +179,11 @@ int BankAlgorithm::addProcess(std::vector<int> malloced, std::vector<int> need) 
     // find dead process
     int id;
     for (i = 0; i < now.malloced.size(); i++)
-        if (!now.exist[i])
+        if (!now.exist[i]) {
             id = i,
                     now.exist[i] = true;
+            break;
+        }
     if (i == now.malloced.size()) {
         id = i;
         now.exist.push_back(true);
@@ -399,10 +401,18 @@ int BankAlgorithm::getNSrc() const {
 }
 
 int BankAlgorithm::getNProcess() const {
-    // qDebug() << "return" << now.process_n << "\n";
     return now.process_n;
 }
 
 std::vector<QString> BankAlgorithm::getNames() const {
     return names;
+}
+
+std::vector<int> BankAlgorithm::getProcesses() const {
+    std::vector<int> ret(now.process_n, -1);
+    int pos = 0;
+    for (int i = 0; i < now.exist.size(); i++)
+        if (now.exist[i])
+            ret[pos++] = i;
+    return ret;
 }

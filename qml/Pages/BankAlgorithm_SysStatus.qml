@@ -6,8 +6,21 @@ import FluentUI 1.0
 
 FluScrollablePage {
 
+    function format(){
+      if(arguments.length === 0){
+        return "";
+      }
+      var s = arguments[0]
+      for(var i = 1; i < arguments.length; i++){
+        s = s.replace(new RegExp("\\{" + (i - 1) + "\\}","g"), arguments[i]);
+      }
+      return s;
+    }
+
     width: parent.width
     height: parent.height
+
+    property int ringtPad: 10
 
     id: sys_status_page
 
@@ -21,7 +34,7 @@ FluScrollablePage {
 
         font.bold: true
         font.pixelSize: 16
-        text: "Resources and Usage"
+        text: qsTr("Resources and Usage")
     }
 
     Rectangle {
@@ -80,7 +93,7 @@ FluScrollablePage {
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.bold: true
                 font.pixelSize: 20
-                text: "No resouces added"
+                text: qsTr("No resouces added")
             }
 
             delegate: Rectangle {
@@ -164,7 +177,7 @@ FluScrollablePage {
 
         font.bold: true
         font.pixelSize: 16
-        text: "Management"
+        text: qsTr("Management")
     }
 
     Rectangle {
@@ -178,7 +191,7 @@ FluScrollablePage {
     FluText {
         padding: 10
         font.bold: true
-        text: "Add resources"
+        text: qsTr("Add resource")
     }
 
     Row {
@@ -187,28 +200,28 @@ FluScrollablePage {
             id: src_name_txt
             padding: 10
             anchors.verticalCenter: parent.verticalCenter
-            text: "Src Name"
+            text: qsTr("Src Name")
         }
 
         FluTextBox {
             id: src_name_input
             width: (parent.parent.width - src_name_txt.width - src_size_txt.width - add_src_button.width - src_add_rect.width) / 2
             anchors.verticalCenter: parent.verticalCenter
-            placeholderText: "Input resource name"
+            placeholderText: qsTr("Input resource name")
         }
 
         FluText {
             id: src_size_txt
             padding: 10
             anchors.verticalCenter: parent.verticalCenter
-            text: "Src Size"
+            text: qsTr("Src Size")
         }
 
         FluTextBox {
             id: src_size_input
-            width: (parent.parent.width - src_name_txt.width - src_size_txt.width - add_src_button.width - src_add_rect.width) / 2
+            width: (parent.parent.width - src_name_txt.width - src_size_txt.width - add_src_button.width - src_add_rect.width - sys_status_page.ringtPad) / 2
             anchors.verticalCenter: parent.verticalCenter
-            placeholderText: "Input resource max size"
+            placeholderText: qsTr("Input resource max size")
             validator: IntValidator {
                 bottom: 1
                 top: 1000
@@ -225,7 +238,7 @@ FluScrollablePage {
         FluFilledButton {
             id: add_src_button
             anchors.verticalCenter: parent.verticalCenter
-            text: "Add"
+            text: qsTr("Add")
             disabled: {
                 if (src_name_input.text !== "" && src_size_input.text !== "")
                     return false
@@ -233,7 +246,7 @@ FluScrollablePage {
             }
             onClicked: {
                 if (src_name_input.text === "" || src_size_input.text === "") {
-                    showError("Please set the name and max size of new resource")
+                    showError(qsTr("Please set the name and max size of new resource"))
                     return
                 }
                 var name = src_name_input.text
@@ -241,7 +254,7 @@ FluScrollablePage {
                 var names = CppBankAlgorithm.getNames()
                 for (var i = 0; i < names.length; i++) {
                     if (name === names[i]) {
-                        showError("There already exists a resource named '" + name + "'")
+                        showError(sys_status_page.format(qsTr("There already exists a resource named '{0}'"), name))
                         return
                     }
                 }
@@ -257,10 +270,10 @@ FluScrollablePage {
                     })
                     src_name_input.text = ""
                     src_size_input.text = ""
-                    showSuccess("Add resource successfully")
+                    showSuccess(qsTr("Add resource successfully"))
                     process_add_list.refresh()
                 } else {
-                    showError("Add resource failed")
+                    showError(qsTr("Add resource failed"))
                 }
             }
         }
@@ -281,21 +294,21 @@ FluScrollablePage {
         color: FluColors.Grey110
     }
 
-    // Src add txt
+    // Src del txt
     FluText {
         padding: 10
         font.bold: true
-        text: "Delete resources"
+        text: qsTr("Delete resource")
     }
 
-    // Src add row
+    // Src del row
     Row {
 
         FluText {
             id: type_txt
             anchors.verticalCenter: parent.verticalCenter
             padding: 10
-            text: "Type"
+            text: qsTr("Type")
         }
 
         FluRadioButtons {
@@ -305,10 +318,10 @@ FluScrollablePage {
             anchors.verticalCenter: parent.verticalCenter
             spacing: 8
             FluRadioButton {
-                text: "ID"
+                text: qsTr("ID")
             }
             FluRadioButton {
-                text: "Name"
+                text: qsTr("Name")
             }
 
             onCurrentIndexChanged: {
@@ -327,7 +340,7 @@ FluScrollablePage {
         }
 
         Rectangle {
-            width: (parent.parent.width - type_txt.width - delete_type.width - delete_value_txt.width - delete_input.width - del_src_button.width) / 2
+            width: (parent.parent.width - type_txt.width - delete_type.width - delete_value_txt.width - delete_input.width - del_src_button.width - sys_status_page.ringtPad) / 2
             height: parent.height
             color: FluColors.Transparent
         }
@@ -336,14 +349,14 @@ FluScrollablePage {
             id: delete_value_txt
             anchors.verticalCenter: parent.verticalCenter
             padding: 10
-            text: "Value"
+            text: qsTr("Value")
         }
 
         FluTextBox {
             id: delete_input
             anchors.verticalCenter: parent.verticalCenter
-            width: 200
-            placeholderText: delete_type.currentIndex === 0 ? "Input the ID of resource" : "Input the name of resource"
+            // width: 200
+            placeholderText: delete_type.currentIndex === 0 ? qsTr("Input the ID of resource") : qsTr("Input the name of resource")
             validator: delete_type.currentIndex === 0 ? inx_vali : def_vali
         }
 
@@ -353,51 +366,72 @@ FluScrollablePage {
             color: FluColors.Transparent
         }
 
+        FluContentDialog{
+            id:dialog
+            title:qsTr("Warnning")
+            message:qsTr("There still exist alive processes. Delete resource will kill all processes. Continue?")
+            positiveText:qsTr("Confirm")
+            onPositiveClicked:{
+                parent.delete_()
+            }
+            negativeText:qsTr("Cancel")
+            buttonFlags: FluContentDialogType.PositiveButton | FluContentDialogType.NegativeButton
+            onNegativeClicked:{
+                showSuccess(qsTr("You cancel the deleting"))
+            }
+        }
+
         FluFilledButton {
             id: del_src_button
             anchors.verticalCenter: parent.verticalCenter
             disabled: delete_input.text === "" || CppBankAlgorithm.getNSrc() <= 0
-            text: "Delete"
+            text: qsTr("Delete")
             onClicked: {
                 // TO DO PROCESS CONFIRM
-                if (delete_type.currentIndex === 0) {
-                    var ret = CppBankAlgorithm.deleteSrc(parseInt(delete_input.text))
-                    if (!ret) {
-                        showError("Delete failed. May resource with ID '" + parseInt(delete_input.text) + "' not exist")
-                        return
-                    }
-                    ring_view.remove(parseInt(delete_input.text) + 1)
-                } else {
-                    var name = delete_input.text
-                    var names = CppBankAlgorithm.getNames()
-                    var flag = false
-                    for (var i = 0; i < names.length; i++) {
-                        if (name === names[i]) {
-                            flag = true
-                            var ret = CppBankAlgorithm.deleteSrc(name)
-                            if (!ret) {
-                                showError("Delete resource faild")
-                                return
-                            }
-                            break
-                        }
-                    }
-                    if (!flag) {
-                        showError("Delete faild. No such resource named '" + name + "'")
-                        return
-                    }
-                    for (var i = 1; i < ring_view.count; i++)
-                        if (ring_view.get(i).name === name) {
-                            ring_view.remove(i)
-                            break
-                        }
-                }
-                showSuccess("Delete resource successfully")
-                delete_input.text = ""
-                process_add_list.refresh()
-                sys_status_page.refresh()
+                if (CppBankAlgorithm.getNProcess() > 0)
+                    dialog.open()
+                else
+                    parent.delete_()
             }
         }
+
+        function delete_() {
+            if (delete_type.currentIndex === 0) {
+                var ret = CppBankAlgorithm.deleteSrc(parseInt(delete_input.text))
+                if (!ret) {
+                    showError(sys_status_page.format(qsTr("Delete failed. May resource with ID '{0}' not exist"), parseInt(delete_input.text)))
+                    return
+                }
+                ring_view.remove(parseInt(delete_input.text) + 1)
+            } else {
+                var name = delete_input.text
+                var names = CppBankAlgorithm.getNames()
+                var flag = false
+                for (var i = 0; i < names.length; i++) {
+                    if (name === names[i]) {
+                        flag = true
+                        ret = CppBankAlgorithm.deleteSrc(name)
+                        if (!ret) {
+                            showError(qsTr("Delete resource faild"))
+                            return
+                        }
+                        break
+                    }
+                }
+                if (!flag) {
+                    showError(sys_status_page.format(qsTr("Delete faild. No such resource named '{0}'"), name))
+                    return
+                }
+                for (i = 1; i < ring_view.count; i++)
+                    if (ring_view.get(i).name === name) {
+                        ring_view.remove(i)
+                        break
+                    }
+            }
+            showSuccess(qsTr("Delete resource successfully"))
+            delete_input.text = ""
+            process_add_list.refresh()
+            sys_status_page.refresh()}
     }
 
     Rectangle {
@@ -418,14 +452,14 @@ FluScrollablePage {
     FluText {
         padding: 10
         font.bold: true
-        text: "Add process"
+        text: qsTr("Add process")
     }
 
     // Process add row
     Row {
 
         Rectangle {
-            width: parent.parent.width - Math.max(process_add_button.width, process_random_button.width) - process_add_rect.width
+            width: parent.parent.width - Math.max(process_add_button.width, process_random_button.width) - process_add_rect.width - sys_status_page.ringtPad
             height: process_add_txt.height
             color: FluColors.Transparent
 
@@ -445,17 +479,17 @@ FluScrollablePage {
 
                         FluText {
                             padding: 6
-                            text: "Name"
+                            text: qsTr("Name")
                         }
 
                         FluText {
                             padding: 6
-                            text: "Malloced"
+                            text: qsTr("Malloced")
                         }
 
                         FluText {
                             padding: 6
-                            text: "Need"
+                            text: qsTr("Need")
                         }
 
                     }
@@ -509,7 +543,7 @@ FluScrollablePage {
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 font.bold: true
                                 font.pixelSize: 20
-                                text: "Please add resource first"
+                                text: qsTr("Please add resource first")
                             }
 
                             delegate: Rectangle {
@@ -644,7 +678,7 @@ FluScrollablePage {
                     width: process_random_button.width
 
                     // anchors.verticalCenter: parent.verticalCenter
-                    text: "Add"
+                    text: qsTr("Add")
 
                     disabled: {
                         var subitems = process_add_list.children[0].children
@@ -671,16 +705,15 @@ FluScrollablePage {
                         }
                         var ret = CppBankAlgorithm.addProcess(malloced, need)
                         if (ret === -1) {
-                            showError("Add process failed")
+                            showError(qsTr("Add process failed"))
                             return
                         }
-                        refresh()
                         for (i = 2; i < subitems.length; i++) {
                             subitems[i].data[0].data[2].text = "0"
                             subitems[i].data[0].data[4].text = "0"
                         }
-                        src_ring_view.refresh_data()
-                        showSuccess("Add process successfully")
+                        refresh()
+                        showSuccess(qsTr("Add process successfully"))
                     }
 
                 }
@@ -697,8 +730,8 @@ FluScrollablePage {
 
                 FluFilledButton {
                     id: process_random_button
-                    text: "Random fill"
-
+                    text: qsTr("Random fill")
+                    disabled: process_add_model.count <= 1
                     onClicked: {
                         // TO DO
                         var subitems = process_add_list.children[0].children
@@ -707,7 +740,6 @@ FluScrollablePage {
                         for (var i = 2; i < subitems.length; i++) {
                             var malloced = parseInt(Math.random() * (left[i - 2] + 1))
                             var need = parseInt(Math.random() * (total[i - 2] - malloced + 1))
-                            console.log("Random Gen", malloced, need)
                             subitems[i].data[0].data[2].text = "" + malloced
                             subitems[i].data[0].data[4].text = "" + need
                         }
@@ -739,11 +771,84 @@ FluScrollablePage {
     FluText {
         padding: 10
         font.bold: true
-        text: "Delete process"
+        text: qsTr("Delete process")
     }
 
     // Process del row
     Row {
+        id: process_num
+        property string txt: qsTr("Num of alive processes: ") + CppBankAlgorithm.getNProcess()
+        FluText {
+            id: process_num_txt
+            anchors.verticalCenter: parent.verticalCenter
+            padding: 10
+            text: process_num.txt
+        }
+        function refresh() {
+            txt = qsTr("Num of alive processes: ") + CppBankAlgorithm.getNProcess()
+            validator.top = CppBankAlgorithm.getNProcess() - 1
+        }
+
+        Rectangle {
+            id: process_del_rect_m
+            width: parent.parent.width - process_num_txt.width - process_del_rect_a.width - process_del_rect_b.width - process_del_input.width - process_del_txt.width - process_del_button.width - sys_status_page.ringtPad
+            height: parent.height
+            color: FluColors.Transparent
+        }
+
+        FluText {
+            id: process_del_txt
+            anchors.verticalCenter: parent.verticalCenter
+            padding: 10
+            text: qsTr("Process ID")
+        }
+
+        Rectangle {
+            id: process_del_rect_b
+            width: process_del_rect_a.width
+            height: parent.height
+            color: FluColors.Transparent
+        }
+
+        FluTextBox {
+            id: process_del_input
+            anchors.verticalCenter: parent.verticalCenter
+            placeholderText: qsTr("Input the ID of the process")
+            validator: IntValidator {
+                id: validator
+                bottom: 0
+                top: CppBankAlgorithm.getNProcess() - 1
+            }
+        }
+
+        Rectangle {
+            id: process_del_rect_a
+            width: 10
+            height: parent.height
+            color: FluColors.Transparent
+        }
+
+        FluFilledButton {
+            id: process_del_button
+            anchors.verticalCenter: parent.verticalCenter
+            text: qsTr("Delete")
+            disabled: process_del_input.text === ""
+            onClicked: {
+                var indx = parseInt(process_del_input.text)
+                if (isNaN(indx)) {
+                    showError(qsTr("Illegal input"))
+                    return
+                }
+                var ret = CppBankAlgorithm.deleteProcess(indx)
+                if (!ret) {
+                    showError(qsTr("Delete process failed"))
+                    return
+                }
+                sys_status_page.refresh()
+                process_del_input.text = ""
+                showSuccess(qsTr("Delete process successfully"))
+            }
+        }
     }
 
     Rectangle {
@@ -760,7 +865,7 @@ FluScrollablePage {
 
         font.bold: true
         font.pixelSize: 16
-        text: "Status"
+        text: qsTr("Status")
     }
 
     Rectangle {
@@ -782,43 +887,25 @@ FluScrollablePage {
         FluText {
             padding: 10
             font.bold: true
-            text: "Safety Status: "
+            text: qsTr("Alive process IDs: ")
         }
 
         FluText {
-            id: safe_txt
-            property int status
+            id: alive_process_txt
             anchors.verticalCenter: parent.verticalCenter
             text: {
                 if (CppBankAlgorithm.getNProcess() <= 0) {
-                    status = -1
-                    return "No Process"
-                }else if (CppBankAlgorithm.isSafe()) {
-                    status = 1
-                    return "Safe"
-                } else {
-                    status = 0
-                    return "Unsafe"
+                    return qsTr("No Process")
+                } else{
+                    return "" + CppBankAlgorithm.getProcesses()
                 }
-            }
-            color: {
-                if (status === -1)
-                    return FluColors.Grey100
-                if (status === 1)
-                    return FluColors.Green.normal
-                return FluColors.Red.normal
             }
 
             function refresh() {
                 if (CppBankAlgorithm.getNProcess() <= 0) {
-                    status = -1
-                    text = "No Process"
-                }else if (CppBankAlgorithm.isSafe()) {
-                    status = 1
-                    text = "Safe"
-                } else {
-                    status = 0
-                    text = "Unsafe"
+                    text = qsTr("No Process")
+                }else{
+                    text = "" + CppBankAlgorithm.getProcesses()
                 }
             }
 
@@ -831,23 +918,23 @@ FluScrollablePage {
         FluText {
             padding: 10
             font.bold: true
-            text: "Safe Sequence: "
+            text: qsTr("Safety Status: ")
         }
 
         FluText {
-            id: seq_txt
+            id: safe_txt
             property int status
             anchors.verticalCenter: parent.verticalCenter
             text: {
                 if (CppBankAlgorithm.getNProcess() <= 0) {
                     status = -1
-                    return "Not available"
+                    return qsTr("No Process")
                 }else if (CppBankAlgorithm.isSafe()) {
                     status = 1
-                    return "" + CppBankAlgorithm.getSequence()
+                    return qsTr("Safe")
                 } else {
                     status = 0
-                    return "Not exist"
+                    return qsTr("Unsafe")
                 }
             }
             color: {
@@ -861,13 +948,62 @@ FluScrollablePage {
             function refresh() {
                 if (CppBankAlgorithm.getNProcess() <= 0) {
                     status = -1
-                    text = "Not available"
+                    text = qsTr("No Process")
+                }else if (CppBankAlgorithm.isSafe()) {
+                    status = 1
+                    text = qsTr("Safe")
+                } else {
+                    status = 0
+                    text = qsTr("Unsafe")
+                }
+            }
+
+        }
+
+    }
+
+    Row {
+
+        FluText {
+            padding: 10
+            font.bold: true
+            text: qsTr("Safe Sequence: ")
+        }
+
+        FluText {
+            id: seq_txt
+            property int status
+            anchors.verticalCenter: parent.verticalCenter
+            text: {
+                if (CppBankAlgorithm.getNProcess() <= 0) {
+                    status = -1
+                    return qsTr("Not available")
+                }else if (CppBankAlgorithm.isSafe()) {
+                    status = 1
+                    return "" + CppBankAlgorithm.getSequence()
+                } else {
+                    status = 0
+                    return qsTr("Not exist")
+                }
+            }
+            color: {
+                if (status === -1)
+                    return FluColors.Grey100
+                if (status === 1)
+                    return FluColors.Green.normal
+                return FluColors.Red.normal
+            }
+
+            function refresh() {
+                if (CppBankAlgorithm.getNProcess() <= 0) {
+                    status = -1
+                    text = qsTr("Not available")
                 }else if (CppBankAlgorithm.isSafe()) {
                     status = 1
                     text = "" + CppBankAlgorithm.getSequence()
                 } else {
                     status = 0
-                    text = "Not exist"
+                    text = qsTr("Not exist")
                 }
             }
 
@@ -878,6 +1014,9 @@ FluScrollablePage {
     function refresh() {
         safe_txt.refresh()
         seq_txt.refresh()
+        alive_process_txt.refresh()
+        process_num.refresh()
+        src_ring_view.refresh_data()
     }
 
 }
