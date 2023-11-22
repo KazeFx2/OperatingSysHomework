@@ -58,6 +58,8 @@ SINGLETON(BankAlgorithm)
 
     // static BankAlgorithm *instance();
 
+    Q_PROPERTY(int nProcess READ getNProcess NOTIFY nProcessChanged)
+
     Q_INVOKABLE
     void reset();
 
@@ -150,7 +152,7 @@ SINGLETON(BankAlgorithm)
     std::vector<int> getProcesses() const;
 
 signals:
-
+    void nProcessChanged();
 };
 
 #endif // BANKALGORITHM_H

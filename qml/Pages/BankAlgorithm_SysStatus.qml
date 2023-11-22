@@ -3,19 +3,9 @@ import QtQuick.Templates 2.15 as T
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import FluentUI 1.0
+import "qrc:/src/js/tools.js" as Tools
 
 FluScrollablePage {
-
-    function format() {
-        if (arguments.length === 0) {
-            return "";
-        }
-        var s = arguments[0]
-        for (var i = 1; i < arguments.length; i++) {
-            s = s.replace(new RegExp("\\{" + (i - 1) + "\\}", "g"), arguments[i]);
-        }
-        return s;
-    }
 
     width: parent.width
     height: parent.height
@@ -254,7 +244,7 @@ FluScrollablePage {
                 var names = CppBankAlgorithm.getNames()
                 for (var i = 0; i < names.length; i++) {
                     if (name === names[i]) {
-                        showError(sys_status_page.format(qsTr("There already exists a resource named '{0}'"), name))
+                        showError(Tools.format(qsTr("There already exists a resource named '{0}'"), name))
                         return
                     }
                 }
@@ -399,7 +389,7 @@ FluScrollablePage {
             if (delete_type.currentIndex === 0) {
                 var ret = CppBankAlgorithm.deleteSrc(parseInt(delete_input.text))
                 if (!ret) {
-                    showError(sys_status_page.format(qsTr("Delete failed. May resource with ID '{0}' not exist"), parseInt(delete_input.text)))
+                    showError(Tools.format(qsTr("Delete failed. May resource with ID '{0}' not exist"), parseInt(delete_input.text)))
                     return
                 }
                 ring_view.remove(parseInt(delete_input.text) + 1)
@@ -419,7 +409,7 @@ FluScrollablePage {
                     }
                 }
                 if (!flag) {
-                    showError(sys_status_page.format(qsTr("Delete faild. No such resource named '{0}'"), name))
+                    showError(Tools.format(qsTr("Delete faild. No such resource named '{0}'"), name))
                     return
                 }
                 for (i = 1; i < ring_view.count; i++)

@@ -85,28 +85,53 @@ Rectangle {
                 currentIndex: 0
 
                 FluPivotItem {
-                    title: "SysStatus"
+                    title: qsTr("SysStatus")
                     contentItem: FluLoader {
                         width: parent.width
                         height: parent.height
-                        source: "qrc:///qml/Pages/BankAlgorithm_SysStatus.qml"
+                        source: "qrc:/qml/Pages/BankAlgorithm_SysStatus.qml"
+                        onVisibleChanged: {
+                            if (visible) {
+                                source = "qrc:/qml/Pages/BankAlgorithm_SysStatus.qml"
+                            } else {
+                                source = ""
+                            }
+                        }
                     }
                 }
                 FluPivotItem {
-                    title: "PMalloced"
+                    title: qsTr("PMalloced")
                     contentItem: FluLoader {
                         width: parent.width
                         height: parent.height
-                        source: "qrc:///qml/Pages/BankAlgorithm_PMalloced.qml"
+                        source: "qrc:/qml/Pages/BankAlgorithm_PMalloced.qml"
+                        onVisibleChanged: {
+                            if (visible) {
+                                source = "qrc:/qml/Pages/BankAlgorithm_PMalloced.qml"
+                            } else {
+                                source = ""
+                            }
+                        }
                     }
                 }
                 FluPivotItem {
-                    title: "PNeed"
-                    contentItem: FluText {
-                        text: "Flagged emails go here."
+                    title: qsTr("PNeed")
+                    contentItem: FluLoader {
+                        width: parent.width
+                        height: parent.height
+                        source: "qrc:/qml/Pages/BankAlgorithm_PNeed.qml"
+                        onVisibleChanged: {
+                            if (visible) {
+                                source = "qrc:/qml/Pages/BankAlgorithm_PNeed.qml"
+                            } else {
+                                source = ""
+                            }
+                        }
                     }
                 }
+
             }
+
         }
 
         Row {

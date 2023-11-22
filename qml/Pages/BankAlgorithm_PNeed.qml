@@ -80,14 +80,14 @@ FluContentPage{
                     onClicked: {
                         var obj = tableModel.getRow(row)
                         var indx = obj.id;
-                        var prev_malloced = CppBankAlgorithm.getMalloced(indx)
+                        var prev_malloced = CppBankAlgorithm.getNeed(indx)
                         var names = CppBankAlgorithm.getNames()
                         var succ = []
                         var failed = []
                         for (var i = 0; i < prev_malloced.length; i++){
                             if (obj[names[i]] === prev_malloced[i])
                                 continue
-                            var ret = CppBankAlgorithm.modifyMalloced(indx, i, obj[names[i]])
+                            var ret = CppBankAlgorithm.modifyNeed(indx, i, obj[names[i]])
                             if (ret) {
                                 succ.push(names[i])
                             }
@@ -323,7 +323,7 @@ FluContentPage{
                 action: table_view.customItem(action),
                 minimumHeight: 50
             }
-            var data = CppBankAlgorithm.getMalloced(process_ids[i])
+            var data = CppBankAlgorithm.getNeed(process_ids[i])
             for (var j = 0; j < names.length; j++){
                 tmp[names[j]] = data[j]
             }

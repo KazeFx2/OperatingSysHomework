@@ -21,5 +21,7 @@
         <file>qml/Pages/PageSwapping.qml</file>
         <file>qml/Pages/BankAlgorithm_SysStatus.qml</file>
         <file>qml/Pages/BankAlgorithm_PMalloced.qml</file>
+        <file>qml/Pages/BankAlgorithm_PNeed.qml</file>
+        <file>src/js/tools.js</file>
     </qresource>
 </RCC>
