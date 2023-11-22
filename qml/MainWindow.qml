@@ -51,7 +51,7 @@ FluWindow {
             footerItems: FootItems
             topPadding: FluTools.isMacos() ? 20 : 0
             // displayMode: undefined
-            logo: "qrc:///src/ico/FluentUI.ico"
+            logo: "qrc:///src/ico/App.ico"
             title: qsTr("Executable for Operating System Experiment")
             // onLogoClicked: { ... }
             Component.onCompleted: {

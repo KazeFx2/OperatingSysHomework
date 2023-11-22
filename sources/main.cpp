@@ -4,6 +4,7 @@
 #include <QQuickWindow>
 #include <QLocale>
 #include <QTranslator>
+#include <QIcon>
 
 #include "AppInfo.h"
 #include "helper/SettingsHelper.h"

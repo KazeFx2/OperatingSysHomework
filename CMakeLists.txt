@@ -8,6 +8,8 @@ set(CMAKE_ASM_STANDARD_REQUIRED ON)
 set(TS_FILES)
 set(QM_FILES)
 
+set(ICON_RES ${CMAKE_CURRENT_SOURCE_DIR}/src/ico/App.ico)
+
 # set sub_dir
 list(APPEND sub_dir FluentUI)
 
@@ -153,7 +155,9 @@ if (WIN32)
             ${sources_files}
             ${qml_files}
             ${resource_files}
+            main.rc
     )
+    configure_file(${ICON_RES} ${CMAKE_CURRENT_BINARY_DIR}/icon.ico COPYONLY)
 else ()
     # TO DO
     add_executable(QT_Test

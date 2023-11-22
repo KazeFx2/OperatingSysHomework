@@ -11,6 +11,7 @@
         <file>qml/Component/qmldir</file>
         <file>qml/Component/NamedUrlItem.qml</file>
         <file>src/ico/FluentUI.ico</file>
+        <file>src/ico/App.ico</file>
         <file>src/ico/Qt.ico</file>
         <file>src/svg/GitHub.svg</file>
         <file>qml/NavItems/OriginalItems.qml</file>
