@@ -1,4 +1,4 @@
-[for Chinese user](./Readme_zh_CN.md)
+[for Chinese user](./README.md)
 
 # What's this?
 A learning project for my self-study. Meanwhile, finish the homework that my teacher left. Currently, the core function of this application will be the same with the homework's content. Including the classical deadlock algorithm "bank algorithm" (almost finished),some sample dynamic partition algorithm (to do), page-swapping algorithm (to do) and process schedule algorithm (to do).
