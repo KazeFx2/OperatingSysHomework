@@ -8,6 +8,8 @@ Rectangle {
 
     property var src_names: []
 
+    signal refreshsub()
+
     width: parent.width
     height: parent.height
 
@@ -87,14 +89,23 @@ Rectangle {
                 FluPivotItem {
                     title: qsTr("SysStatus")
                     contentItem: FluLoader {
+                        id: sys_st
                         width: parent.width
                         height: parent.height
                         source: "qrc:/qml/Pages/BankAlgorithm_SysStatus.qml"
                         onVisibleChanged: {
                             if (visible) {
                                 source = "qrc:/qml/Pages/BankAlgorithm_SysStatus.qml"
+                                bottom_control.refreshbuttons()
                             } else {
                                 source = ""
+                                bottom_control.disablebuttons()
+                            }
+                        }
+                        onLoaded: {
+                            if (visible) {
+                                item.refreshbuttons.connect(bottom_control.refreshbuttons)
+                                global_ctx.refreshsub.connect(item.refresh)
                             }
                         }
                     }
@@ -143,20 +154,61 @@ Rectangle {
 
             FluFilledButton {
                 id: prev
-                text: "Prev"
-                disabled: CppBankAlgorithm.isBegin()
+                text: qsTr("PrevStatus")
+                disabled:  bank_inner_menu.currentIndex !== 0 || CppBankAlgorithm.isBegin()
+                onClicked: {
+                    var ret = CppBankAlgorithm.prevStatus()
+                    if (ret) {
+                        global_ctx.refreshsub()
+                        bottom_control.refreshbuttons()
+                    }
+                }
             }
 
             FluRectangle {
                 height: prev.height
-                width: parent.width - prev.width - next.width - parent.padding * 2
+                width: (parent.width - prev.width - next.width - reset.width - parent.padding * 2) / 2
+                color: FluColors.Transparent
+            }
+
+            FluFilledButton {
+                id: reset
+                text: qsTr("Reset")
+                onClicked: {
+                    CppBankAlgorithm.reset()
+                    if (bank_inner_menu.currentIndex === 0)
+                        global_ctx.refreshsub()
+                    bank_inner_menu.currentIndex = 0
+                }
+            }
+
+            FluRectangle {
+                height: prev.height
+                width: (parent.width - prev.width - next.width - reset.width - parent.padding * 2) / 2
                 color: FluColors.Transparent
             }
 
             FluFilledButton {
                 id: next
-                text: "Next"
-                disabled: CppBankAlgorithm.isEnd()
+                text: qsTr("NextStatus")
+                disabled: bank_inner_menu.currentIndex !== 0 || CppBankAlgorithm.isEnd()
+                onClicked: {
+                    var ret = CppBankAlgorithm.nextStatus()
+                    if (ret) {
+                        global_ctx.refreshsub()
+                        bottom_control.refreshbuttons()
+                    }
+                }
+            }
+
+            function refreshbuttons() {
+                prev.disabled = CppBankAlgorithm.isBegin()
+                next.disabled = CppBankAlgorithm.isEnd()
+            }
+
+            function disablebuttons() {
+                prev.disabled = true
+                next.disabled = true
             }
 
         }

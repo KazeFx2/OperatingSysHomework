@@ -10,6 +10,8 @@ FluScrollablePage {
     width: parent.width
     height: parent.height
 
+    signal refreshbuttons()
+
     property int ringtPad: 10
 
     id: sys_status_page
@@ -150,9 +152,23 @@ FluScrollablePage {
         }
 
         function refresh_data() {
+            sys_status_page.src_names = CppBankAlgorithm.getNames()
+            for (var i = ring_view.count - 1; i > 0; i--){
+                var tmp = ring_view.get(i)
+                var flag = true
+                for (var j = 0; j <sys_status_page.src_names.length; j++){
+                    if (sys_status_page.src_names[j] === tmp.name){
+                        flag = false
+                        break
+                    }
+                }
+                if (flag) {
+                    ring_view.remove(i)
+                }
+            }
             var Cost = CppBankAlgorithm.getCost()
             var Total = CppBankAlgorithm.getTotal()
-            for (var i = 1; i < ring_view.count; i++) {
+            for (i = 1; i < ring_view.count; i++) {
                 ring_view.set(i, {cost: Cost[i - 1], total: Total[i - 1]})
             }
 
@@ -420,7 +436,6 @@ FluScrollablePage {
             }
             showSuccess(qsTr("Delete resource successfully"))
             delete_input.text = ""
-            process_add_list.refresh()
             sys_status_page.refresh()
         }
     }
@@ -1008,7 +1023,9 @@ FluScrollablePage {
         seq_txt.refresh()
         alive_process_txt.refresh()
         process_num.refresh()
+        process_add_list.refresh()
         src_ring_view.refresh_data()
+        refreshbuttons()
     }
 
 }

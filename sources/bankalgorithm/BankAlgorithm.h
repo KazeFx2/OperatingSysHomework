@@ -23,6 +23,10 @@ typedef struct {
     int pos;
     // available_sequence
     std::vector<int> ava_seq;
+    // safe flag
+    bool safe_flag;
+    // calc flag
+    bool calc;
 } status;
 
 class BankAlgorithm : public QObject {
@@ -37,8 +41,6 @@ private:
     std::vector<status> status_sequence;
     // now status, default 0
     int now_st;
-    // safe_flag
-    bool safe_flag, calc;
     // max history
     int max_history;
     // now_status
@@ -121,7 +123,7 @@ SINGLETON(BankAlgorithm)
     bool isBegin() const;
 
     Q_INVOKABLE
-    bool isEnd() const;
+    bool isEnd();
 
     // get status
     Q_INVOKABLE

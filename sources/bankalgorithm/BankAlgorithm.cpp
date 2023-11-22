@@ -65,6 +65,7 @@ BankAlgorithm::~BankAlgorithm() = default;
 void BankAlgorithm::reset() {
     src_n = 0;
     sys_total.clear();
+    names.clear();
     reset_except_src();
 }
 
@@ -77,7 +78,9 @@ void BankAlgorithm::reset_except_src() {
            std::vector<std::vector<int >>(),
            std::vector<bool>(),
            0,
-           std::vector<int>()};
+           std::vector<int>(),
+           false,
+           false};
     if (now_st < status_sequence.size()) {
         auto iter = status_sequence.begin() + now_st;
         status_sequence.erase(iter);
@@ -86,7 +89,10 @@ void BankAlgorithm::reset_except_src() {
 }
 
 void BankAlgorithm::need_ReCalc() {
-    safe_flag = calc = false;
+    now.safe_flag = now.calc = false;
+    if (status_sequence.size() > now_st) {
+        status_sequence.erase(status_sequence.begin() + now_st, status_sequence.end());
+    }
 }
 
 int BankAlgorithm::addSrc(QString name, int max_cap) {
@@ -224,6 +230,8 @@ bool BankAlgorithm::modifyMalloced(int process_i, int src_i, int val) {
     if (left < add)
         return false;
     // apply
+    if (now.malloced[process_i][src_i] == val)
+        return true;
     now.malloced[process_i][src_i] = val;
     need_ReCalc();
     return true;
@@ -244,6 +252,8 @@ bool BankAlgorithm::modifyNeed(int process_i, int src_i, int val) {
     if (sys_total[src_i] < now.malloced[process_i][src_i] + val)
         return false;
     // apply
+    if (now.need[process_i][src_i] == val)
+        return true;
     now.need[process_i][src_i] = val;
     need_ReCalc();
     return true;
@@ -263,8 +273,8 @@ bool BankAlgorithm::deleteProcess(int process_i) {
 }
 
 bool BankAlgorithm::isSafe() {
-    if (calc)
-        return safe_flag;
+    if (now.calc)
+        return now.safe_flag;
     // main part of bank algorithm
 
     int left_process = now.process_n, i, j, position = 0;
@@ -302,8 +312,8 @@ bool BankAlgorithm::isSafe() {
             if (position < 0) {
                 // not safe
                 now.ava_seq = std::vector<int>();
-                calc = true;
-                safe_flag = false;
+                now.calc = true;
+                now.safe_flag = false;
                 return false;
             }
             i = tmp_sequence[position];
@@ -313,6 +323,8 @@ bool BankAlgorithm::isSafe() {
             left_process++;
         }
     }
+    now.calc = true;
+    now.safe_flag = true;
     now.ava_seq = tmp_sequence;
     now.pos = 0;
     return true;
@@ -323,17 +335,17 @@ std::vector<int> BankAlgorithm::getSequence() const {
 }
 
 bool BankAlgorithm::nextStatus() {
-    if (now_st < status_sequence.size()) {
-        now = status_sequence[now_st];
+    if (now_st + 1 < status_sequence.size()) {
+        now = status_sequence[now_st + 1];
         now_st++;
         return true;
     }
     if (now_st >= max_history || isEnd())
         return false;
-    if (!calc)
+    if (!now.calc)
         if (!isSafe())
             return false;
-    if (!safe_flag)
+    if (!now.safe_flag)
         return false;
     // save status
     status_sequence.push_back(now);
@@ -361,8 +373,8 @@ bool BankAlgorithm::isBegin() const {
     return false;
 }
 
-bool BankAlgorithm::isEnd() const {
-    if (now.process_n <= 0)
+bool BankAlgorithm::isEnd() {
+    if (now.process_n <= 0 || !isSafe())
         return true;
     return false;
 }
