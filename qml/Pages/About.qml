@@ -88,10 +88,13 @@ FluScrollablePage {
 
             FluText {
                 padding: 10
-                text: "\t?"
+                text: "\thttps://github.com/KazeFx2/OperatingSysHomework"
                 color: FluColors.Blue.normal
                  MouseArea {
+                    width: parent.width
+                    height: parent.height
                     onClicked: {
+                        Qt.openUrlExternally("https://github.com/KazeFx2/OperatingSysHomework")
                     }
                  }
             }

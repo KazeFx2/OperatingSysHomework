@@ -29,7 +29,7 @@
         <translation>    这是我第一次在这个社区提交代码（？）如果有任何任何的错误或问题，同时您能告诉我，我不胜感激：）</translation>
     </message>
     <message>
-        <location filename="qml/Pages/About.qml" line="105"/>
+        <location filename="qml/Pages/About.qml" line="108"/>
         <source>Open Source Licenses</source>
         <translation>开放源代码许可</translation>
     </message>
