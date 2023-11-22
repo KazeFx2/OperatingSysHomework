@@ -34,6 +34,8 @@ int main(int argc, char *argv[]) {
     const QStringList uiLanguages = QLocale::system().uiLanguages();
     for (const QString &locale: uiLanguages) {
         const QString baseName = "QT_Test_" + QLocale(locale).name();
+//        if (baseName == "QT_Test_zh_CN")
+//            continue;
         if (translator.load(":/" + baseName)) {
             app.installTranslator(&translator);
             break;

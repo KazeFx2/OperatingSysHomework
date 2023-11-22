@@ -4,17 +4,32 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="qml/Pages/About.qml" line="8"/>
+        <location filename="qml/Pages/About.qml" line="10"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="qml/Pages/About.qml" line="12"/>
+        <location filename="qml/Pages/About.qml" line="14"/>
         <source>Author</source>
         <translation>作者</translation>
     </message>
     <message>
-        <location filename="qml/Pages/About.qml" line="45"/>
+        <location filename="qml/Pages/About.qml" line="65"/>
+        <source>What&apos;s this?</source>
+        <translation>这是什么？</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/About.qml" line="72"/>
+        <source>    This is an experimental course‘s homework of operating system. Meanwhile, I am learning the Qt programming, so I tried to combinate them together. Then this project is given birth to. In order to learn to work with &apos;git&apos; and &apos;camke&apos;, I uploaded it to the github. lisence? Maybe the MIT, I&apos;ll add it after I read the lisences and rules.</source>
+        <translation>    这是操作系统实验课程的一个（些）作业。同时，我正在学习Qt，于是乎我便试着把这俩写在了一起，诞生了这个项目。又为了学一下用‘git’和‘cmake’这俩生产力，我便将该项目上传至了Github仓库。关于许可证？应该会挂MIT许可证？我将会在读完那些乱七八糟的条款后再决定（大概）。</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/About.qml" line="79"/>
+        <source>    This is my first try to make my contributions(?) If there is any mistakes that I made, I&apos;ll be very grateful if you can tell me :)</source>
+        <translation>    这是我第一次在这个社区提交代码（？）如果有任何任何的错误或问题，同时您能告诉我，我不胜感激：）</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/About.qml" line="105"/>
         <source>Open Source Licenses</source>
         <translation>开放源代码许可</translation>
     </message>
