@@ -13,7 +13,7 @@ Rectangle {
 
     color: FluColors.Transparent
 
-    Column{
+    Column {
 
         id: col
 
@@ -28,14 +28,14 @@ Rectangle {
             font.bold: true
         }
 
-        Rectangle{
+        Rectangle {
             id: pad
             width: parent.width
             height: 10
             color: FluColors.Transparent
         }
 
-        FluArea{
+        FluArea {
 
             id: area
 
@@ -46,7 +46,7 @@ Rectangle {
 
             x: 10
 
-            FluPivot{
+            FluPivot {
                 id: bank_inner_menu
 
                 width: parent.width
@@ -55,21 +55,21 @@ Rectangle {
                 headerSpacing: {
                     var tmp = bank_inner_menu.children[0].contentItem.children
                     var widdest = 0
-                    for (var i = 0; i < tmp.length; i++){
+                    for (var i = 0; i < tmp.length; i++) {
                         var j = tmp[i].children[0].data[0]
-                        if (typeof(tmp[i].children[0].data[0]) == "undefined" ||
-                                typeof(tmp[i].children[0].data[0].text) == "undefined" ||
-                                tmp[i].children[0].data[0].width === 0)
+                        if (typeof (tmp[i].children[0].data[0]) == "undefined" ||
+                            typeof (tmp[i].children[0].data[0].text) == "undefined" ||
+                            tmp[i].children[0].data[0].width === 0)
                             continue
                         if (widdest < tmp[i].children[0].data[0].width)
                             widdest = tmp[i].children[0].data[0].width
                     }
                     if (widdest === 0)
                         return 0
-                    for (i = 0; i < tmp.length; i++){
-                        if (typeof(tmp[i].children[0].data[0]) == "undefined" ||
-                                typeof(tmp[i].children[0].data[0].text) == "undefined" ||
-                                tmp[i].children[0].data[0].width === 0)
+                    for (i = 0; i < tmp.length; i++) {
+                        if (typeof (tmp[i].children[0].data[0]) == "undefined" ||
+                            typeof (tmp[i].children[0].data[0].text) == "undefined" ||
+                            tmp[i].children[0].data[0].width === 0)
                             continue
                         if (tmp[i].children[0].data[0].width !== widdest)
                             tmp[i].children[0].data[0].leftPadding += (widdest - tmp[i].children[0].data[0].width) / 2
@@ -84,7 +84,7 @@ Rectangle {
 
                 currentIndex: 0
 
-                FluPivotItem{
+                FluPivotItem {
                     title: "SysStatus"
                     contentItem: FluLoader {
                         width: parent.width
@@ -92,15 +92,15 @@ Rectangle {
                         source: "qrc:///qml/Pages/BankAlgorithm_SysStatus.qml"
                     }
                 }
-                FluPivotItem{
+                FluPivotItem {
                     title: "PMalloced"
-                    contentItem: FluText{
+                    contentItem: FluText {
                         text: "Unread emails go here."
                     }
                 }
-                FluPivotItem{
+                FluPivotItem {
                     title: "PNeed"
-                    contentItem: FluText{
+                    contentItem: FluText {
                         text: "Flagged emails go here."
                     }
                 }

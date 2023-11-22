@@ -6,15 +6,15 @@ import FluentUI 1.0
 
 FluScrollablePage {
 
-    function format(){
-      if(arguments.length === 0){
-        return "";
-      }
-      var s = arguments[0]
-      for(var i = 1; i < arguments.length; i++){
-        s = s.replace(new RegExp("\\{" + (i - 1) + "\\}","g"), arguments[i]);
-      }
-      return s;
+    function format() {
+        if (arguments.length === 0) {
+            return "";
+        }
+        var s = arguments[0]
+        for (var i = 1; i < arguments.length; i++) {
+            s = s.replace(new RegExp("\\{" + (i - 1) + "\\}", "g"), arguments[i]);
+        }
+        return s;
     }
 
     width: parent.width
@@ -159,10 +159,10 @@ FluScrollablePage {
 
         }
 
-        function refresh_data(){
+        function refresh_data() {
             var Cost = CppBankAlgorithm.getCost()
             var Total = CppBankAlgorithm.getTotal()
-            for (var i = 1; i < ring_view.count; i++){
+            for (var i = 1; i < ring_view.count; i++) {
                 ring_view.set(i, {cost: Cost[i - 1], total: Total[i - 1]})
             }
 
@@ -366,17 +366,17 @@ FluScrollablePage {
             color: FluColors.Transparent
         }
 
-        FluContentDialog{
-            id:dialog
-            title:qsTr("Warnning")
-            message:qsTr("There still exist alive processes. Delete resource will kill all processes. Continue?")
-            positiveText:qsTr("Confirm")
-            onPositiveClicked:{
+        FluContentDialog {
+            id: dialog
+            title: qsTr("Warnning")
+            message: qsTr("There still exist alive processes. Delete resource will kill all processes. Continue?")
+            positiveText: qsTr("Confirm")
+            onPositiveClicked: {
                 parent.delete_()
             }
-            negativeText:qsTr("Cancel")
+            negativeText: qsTr("Cancel")
             buttonFlags: FluContentDialogType.PositiveButton | FluContentDialogType.NegativeButton
-            onNegativeClicked:{
+            onNegativeClicked: {
                 showSuccess(qsTr("You cancel the deleting"))
             }
         }
@@ -431,7 +431,8 @@ FluScrollablePage {
             showSuccess(qsTr("Delete resource successfully"))
             delete_input.text = ""
             process_add_list.refresh()
-            sys_status_page.refresh()}
+            sys_status_page.refresh()
+        }
     }
 
     Rectangle {
@@ -784,6 +785,7 @@ FluScrollablePage {
             padding: 10
             text: process_num.txt
         }
+
         function refresh() {
             txt = qsTr("Num of alive processes: ") + CppBankAlgorithm.getNProcess()
             validator.top = CppBankAlgorithm.getNProcess() - 1
@@ -896,7 +898,7 @@ FluScrollablePage {
             text: {
                 if (CppBankAlgorithm.getNProcess() <= 0) {
                     return qsTr("No Process")
-                } else{
+                } else {
                     return "" + CppBankAlgorithm.getProcesses()
                 }
             }
@@ -904,7 +906,7 @@ FluScrollablePage {
             function refresh() {
                 if (CppBankAlgorithm.getNProcess() <= 0) {
                     text = qsTr("No Process")
-                }else{
+                } else {
                     text = "" + CppBankAlgorithm.getProcesses()
                 }
             }
@@ -929,7 +931,7 @@ FluScrollablePage {
                 if (CppBankAlgorithm.getNProcess() <= 0) {
                     status = -1
                     return qsTr("No Process")
-                }else if (CppBankAlgorithm.isSafe()) {
+                } else if (CppBankAlgorithm.isSafe()) {
                     status = 1
                     return qsTr("Safe")
                 } else {
@@ -949,7 +951,7 @@ FluScrollablePage {
                 if (CppBankAlgorithm.getNProcess() <= 0) {
                     status = -1
                     text = qsTr("No Process")
-                }else if (CppBankAlgorithm.isSafe()) {
+                } else if (CppBankAlgorithm.isSafe()) {
                     status = 1
                     text = qsTr("Safe")
                 } else {
@@ -978,7 +980,7 @@ FluScrollablePage {
                 if (CppBankAlgorithm.getNProcess() <= 0) {
                     status = -1
                     return qsTr("Not available")
-                }else if (CppBankAlgorithm.isSafe()) {
+                } else if (CppBankAlgorithm.isSafe()) {
                     status = 1
                     return "" + CppBankAlgorithm.getSequence()
                 } else {
@@ -998,7 +1000,7 @@ FluScrollablePage {
                 if (CppBankAlgorithm.getNProcess() <= 0) {
                     status = -1
                     text = qsTr("Not available")
-                }else if (CppBankAlgorithm.isSafe()) {
+                } else if (CppBankAlgorithm.isSafe()) {
                     status = 1
                     text = "" + CppBankAlgorithm.getSequence()
                 } else {

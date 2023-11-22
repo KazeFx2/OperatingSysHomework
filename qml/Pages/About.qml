@@ -3,7 +3,7 @@ import QtQuick.Layouts 1.15
 import FluentUI 1.0
 import "qrc:///qml/Component"
 
-FluScrollablePage{
+FluScrollablePage {
 
     title: qsTr("About")
 
@@ -46,38 +46,38 @@ FluScrollablePage{
         font.pixelSize: 20
     }
 
-    ScrollableItems{
+    ScrollableItems {
 
         height: col.height
 
-        Column{
+        Column {
 
             id: col
 
             width: parent.width
 
-            NamedUrlItem{
+            NamedUrlItem {
                 ico: "qrc:///src/ico/Qt.ico"
                 name: "Qt Project"
                 url: "https://github.com/qtproject"
                 license: "GNU LGPL"
             }
 
-            NamedUrlItem{
+            NamedUrlItem {
                 ico: "qrc:///src/ico/FluentUI.ico"
                 name: "FluenUI"
                 url: "https://github.com/zhuzichu520/FluentUI"
                 license: "MIT License"
             }
 
-            NamedUrlItem{
+            NamedUrlItem {
                 ico: "qrc:///src/svg/GitHub.svg"
                 name: "FramelessHelper 2.x"
                 url: "https://github.com/wangwenx190/framelesshelper"
                 license: "MIT License"
             }
 
-            NamedUrlItem{
+            NamedUrlItem {
                 ico: "qrc:///src/svg/GitHub.svg"
                 name: "ZXing-C++"
                 url: "https://github.com/zhuzichu520/zxing-cpps"
