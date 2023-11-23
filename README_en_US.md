@@ -14,12 +14,17 @@ A learning project for my self-study. Meanwhile, finish the homework that my tea
 
 # Procedure
 
--[x] Bank Algorithm
--[ ] Dynamic Partition
--[ ] Page Swapping
--[ ] Process Schedule
--[ ] Settings Page
--[ ] ......
+- [x] Bank Algorithm
+
+- [ ] Dynamic Partition
+
+- [ ] Page Swapping
+
+- [ ] Process Schedule
+
+- [ ] Settings Page
+
+- [ ] ......
 
 About 10% finished...
 
