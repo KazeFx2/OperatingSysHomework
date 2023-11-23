@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
             }, Qt::QueuedConnection);
 
     engine.addImportPath(QString("qml/"));
-
+    engine.addImportPath(QString("/"));
     engine.load(url);
 
     return app.exec();
