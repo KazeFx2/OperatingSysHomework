@@ -1,10 +1,9 @@
 #ifndef BANKALGORITHM_H
 #define BANKALGORITHM_H
 
-#include <QtCore/qobject.h>
-#include <QtQml/qqml.h>
+#include "QtIncludes.h"
+
 #include <vector>
-#include "singleton.h"
 
 #define MAX_HISTORY 512
 

@@ -5,6 +5,8 @@ project(QT_Test VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_ASM_STANDARD_REQUIRED ON)
 
+# set(CMAKE_C_COMPILE_OBJECT ON)
+
 set(TS_FILES)
 set(QM_FILES)
 
@@ -58,6 +60,7 @@ file(RELATIVE_PATH BUILD_D ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_BINARY_DIR})
 set(except_dir ${sub_dir})
 list(APPEND except_dir ${BUILD_D})
 list(APPEND except_dir cmake)
+# list(APPEND except_dir sources/C_)
 
 # recurse all cpp/head files
 file(GLOB_RECURSE CPP_FILES *.cpp *.h)
@@ -149,6 +152,9 @@ foreach (filepath ${RES_PATHS})
     endif ()
 endforeach (filepath)
 
+set(C_COMPONENT_C_LIST_TEST ON)
+add_subdirectory(sources/C_component)
+
 # add executable
 if (WIN32)
     add_executable(QT_Test
@@ -234,6 +240,7 @@ target_link_libraries(QT_Test PRIVATE
         Qt${QT_VERSION_MAJOR}::Network
         # dynamic link
         fluentuiplugin
+        CList
 )
 
 # installation
