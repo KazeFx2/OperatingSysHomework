@@ -152,7 +152,7 @@ foreach (filepath ${RES_PATHS})
     endif ()
 endforeach (filepath)
 
-set(C_COMPONENT_C_LIST_TEST ON)
+set(C_COMPONENT_C_TEST ON)
 add_subdirectory(sources/C_component)
 
 # add executable

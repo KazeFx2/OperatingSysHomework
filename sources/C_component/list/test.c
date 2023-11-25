@@ -4,18 +4,18 @@
 typedef unsigned char MyType;
 
 typedef struct {
-    Node list;
+    node_t list;
     MyType data;
 } MyList;
 
 int main() {
     printf("Hello world.\n");
-    List head = initList();
+    list_t head = initList();
     printf("%p\n", head);
     MyType a = 114, b = 255;
-    pushEnd(&head, &a, sizeof(MyType));
+    pushEnd(head, &a, sizeof(MyType));
     printf("%p\n", head);
-    pushEnd(&head, &b, sizeof(MyType));
+    pushEnd(head, &b, sizeof(MyType));
     printf("%p\n", head);
     printf("a: %d, b: %d\n", ((MyList *) (head->next))->data,
            ((MyList *) (((MyList *) (head->next))->list.next))->data);

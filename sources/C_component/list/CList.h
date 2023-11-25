@@ -6,22 +6,21 @@
 #define QT_TEST_CLIST_H
 
 #include <malloc.h>
+#include "setmem.h"
+#include "types.h"
 
 //#ifdef __cplusplus
 //extern "C" {
 //#endif
 
-typedef struct list {
-    struct list *prev;
-    struct list *next;
-} Node, *List;
+typedef struct list_s {
+    struct list_s *prev;
+    struct list_s *next;
+} node_t, *list_t;
 
-#define op_ptr(ptr, op) ((void *)(((uintptr_t)ptr) op))
-#define offset_of(type, field) ((uintptr_t)&(((type *)NULL)->field))
+list_t initList();
 
-List initList();
-
-int pushEnd(List *_head, const void *data, size_t data_size);
+bool pushEnd(list_t head, const void *data, size_t data_size);
 
 //#ifdef __cplusplus
 //};

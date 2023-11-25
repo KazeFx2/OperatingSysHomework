@@ -15,19 +15,20 @@
 #define true 1
 #define false 0
 
-List initList() {
-    List head;
-    head = malloc(sizeof(Node));
+list_t initList() {
+    list_t head;
+    head = __malloc(sizeof(node_t));
     if (!head)
         return NULL;
     head->prev = head->next = NULL;
     return head;
 }
 
-Node **findNode(List *head, const void *target) {
-    if (!*head)
+node_t **findNode(list_t _head, const void *target) {
+    if (!_head)
         return NULL;
-    head = &((*(Node **) head)->next);
+    node_t **head = &_head;
+    head = &((*head)->next);
     while (*head != target && *head)
         head = &((*head)->next);
     if (*head == target)
@@ -35,10 +36,10 @@ Node **findNode(List *head, const void *target) {
     return NULL;
 }
 
-Node **findNodeByIndex(List *head, size_t index) {
+node_t **findNodeByIndex(list_t *head, size_t index) {
     if (!head || !*head)
         return NULL;
-    head = &((*(Node **) head)->next);
+    head = &((*head)->next);
     if (index == 0)
         return head;
     while (*head && index != 0)
@@ -48,31 +49,31 @@ Node **findNodeByIndex(List *head, size_t index) {
     return NULL;
 }
 
-int addNodeBefore(List *head, void *target, const void *data, size_t data_size) {
-    head = findNode(head, target);
+bool addNodeBefore(list_t _head, void *target, const void *data, size_t data_size) {
+    node_t **head = findNode(_head, target);
     if (!head)
         return false;
-    *head = malloc(data_size + sizeof(Node));
+    *head = __malloc(data_size + sizeof(node_t));
     if (!*head) {
         *head = target;
         return false;
     }
     (*head)->next = target;
-    (*head)->prev = op_ptr(head, -offset_of(Node, next));
+    (*head)->prev = op_ptr(head, -offset_of(node_t, next));
     if (target)
-        ((Node *) target)->prev = *head;
+        ((node_t *) target)->prev = *head;
     if (!data)
         return false;
     memcpy((*head) + 1, data, data_size);
     return true;
 }
 
-int pushEnd(List *head, const void *data, size_t data_size) {
+bool pushEnd(list_t head, const void *data, size_t data_size) {
     return addNodeBefore(head, NULL, data, data_size);
 }
 
-int insertBegin(List *head, const void *data, size_t data_size) {
-    if (!head || !*head)
+bool insertBegin(list_t head, const void *data, size_t data_size) {
+    if (!head)
         return false;
-    return addNodeBefore(head, (*head)->next, data, data_size);
+    return addNodeBefore(head, head->next, data, data_size);
 }
