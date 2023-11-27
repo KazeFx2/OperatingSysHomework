@@ -72,7 +72,8 @@ bool initPage(uint page_size, uint max_pages) {
                 page_byte_size,
                 i,
                 false,
-                0
+                0,
+                NULL
         };
         if (!pushEnd(pages, &tmp_page, sizeof(page_t)))
             return false;
