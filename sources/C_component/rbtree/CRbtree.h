@@ -24,6 +24,10 @@ rbtree_t initTree();
 
 bool addNode(rbtree_t head, uint comparable_value, void *data, size_t data_size);
 
+bool deleteNode(rbtree_t head, rbtnode_t *target);
+
 rbtnode_t *getNode(rbtree_t head, uint key);
+
+bool RBTreeIsCorrect(rbtree_t head, uint depth_now, bool forceBlack);
 
 #endif //QT_TEST_CRBTREE_H
