@@ -1,5 +1,5 @@
 //
-// Created by Kaze Fx on 2023/11/23.
+// Created by Kaze Fx on 2023/11/23.666
 //
 
 #include "CList.h"
@@ -68,8 +68,30 @@ bool addNodeBefore(list_t _head, void *target, const void *data, size_t data_siz
     return true;
 }
 
+bool addExistNodeBefore(list_t _head, void *target, node_t *node) {
+    if (!node)
+        return false;
+    node_t **head = findNode(_head, target);
+    if (!head)
+        return false;
+    *head = node;
+    if (!*head) {
+        *head = target;
+        return false;
+    }
+    (*head)->next = target;
+    (*head)->prev = op_ptr(head, -offset_of(node_t, next));
+    if (target)
+        ((node_t *) target)->prev = *head;
+    return true;
+}
+
 bool pushEnd(list_t head, const void *data, size_t data_size) {
     return addNodeBefore(head, NULL, data, data_size);
+}
+
+bool pushExistEnd(list_t head, node_t *node) {
+    return addExistNodeBefore(head, NULL, node);
 }
 
 bool insertBegin(list_t head, const void *data, size_t data_size) {

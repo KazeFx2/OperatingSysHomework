@@ -54,7 +54,7 @@ rbtree_t initTree() {
     return head;
 }
 
-rbtnode_t **getInsertValuePosition(rbtree_t head, uint value, __out bool *left) {
+rbtnode_t **getInsertValuePosition(rbtree_t head, uintptr_t value, __out bool *left) {
     rbtnode_t **start = &root(head);
     bool l = 2;
     while (*start) {
@@ -112,7 +112,7 @@ void adjustTree(rbtnode_t *node, rbtree_t head) {
     set_black(root(head));
 }
 
-bool addNode(rbtree_t head, uint comparable_value, void *data, size_t data_size) {
+bool addNode(rbtree_t head, uintptr_t comparable_value, void *data, size_t data_size) {
     bool left;
     rbtnode_t **now = getInsertValuePosition(head, comparable_value, &left);
     if (!now)
@@ -139,7 +139,34 @@ bool addNode(rbtree_t head, uint comparable_value, void *data, size_t data_size)
     return true;
 }
 
-rbtnode_t *getNode(rbtree_t head, uint key) {
+bool addExistNode(rbtree_t head, uintptr_t comparable_value, rbtnode_t *node) {
+    if (!node)
+        return false;
+    bool left;
+    rbtnode_t **now = getInsertValuePosition(head, comparable_value, &left);
+    if (!now)
+        return false;
+    *now = node;
+    if (!*now) {
+        *now = NULL;
+        return false;
+    }
+    (*now)->left = (*now)->right = NULL;
+    if (left == 2)
+        // is root
+        (*now)->parent = head;
+    else if (left)
+        (*now)->parent = op_ptr(now, -offset_of(rbtnode_t, left));
+    else
+        (*now)->parent = op_ptr(now, -offset_of(rbtnode_t, right));
+    (*now)->comparable = comparable_value;
+    // (*now)->color = !(*now)->parent->color;
+    set_red(*now);
+    adjustTree(*now, head);
+    return true;
+}
+
+rbtnode_t *getNode(rbtree_t head, uintptr_t key) {
     rbtnode_t *node = root(head);
     while (node) {
         if (node->comparable == key)

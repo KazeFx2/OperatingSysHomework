@@ -13,6 +13,8 @@
 //extern "C" {
 //#endif
 
+#define GetFirst(list, type) ((type *)((list)->next))
+
 typedef struct list_s {
     struct list_s *prev;
     struct list_s *next;
@@ -21,6 +23,8 @@ typedef struct list_s {
 list_t initList();
 
 bool pushEnd(list_t head, const void *data, size_t data_size);
+
+bool pushExistEnd(list_t head, node_t *node);
 
 //#ifdef __cplusplus
 //};

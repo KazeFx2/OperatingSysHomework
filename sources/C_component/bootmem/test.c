@@ -7,10 +7,16 @@
 #include "stdio.h"
 
 void testMax() {
-    void *start = malloc(1);
-    int i = 0;
-    while (1) {
-        printf("i: %d, acc: %c\n", i, *((char *) ((uintptr_t) start + i)));
+    int i = 0, ct = 100;
+    uintptr_t max = 0, start = 0, tmp;
+    while (ct--) {
+        tmp = (uintptr_t) malloc(1);
+        if (tmp - start > 4096)
+            printf("cg\n"),
+                    start = tmp;
+        if (tmp - start > max)
+            max = tmp - start;
+        printf("max: %llu, i: %d, acc: 0x%p\n", max, i, tmp);
         i++;
     }
 }

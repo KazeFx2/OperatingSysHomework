@@ -17,16 +17,18 @@ typedef enum {
 typedef struct rbtnode_s {
     tree_color_t color;
     struct rbtnode_s *left, *right, *parent;
-    uint comparable;
+    uintptr_t comparable;
 } rbtnode_t, *rbtree_t;
 
 rbtree_t initTree();
 
-bool addNode(rbtree_t head, uint comparable_value, void *data, size_t data_size);
+bool addNode(rbtree_t head, uintptr_t comparable_value, void *data, size_t data_size);
+
+bool addExistNode(rbtree_t head, uintptr_t comparable_value, rbtnode_t *node);
 
 bool deleteNode(rbtree_t head, rbtnode_t *target);
 
-rbtnode_t *getNode(rbtree_t head, uint key);
+rbtnode_t *getNode(rbtree_t head, uintptr_t key);
 
 bool RBTreeIsCorrect(rbtree_t head, uint depth_now, bool forceBlack);
 
