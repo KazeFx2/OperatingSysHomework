@@ -7,7 +7,7 @@
 
 #include "stddef.h"
 
-typedef unsigned char bool;
+#define bool char
 typedef unsigned int uint;
 typedef unsigned int pid_t;
 

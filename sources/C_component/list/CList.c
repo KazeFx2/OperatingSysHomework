@@ -99,3 +99,25 @@ bool insertBegin(list_t head, const void *data, size_t data_size) {
         return false;
     return addNodeBefore(head, head->next, data, data_size);
 }
+
+bool removeNode(node_t *node) {
+    if (!node->prev)
+        return false;
+    if (node->next)
+        node->next->prev = node->prev;
+    node->prev->next = node->next;
+    return true;
+}
+
+bool removeEnd(list_t head) {
+    node_t *del = op_ptr(findNode(head, NULL), -offset_of(node_t, next));
+    removeNode(del);
+}
+
+bool clearList(list_t head) {
+    if (!head)
+        return false;
+    while (head->next)
+        removeNode(head->next);
+    return true;
+}

@@ -14,8 +14,6 @@
 # define MAX_PAGES 1024
 # define MINIMUM_SIZE 1
 
-extern uint pid;
-
 typedef struct page_s {
     // start of page
     void *page_start;
@@ -29,6 +27,8 @@ typedef struct page_s {
     struct page_s *first_page;
     // page is used
     bool used: 1;
+    // if merged, is the end page
+    bool end: 1;
     // used by whom
     pid_t pid;
     // pid_used_page_list, NULL in default
@@ -84,8 +84,22 @@ typedef struct mem_management_s {
     bool *bitmap;
 } mem_management_t;
 
+// search method
+typedef enum {
+    // first fit
+    FF = 0,
+    // next fit
+    NF,
+    // best fit
+    BF,
+    // worst fit
+    WF
+} strategy_t;
+
 bool initPage(uint page_size, uint max_pages);
 
 void setPID(uint _pid);
+
+void setStrategy(strategy_t s);
 
 #endif //QT_TEST_BOOTMEM_H

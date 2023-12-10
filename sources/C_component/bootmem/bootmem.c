@@ -9,6 +9,10 @@
 
 #include "stdio.h"
 
+///
+/// * TO BE CONTINUED
+///
+
 #endif
 
 #define ALIGNMENT 8
@@ -33,6 +37,10 @@ mem_zone_node_t *mz_reserve;
 
 uint pid;
 
+strategy_t strategy;
+
+mem_management_t *manger;
+
 void *tmp_malloc(size_t Size) {
     if (Size % ALIGNMENT)
         Size += (ALIGNMENT - (Size % ALIGNMENT));
@@ -45,6 +53,59 @@ void *tmp_malloc(size_t Size) {
 
 void tmp_free(void *Block) {
     // do nothing
+}
+
+void *kmalloc(size_t Size) {
+    if (Size % ALIGNMENT)
+        Size += (ALIGNMENT - (Size % ALIGNMENT));
+    // step 1: search in malloced_pages
+    // if failed, calcu pages that size need
+    // step 2: then search continuous pages in empty pages
+    bool found = false;
+    uint pages = 1;
+    if (Size <= page_byte_size) {
+        pid_page_tree_node_t *node = (pid_page_tree_node_t *) getNode(manger->pid_page_tree, 0);
+        FOREACH(page_link_node_t, i, node->page_list) {
+            page_t *p = i->p_page;
+            if (p->first_page != p && !p->end)
+                continue;
+            FOREACH(mem_zone_node_t, j, p->mem_zone) {
+                if (j->mem_zone.used)
+                    continue;
+                if (j->mem_zone.size >= Size) {
+                    // mem_zone is enough
+                    found = true;
+                    break;
+                }
+            }
+        }
+    }
+    // if not found
+    if (!found) {
+        pages = Size % page_byte_size ? Size / page_byte_size + 1 : Size / page_byte_size;
+        for (uint i = 0; i < Max_pages; i++)
+            if (!manger->bitmap[i]) {
+                uint j = 1;
+                for (; i + j < Max_pages && j < pages; j++) {
+                    if (manger->bitmap[i + j])
+                        break;
+                }
+                if (j == pages) {
+                    // find pages
+                    found = true;
+                    break;
+                } else {
+                    i += j;
+                }
+            }
+    }
+    if (!found)
+        return NULL;
+    return NULL;
+}
+
+void kfree(void *Block) {
+
 }
 
 void *my_malloc(size_t Size) {
@@ -106,6 +167,7 @@ bool initMM(mem_management_t **mm) {
         t_page->pfn = i;
         t_page->pid = 0;
         t_page->used = false;
+        t_page->end = false;
         *t_bit = false;
         t_page++, t_bit++;
         now_start = now_end;
@@ -156,22 +218,25 @@ bool initProc(mem_management_t *mm) {
         mm->page_array[i].pid = 0;
         mm->page_array[i].pages = page_list;
         GetFirst(mm->page_array[i].mem_zone, mem_zone_node_t)->mem_zone.start = mm->page_array[i].page_start;
-        GetFirst(mm->page_array[i].mem_zone, mem_zone_node_t)->mem_zone.size = mm->page_array[i].page_byte_size;
         GetFirst(mm->page_array[i].mem_zone, mem_zone_node_t)->mem_zone.used = true;
         addExistNode(mm->page_array[i].addr_mem, (uintptr_t) mm->page_array[i].page_start,
                      GetFirst(mm->page_array[i].mem_zone, rbtnode_t));
+        if (i == n_pages - 1) {
+            if (!reserve) {
+                GetFirst(mm->page_array[i].mem_zone, mem_zone_node_t)->mem_zone.size = (uintptr_t) op_ptr(mem_now,
+                                                                                                          -(uintptr_t) mm->page_array[i].page_start);
+                mem_z->mem_zone.start = mem_now;
+                mem_z->mem_zone.size =
+                        mm->page_array[i].page_byte_size -
+                        GetFirst(mm->page_array[i].mem_zone, mem_zone_node_t)->mem_zone.size;
+                mem_z->mem_zone.used = false;
+                pushExistEnd(mm->page_array[i].mem_zone, (node_t *) mem_z);
+            } else
+                GetFirst(mm->page_array[i].mem_zone, mem_zone_node_t)->mem_zone.size = mm->page_array[i].page_byte_size;
+            mm->page_array[i].end = true;
+        } else
+            GetFirst(mm->page_array[i].mem_zone, mem_zone_node_t)->mem_zone.size = mm->page_array[i].page_byte_size;
     }
-    i--;
-    if (!reserve) {
-        GetFirst(mm->page_array[i].mem_zone, mem_zone_node_t)->mem_zone.size = (uintptr_t) op_ptr(mem_now,
-                                                                                                  -(uintptr_t) mm->page_array[i].page_start);
-        mem_z->mem_zone.start = mem_now;
-        mem_z->mem_zone.size =
-                mm->page_array[i].page_byte_size - GetFirst(mm->page_array[i].mem_zone, mem_zone_node_t)->mem_zone.size;
-        mem_z->mem_zone.used = false;
-        pushExistEnd(mm->page_array[i].mem_zone, (node_t *) mem_z);
-    }
-    i++;
     for (; i < Max_pages; i++)
         mm->bitmap[i] = false;
     return true;
@@ -206,9 +271,15 @@ bool initPage(uint page_size, uint max_pages) {
         return false;
     setMalloc(my_malloc);
     setFree(my_free);
+    setStrategy(FF);
+    manger = mm;
     return true;
 }
 
 void setPID(uint _pid) {
     pid = _pid;
+}
+
+void setStrategy(strategy_t s) {
+    strategy = s;
 }

@@ -6,7 +6,9 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/..)
 
 add_library(CRbtree CRbtree.c)
 
+target_link_libraries(CRbtree CSetmem)
+
 if (C_COMPONENT_C_TEST)
     add_executable(test_rbtree test.c)
-    target_link_libraries(test_rbtree CRbtree CSetmem)
+    target_link_libraries(test_rbtree CRbtree)
 endif ()

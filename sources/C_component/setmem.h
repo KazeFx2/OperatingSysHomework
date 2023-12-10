@@ -5,6 +5,8 @@
 #ifndef QT_TEST_SETMEM_H
 #define QT_TEST_SETMEM_H
 
+#define FOREACH(type, i, head) for (type *i = (type *)((list_t)(head))->next; i; i = (type *)((node_t *)i)->next)
+
 extern void *(*__malloc)(size_t);
 
 extern void (*__free)(void *);

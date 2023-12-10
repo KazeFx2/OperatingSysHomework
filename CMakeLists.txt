@@ -221,6 +221,7 @@ endif ()
 # will push an error that can not find head files
 target_include_directories(QT_Test PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/sources
+        ${CMAKE_CURRENT_SOURCE_DIR}/sources/C_component
         ${CMAKE_CURRENT_SOURCE_DIR}/FluentUI/src
 )
 
