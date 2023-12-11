@@ -658,7 +658,7 @@ FluScrollablePage {
 
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
-                        text: qsTr("Free")
+                        text: qsTr("Dealloc")
                         disabled: free_addr.text === ""
 
                         onClicked: {

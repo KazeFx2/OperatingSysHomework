@@ -644,8 +644,12 @@
     <message>
         <location filename="qml/Pages/DynamicPartitions.qml" line="45"/>
         <location filename="qml/Pages/DynamicPartitions.qml" line="64"/>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="661"/>
         <source>Free</source>
+        <translation>未使用</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="661"/>
+        <source>Dealloc</source>
         <translation>释放</translation>
     </message>
     <message>
