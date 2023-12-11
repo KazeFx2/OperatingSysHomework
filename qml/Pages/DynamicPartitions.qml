@@ -1,16 +1,43 @@
 import QtQuick 2.15
 import FluentUI 1.0
 import QtQuick.Layouts 1.15
+import "qrc:/src/js/tools.js" as Tools
 
 
 FluScrollablePage {
 
     id: root
 
+    signal checkBoxChanged
+
+    property int sortTypeUp: -1
+    property int sortTypeDown: -1
+    property var names: ["index", "start", "size"]
+    property int currentI: 0
+    property bool noUpdate: false
+
     title: qsTr("Dynamic Partitions")
 
     width: parent.width
     height: parent.height
+
+    onSortTypeUpChanged: {
+        table_view.closeEditor()
+        if(sortTypeUp === -1 && sortTypeDown === -1){
+            table_view.sort()
+        }else{
+            table_view.sort((a, b) => a[names[sortTypeUp]] - b[names[sortTypeUp]]);
+        }
+    }
+
+    onSortTypeDownChanged: {
+        table_view.closeEditor()
+        if(sortTypeUp === -1 && sortTypeDown === -1){
+            table_view.sort()
+        }else{
+            table_view.sort((a, b) => b[names[sortTypeDown]] - a[names[sortTypeDown]]);
+        }
+    }
 
     Component{
         id: checbox
@@ -21,7 +48,7 @@ FluScrollablePage {
                 enableAnimation: true
                 clickListener: function(){
                     var obj = tableModel.getRow(row)
-                    obj.checkbox = table_view.customItem(checbox,{checked:!options.checked})
+                    obj.checkbox = table_view.customItem(checbox,{checked: !options.checked})
                     tableModel.setRow(row,obj)
                     checkBoxChanged()
                 }
@@ -33,6 +60,7 @@ FluScrollablePage {
         id: type_column
         Item{
             FluComboBox{
+                property int prev: 0
                 id: combobox
                 editable: false
                 anchors.verticalCenter: parent.verticalCenter
@@ -44,12 +72,17 @@ FluScrollablePage {
                     ListElement { text: qsTr("Used") }
                     ListElement { text: qsTr("Free") }
                 }
-                onAccepted: {
-
+                onCurrentIndexChanged: {
+                    if (currentIndex !== prev){
+                        prev = currentIndex
+                        root.currentI = currentIndex
+                        loadData(currentIndex)
+                    }
                 }
                 Component.onCompleted: {
 
-                    combobox.currentIndex = options.type
+                    prev = root.currentI
+                    combobox.currentIndex = root.currentI
 
                 }
             }
@@ -74,16 +107,23 @@ FluScrollablePage {
                 FluButton{
                     text: qsTr("Delete")
                     onClicked: {
-                        // var pid = row.id
-                        // var ret = CppBankAlgorithm.deleteProcess(pid)
-                        // if (ret) {
-                        //     table_view.closeEditor()
-                        //     tableModel.removeRow(row)
-                        //     checkBoxChanged()
-                        //     showSuccess(qsTr("Delete process successfully"))
-                        // } else {
-                        //     showError(qsTr("Delete process failed"))
-                        // }
+                        var tmp = tableModel.getRow(row)
+                        var type = tmp.type.options.used
+                        var addr = tmp.start
+                        var num = tmp.index - 1
+                        if (type === false){
+                            if (CppDynamicPart.deleteZone(num)) {
+                                showSuccess(qsTr("Delete successfully"))
+                            } else {
+                                showError(qsTr("Delete failed"))
+                            }
+                        } else {
+                            if (CppDynamicPart.freeMem(addr)) {
+                                showSuccess(qsTr("Delete successfully"))
+                            } else {
+                                showError(qsTr("Delete failed"))
+                            }
+                        }
                     }
                 }
             }
@@ -245,7 +285,7 @@ FluScrollablePage {
                         maximumWidth: 100
                     },
                     {
-                        title: table_view.customItem(type_column, {type: 0}),
+                        title: table_view.customItem(type_column),
                         dataIndex: 'type',
                         width: 100,
                         minimumWidth: 100,
@@ -296,6 +336,32 @@ FluScrollablePage {
                 x: (parent.width - width) / 2
                 text: qsTr("Delete Selected")
 
+                disabled: table_view.tableModel.rowCount === 0
+                onClicked: {
+                    var deleted = 0
+                    root.noUpdate = true
+                    for(var i = table_view.tableModel.rowCount - 1; i >= 0; i--){
+                        var rowData = table_view.tableModel.getRow(i)
+                        if (!rowData.checkbox.options.checked)
+                            continue
+                        var tmp = rowData
+                        var type = tmp.type.options.used
+                        var addr = tmp.start
+                        var num = tmp.index - 1
+                        if (type === false){
+                            if (CppDynamicPart.deleteZone(num))
+                                deleted ++
+                        } else {
+                            if (CppDynamicPart.freeMem(addr))
+                                deleted ++
+                        }
+                    }
+                    root.noUpdate = false
+                    showInfo(Tools.format(qsTr("Deleted {0} Zone(s)"), deleted))
+                    loadData(root.currentI)
+                    checkBoxChanged()
+                }
+
             }
 
             FluText {
@@ -333,6 +399,7 @@ FluScrollablePage {
                     text: qsTr("Clear All")
 
                     onClicked: {
+                        root.currentI = 0
                         CppDynamicPart.reset()
                         showInfo(qsTr("Clear finished"))
                     }
@@ -420,6 +487,7 @@ FluScrollablePage {
                     text: qsTr("Load Default")
 
                     onClicked: {
+                        root.currentI = 0
                         CppDynamicPart.loadDefaultData()
                         showInfo(qsTr("Reset finished"))
                     }
@@ -678,13 +746,19 @@ FluScrollablePage {
 
     }
 
-    function loadData(){
-        var data = CppDynamicPart.getAllZones()
+    function loadData(_type){
+        if (_type === 0)
+            var data = CppDynamicPart.getAllZones()
+        else if (_type === 2){
+            data = CppDynamicPart.getZones()
+        }else {
+            data = CppDynamicPart.getZonesUsed()
+        }
         const dataSource = []
         for(var i = 0; i < data.length; i++){
             var tmp = {
                 checkbox: table_view.customItem(checbox, {checked: false}),
-                type: table_view.customItem(type, {used: data[i].type === 'Used'}),
+                type: table_view.customItem(type, {used: _type === 0 ? data[i].type === 'Used' : (_type === 1 ? true : false)}),
                 index: data[i].index + 1,
                 start: data[i].start,
                 size: data[i].size,
@@ -694,16 +768,19 @@ FluScrollablePage {
             dataSource.push(tmp)
         }
         table_view.dataSource = dataSource
+        sortTypeUp = sortTypeDown = -1
+        checkBoxChanged()
     }
 
     Component.onCompleted: {
-        loadData()
+        loadData(root.currentI)
     }
 
     Connections {
         target: CppDynamicPart
         onUpdateChanged: {
-            loadData()
+            if (!root.noUpdate)
+                loadData(root.currentI)
         }
     }
 

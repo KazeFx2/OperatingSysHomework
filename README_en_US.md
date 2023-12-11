@@ -16,7 +16,7 @@ A learning project for my self-study. Meanwhile, finish the homework that my tea
 
 - [x] Bank Algorithm
 
-- [ ] Dynamic Partition
+- [x] Dynamic Partition
 
 - [ ] Page Swapping
 
