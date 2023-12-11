@@ -4,32 +4,36 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="qml/Pages/About.qml" line="10"/>
+        <location filename="qml/Pages/About.qml" line="9"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="qml/Pages/About.qml" line="14"/>
+        <location filename="qml/Pages/About.qml" line="13"/>
         <source>Author</source>
         <translation>作者</translation>
     </message>
     <message>
-        <location filename="qml/Pages/About.qml" line="65"/>
+        <location filename="qml/Pages/About.qml" line="67"/>
         <source>What&apos;s this?</source>
         <translation>这是什么？</translation>
     </message>
     <message>
-        <location filename="qml/Pages/About.qml" line="72"/>
-        <source>    This is an experimental course‘s homework of operating system. Meanwhile, I am learning the Qt programming, so I tried to combinate them together. Then this project is given birth to. In order to learn to work with &apos;git&apos; and &apos;camke&apos;, I uploaded it to the github. lisence? Maybe the MIT, I&apos;ll add it after I read the lisences and rules.</source>
-        <translation>    这是操作系统实验课程的一个（些）作业。同时，我正在学习Qt，于是乎我便试着把这俩写在了一起，诞生了这个项目。又为了学一下用‘git’和‘cmake’这俩生产力，我便将该项目上传至了Github仓库。关于许可证？应该会挂MIT许可证？我将会在读完那些乱七八糟的条款后再决定（大概）。</translation>
+        <location filename="qml/Pages/About.qml" line="74"/>
+        <source>    This is an experimental course鈥榮 homework of operating system. Meanwhile, I am learning the Qt programming, so I tried to combinate them together. Then this project is given birth to. In order to learn to work with &apos;git&apos; and &apos;camke&apos;, I uploaded it to the github. lisence? Maybe the MIT, I&apos;ll add it after I read the lisences and rules.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/Pages/About.qml" line="79"/>
+        <source>    This is an experimental course‘s homework of operating system. Meanwhile, I am learning the Qt programming, so I tried to combinate them together. Then this project is given birth to. In order to learn to work with &apos;git&apos; and &apos;camke&apos;, I uploaded it to the github. lisence? Maybe the MIT, I&apos;ll add it after I read the lisences and rules.</source>
+        <translation type="vanished">    这是操作系统实验课程的一个（些）作业。同时，我正在学习Qt，于是乎我便试着把这俩写在了一起，诞生了这个项目。又为了学一下用‘git’和‘cmake’这俩生产力，我便将该项目上传至了Github仓库。关于许可证？应该会挂MIT许可证？我将会在读完那些乱七八糟的条款后再决定（大概）。</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/About.qml" line="81"/>
         <source>    This is my first try to make my contributions(?) If there is any mistakes that I made, I&apos;ll be very grateful if you can tell me :)</source>
         <translation>    这是我第一次在这个社区提交代码（？）如果有任何任何的错误或问题，同时您能告诉我，我不胜感激：）</translation>
     </message>
     <message>
-        <location filename="qml/Pages/About.qml" line="108"/>
+        <location filename="qml/Pages/About.qml" line="112"/>
         <source>Open Source Licenses</source>
         <translation>开放源代码许可</translation>
     </message>
@@ -37,12 +41,12 @@
 <context>
     <name>BankAlgorithm</name>
     <message>
-        <location filename="qml/Pages/BankAlgorithm.qml" line="28"/>
+        <location filename="qml/Pages/BankAlgorithm.qml" line="26"/>
         <source>Bank Algorithm</source>
         <translation>银行家算法</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm.qml" line="90"/>
+        <location filename="qml/Pages/BankAlgorithm.qml" line="86"/>
         <source>SysStatus</source>
         <translation>系统状态</translation>
     </message>
@@ -52,22 +56,22 @@
         <translation>已分配</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm.qml" line="129"/>
+        <location filename="qml/Pages/BankAlgorithm.qml" line="131"/>
         <source>PNeed</source>
         <translation>需求</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm.qml" line="157"/>
+        <location filename="qml/Pages/BankAlgorithm.qml" line="170"/>
         <source>PrevStatus</source>
         <translation>状态回退</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm.qml" line="176"/>
+        <location filename="qml/Pages/BankAlgorithm.qml" line="190"/>
         <source>Reset</source>
         <translation>重置所有</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm.qml" line="193"/>
+        <location filename="qml/Pages/BankAlgorithm.qml" line="209"/>
         <source>NextStatus</source>
         <translation>状态更新</translation>
     </message>
@@ -75,63 +79,63 @@
 <context>
     <name>BankAlgorithm_PMalloced</name>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="64"/>
+        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="95"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="72"/>
+        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="103"/>
         <source>Delete process successfully</source>
         <translation>成功删除进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="74"/>
+        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="105"/>
         <source>Delete process failed</source>
         <translation>删除进程失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="79"/>
+        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="111"/>
         <source>Apply</source>
         <translation>应用修改</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="100"/>
-        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="101"/>
+        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="132"/>
+        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="133"/>
         <source>No</source>
         <translation>没有</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="103"/>
+        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="135"/>
         <source>Nothing changed</source>
         <translation>没有变化</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="106"/>
+        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="138"/>
         <source>&apos;{0}&apos; columns modified successfully, &apos;{1}&apos; columns modified unsuccessfully</source>
         <translation>&apos;{0}&apos; 列成功修改，&apos;{1}&apos; 列修改失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="123"/>
+        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="160"/>
         <source>Select all</source>
         <translation>全选</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="220"/>
+        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="279"/>
         <source>No process alive</source>
         <translation>没有进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="272"/>
+        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="333"/>
         <source>Operation</source>
         <translation>操作</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="292"/>
+        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="363"/>
         <source>Delete Selected</source>
         <translation>删除选中</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="309"/>
+        <location filename="qml/Pages/BankAlgorithm_PMalloced.qml" line="381"/>
         <source>Deleted {0} process(es)</source>
         <translation>共删除 {0} 个进程</translation>
     </message>
@@ -139,63 +143,63 @@
 <context>
     <name>BankAlgorithm_PNeed</name>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="64"/>
+        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="95"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="72"/>
+        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="103"/>
         <source>Delete process successfully</source>
         <translation>成功删除进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="74"/>
+        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="105"/>
         <source>Delete process failed</source>
         <translation>删除进程失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="79"/>
+        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="111"/>
         <source>Apply</source>
         <translation>应用修改</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="100"/>
-        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="101"/>
+        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="132"/>
+        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="133"/>
         <source>No</source>
         <translation>没有</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="103"/>
+        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="135"/>
         <source>Nothing changed</source>
         <translation>没有变化</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="106"/>
+        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="138"/>
         <source>&apos;{0}&apos; columns modified successfully, &apos;{1}&apos; columns modified unsuccessfully</source>
         <translation>&apos;{0}&apos; 列成功修改，&apos;{1}&apos; 列修改失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="123"/>
+        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="160"/>
         <source>Select all</source>
         <translation>全选</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="220"/>
+        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="279"/>
         <source>No process alive</source>
         <translation>没有进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="272"/>
+        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="333"/>
         <source>Operation</source>
         <translation>操作</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="292"/>
+        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="363"/>
         <source>Delete Selected</source>
         <translation>删除选中</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="309"/>
+        <location filename="qml/Pages/BankAlgorithm_PNeed.qml" line="381"/>
         <source>Deleted {0} process(es)</source>
         <translation>共删除 {0} 个进程</translation>
     </message>
@@ -203,177 +207,177 @@
 <context>
     <name>BankAlgorithm_SysStatus</name>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="29"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="35"/>
         <source>Resources and Usage</source>
         <translation>资源与用量</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="88"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="121"/>
         <source>No resouces added</source>
         <translation>没有资源</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="186"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="187"/>
         <source>Management</source>
         <translation>管理</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="200"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="201"/>
         <source>Add resource</source>
         <oldsource>Add resources</oldsource>
         <translation>添加资源</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="209"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="210"/>
         <source>Src Name</source>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="216"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="218"/>
         <source>Input resource name</source>
         <translation>请输入资源名称</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="223"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="226"/>
         <source>Src Size</source>
         <translation>大小</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="230"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="234"/>
         <source>Input resource max size</source>
         <translation>请输入资源大小</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="247"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="687"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="255"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="689"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="255"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="264"/>
         <source>Please set the name and max size of new resource</source>
         <translation>请输入资源名称与资源大小</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="263"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="272"/>
         <source>There already exists a resource named &apos;{0}&apos;</source>
         <oldsource>There already exists a resource named &apos;${name}&apos;</oldsource>
         <translation>已经存在名为“{0}”的资源</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="279"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="288"/>
         <source>Add resource successfully</source>
         <translation>成功添加资源</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="282"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="291"/>
         <source>Add resource failed</source>
         <translation>添加资源失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="307"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="316"/>
         <source>Delete resource</source>
         <translation>删除资源</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="317"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="363"/>
         <source>Type</source>
         <translation>类型</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="327"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="376"/>
         <source>ID</source>
         <translation>ID</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="330"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="488"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="380"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="497"/>
         <source>Name</source>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="358"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="407"/>
         <source>Value</source>
         <translation>值</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="365"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="415"/>
         <source>Input the ID of resource</source>
         <translation>请输入资源ID</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="365"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="415"/>
         <source>Input the name of resource</source>
         <translation>请输入资源名称</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="377"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="428"/>
         <source>Warnning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="378"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="429"/>
         <source>There still exist alive processes. Delete resource will kill all processes. Continue?</source>
         <translation>尚有未结束进程存在，删除资源将会终止所有进程。继续？</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="379"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="430"/>
         <source>Confirm</source>
         <translation>确认</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="383"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="434"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="386"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="437"/>
         <source>You cancel the deleting</source>
         <translation>你取消了删除操作</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="394"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="841"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="446"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="850"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="408"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="325"/>
         <source>Delete failed. May resource with ID &apos;{0}&apos; not exist</source>
         <translation>删除失败，可能是不存在ID为“{0}”的资源</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="421"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="338"/>
         <source>Delete resource faild</source>
         <translation>删除资源失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="428"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="345"/>
         <source>Delete faild. No such resource named &apos;{0}&apos;</source>
         <translation>删除失败，没有名为“{0}”的资源</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="437"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="353"/>
         <source>Delete resource successfully</source>
         <translation>成功删除资源</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="461"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="476"/>
         <source>Add process</source>
         <translation>添加进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="493"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="502"/>
         <source>Malloced</source>
         <translation>已分配</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="498"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="507"/>
         <source>Need</source>
         <translation>仍需要</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="552"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="583"/>
         <source>Please add resource first</source>
         <translation>请先添加资源</translation>
     </message>
@@ -388,95 +392,95 @@
         <translation>成功添加进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="739"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="737"/>
         <source>Random fill</source>
         <translation>随机填入</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="780"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="777"/>
         <source>Delete process</source>
         <translation>删除进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="786"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="795"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="784"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="787"/>
         <source>Num of alive processes: </source>
         <translation>未结束进程数量: </translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="810"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="812"/>
         <source>Process ID</source>
         <translation>进程ID</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="823"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="827"/>
         <source>Input the ID of the process</source>
         <translation>请输入进程ID</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="846"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="855"/>
         <source>Illegal input</source>
         <translation>非法输入</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="851"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="860"/>
         <source>Delete process failed</source>
         <translation>删除进程失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="856"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="865"/>
         <source>Delete process successfully</source>
         <translation>成功删除进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="875"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="883"/>
         <source>Status</source>
         <translation>状态</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="897"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="904"/>
         <source>Alive process IDs: </source>
         <translation>未结束进程ID: </translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="905"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="913"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="938"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="958"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="912"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="920"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="943"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="957"/>
         <source>No Process</source>
         <translation>没有进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="928"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="932"/>
         <source>Safety Status: </source>
         <translation>安全状态: </translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="941"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="961"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="946"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="960"/>
         <source>Safe</source>
         <translation>安全</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="944"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="964"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="949"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="963"/>
         <source>Unsafe</source>
         <translation>不安全</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="977"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="983"/>
         <source>Safe Sequence: </source>
         <translation>安全进程序列: </translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="987"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="1007"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="994"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="1008"/>
         <source>Not available</source>
         <translation>不可用</translation>
     </message>
     <message>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="993"/>
-        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="1013"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="1000"/>
+        <location filename="qml/Pages/BankAlgorithm_SysStatus.qml" line="1014"/>
         <source>Not exist</source>
         <translation>不存在</translation>
     </message>
@@ -484,198 +488,198 @@
 <context>
     <name>DynamicPartitions</name>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="19"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="46"/>
         <source>Dynamic Partitions</source>
         <translation>动态分区分配</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="139"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="196"/>
         <source>Select all</source>
         <translation>全选</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="467"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="545"/>
         <source>Apply successfully</source>
         <translation>应用成功</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="469"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="547"/>
         <source>Apply failed</source>
         <translation>应用失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="542"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="611"/>
         <source>Start Address</source>
         <translation>起始地址</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="553"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="620"/>
         <source>Start address of memory zone</source>
         <translation>内存区的起始地址</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="311"/>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="571"/>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="662"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="388"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="639"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="725"/>
         <source>Size</source>
         <translation>大小</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="71"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="122"/>
         <source>Both</source>
         <translation>全部</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="72"/>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="97"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="126"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="147"/>
         <source>Used</source>
         <translation>已使用</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="116"/>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="122"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="170"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="175"/>
         <source>Delete successfully</source>
         <translation>成功删除</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="118"/>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="124"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="172"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="177"/>
         <source>Delete failed</source>
         <translation>删除失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="255"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="328"/>
         <source>Partitions</source>
         <translation>分区表</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="295"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="368"/>
         <source>Number</source>
         <translation>区号</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="303"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="378"/>
         <source>StartAddress</source>
         <translation>起始地址</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="337"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="413"/>
         <source>Delete Selected</source>
         <translation>删除选中</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="360"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="438"/>
         <source>Deleted {0} Zone(s)</source>
         <translation>删除了 {0} 个分区</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="372"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="448"/>
         <source>Management</source>
         <translation>管理</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="399"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="471"/>
         <source>Clear All</source>
         <translation>清除全部</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="404"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="475"/>
         <source>Clear finished</source>
         <translation>清除完成</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="418"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="486"/>
         <source>Strategy</source>
         <translation>策略</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="487"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="560"/>
         <source>Load Default</source>
         <translation>加载默认数据</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="492"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="564"/>
         <source>Reset finished</source>
         <translation>重置完成</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="508"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="579"/>
         <source>Add Partition</source>
         <translation>添加分区</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="582"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="648"/>
         <source>Byte size of memory zone</source>
         <translation>分区字节数</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="600"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="667"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="607"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="673"/>
         <source>Add successfully</source>
         <translation>成功添加</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="611"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="677"/>
         <source>Add failed</source>
         <translation>添加失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="629"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="695"/>
         <source>Allocate memory / Free memory</source>
         <translation>内存申请/内存释放</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="673"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="734"/>
         <source>Byte size of memory</source>
         <translation>内存字节数</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="681"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="744"/>
         <source>Allocate</source>
         <translation>申请</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="687"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="749"/>
         <source>Allocation failed</source>
         <translation>申请失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="689"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="751"/>
         <source>Allocation successfully</source>
         <translation>申请成功</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="710"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="769"/>
         <source>Address</source>
         <translation>地址</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="721"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="778"/>
         <source>Start Address to free</source>
         <translation>释放分区起始地址</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="73"/>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="97"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="130"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="147"/>
         <source>Free</source>
         <translation>未使用</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="729"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="788"/>
         <source>Dealloc</source>
         <translation>释放</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="734"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="792"/>
         <source>Free successfully</source>
         <translation>释放成功</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="737"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="795"/>
         <source>Free failed</source>
         <translation>释放失败</translation>
     </message>
@@ -684,7 +688,7 @@
         <translation type="obsolete">添加资源</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="108"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="162"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
@@ -697,7 +701,7 @@
         <translation type="obsolete">删除进程失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="463"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="542"/>
         <source>Apply</source>
         <translation>应用修改</translation>
     </message>
@@ -714,7 +718,7 @@
         <translation type="obsolete">&apos;{0}&apos; 列成功修改，&apos;{1}&apos; 列修改失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="319"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="397"/>
         <source>Operation</source>
         <translation>操作</translation>
     </message>
@@ -736,7 +740,7 @@
     <name>MainWindow</name>
     <message>
         <location filename="qml/MainWindow.qml" line="8"/>
-        <location filename="qml/MainWindow.qml" line="55"/>
+        <location filename="qml/MainWindow.qml" line="35"/>
         <source>Executable for Operating System Experiment</source>
         <oldsource>Operating System Executable</oldsource>
         <translation>操作系统实验可执行程序</translation>
@@ -746,7 +750,7 @@
         <translation type="vanished">FluentUI</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="22"/>
+        <location filename="qml/MainWindow.qml" line="50"/>
         <source>SwitchTheme</source>
         <translation>切换主题</translation>
     </message>
@@ -781,7 +785,7 @@
 <context>
     <name>PageSwapping</name>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="6"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="5"/>
         <source>Page Swapping</source>
         <translation>页面置换</translation>
     </message>
@@ -789,7 +793,7 @@
 <context>
     <name>ProcessSchedule</name>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="6"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="5"/>
         <source>Process Schedule</source>
         <translation>进程调度</translation>
     </message>
@@ -797,7 +801,7 @@
 <context>
     <name>Settings</name>
     <message>
-        <location filename="qml/Pages/Settings.qml" line="6"/>
+        <location filename="qml/Pages/Settings.qml" line="5"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>

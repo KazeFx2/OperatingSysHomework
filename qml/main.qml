@@ -10,20 +10,33 @@ import FluentUI 1.0
 Item {
     id: app
 
-    Connections {
-        target: FluTheme
-
-        function onDarkModeChanged() {
-            SettingsHelper.saveDarkMode(FluTheme.darkMode)
-        }
+    Component.onCompleted: {
+        FluApp.init(app);
+        FluApp.vsync = SettingsHelper.getVsync();
+        FluTheme.darkMode = SettingsHelper.getDarkMode();
+        FluTheme.enableAnimation = true;
+        FluApp.routes = {
+            "/": "qrc:/qml/MainWindow.qml"
+        };
+        FluApp.initialRoute = "/";
+        FluApp.httpInterceptor = interceptor;
+        FluApp.run();
     }
 
     Connections {
-        target: FluApp
-
-        function onVsyncChanged() {
-            SettingsHelper.saveVsync(FluApp.vsync)
+        function onDarkModeChanged() {
+            SettingsHelper.saveDarkMode(FluTheme.darkMode);
         }
+
+        target: FluTheme
+    }
+
+    Connections {
+        function onVsyncChanged() {
+            SettingsHelper.saveVsync(FluApp.vsync);
+        }
+
+        target: FluApp
     }
 
     FluHttpInterceptor {
@@ -31,29 +44,18 @@ Item {
 
         // ?
         function onIntercept(request) {
-            if (request.method === "get") {
-                request.params["method"] = "get"
-            }
-            if (request.method === "post") {
-                request.params["method"] = "post"
-            }
-            request.headers["token"] = "yyds"
-            request.headers["os"] = "pc"
-            console.debug(JSON.stringify(request))
-            return request
+            if (request.method === "get")
+                request.params["method"] = "get";
+
+            if (request.method === "post")
+                request.params["method"] = "post";
+
+            request.headers["token"] = "yyds";
+            request.headers["os"] = "pc";
+            console.debug(JSON.stringify(request));
+            return request;
         }
+
     }
 
-    Component.onCompleted: {
-        FluApp.init(app)
-        FluApp.vsync = SettingsHelper.getVsync()
-        FluTheme.darkMode = SettingsHelper.getDarkMode()
-        FluTheme.enableAnimation = true
-        FluApp.routes = {
-            "/": "qrc:/qml/MainWindow.qml"
-        }
-        FluApp.initialRoute = "/"
-        FluApp.httpInterceptor = interceptor
-        FluApp.run()
-    }
 }

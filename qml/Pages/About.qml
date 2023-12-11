@@ -6,7 +6,6 @@ import FluentUI 1.0
 import "qrc:///qml/Component"
 
 FluScrollablePage {
-
     title: qsTr("About")
 
     FluText {
@@ -21,6 +20,7 @@ FluScrollablePage {
         Layout.topMargin: 10
         Layout.alignment: Qt.AlignHCenter
         radius: [width / 2, width / 2, width / 2, width / 2]
+
         Image {
             anchors.fill: parent
             source: "qrc:///src/png/Kaze.png"
@@ -30,10 +30,11 @@ FluScrollablePage {
         MouseArea {
             width: parent.width
             height: parent.height
-            onClicked: (Mouse)=>{
-                Qt.openUrlExternally("https://github.com/KazeFx2")
+            onClicked: (Mouse) => {
+                Qt.openUrlExternally("https://github.com/KazeFx2");
             }
         }
+
     }
 
     FluText {
@@ -56,6 +57,7 @@ FluScrollablePage {
 
         Column {
             id: col_lay
+
             width: parent.width
 
             FluText {
@@ -65,14 +67,14 @@ FluScrollablePage {
                 text: qsTr("What's this?")
             }
 
-            FluText{
+            FluText {
                 width: parent.width
                 wrapMode: Text.WordWrap
                 padding: 10
-                text: qsTr("    This is an experimental course‘s homework of operating system. Meanwhile, I am learning the Qt programming, so I tried to combinate them together. Then this project is given birth to. In order to learn to work with 'git' and 'camke', I uploaded it to the github. lisence? Maybe the MIT, I'll add it after I read the lisences and rules.")
+                text: qsTr("    This is an experimental course鈥榮 homework of operating system. Meanwhile, I am learning the Qt programming, so I tried to combinate them together. Then this project is given birth to. In order to learn to work with 'git' and 'camke', I uploaded it to the github. lisence? Maybe the MIT, I'll add it after I read the lisences and rules.")
             }
 
-            FluText{
+            FluText {
                 width: parent.width
                 wrapMode: Text.WordWrap
                 padding: 10
@@ -90,13 +92,15 @@ FluScrollablePage {
                 padding: 10
                 text: "\thttps://github.com/KazeFx2/OperatingSysHomework"
                 color: FluColors.Blue.normal
-                 MouseArea {
+
+                MouseArea {
                     width: parent.width
                     height: parent.height
                     onClicked: {
-                        Qt.openUrlExternally("https://github.com/KazeFx2/OperatingSysHomework")
+                        Qt.openUrlExternally("https://github.com/KazeFx2/OperatingSysHomework");
                     }
-                 }
+                }
+
             }
 
         }
@@ -110,14 +114,15 @@ FluScrollablePage {
     }
 
     ScrollableItems {
-
         height: col.height
 
         Column {
-
             id: col
 
             width: parent.width
+            Component.onCompleted: {
+                col.children[children.length - 1].is_last = true;
+            }
 
             NamedUrlItem {
                 ico: "qrc:///src/ico/Qt.ico"
@@ -145,10 +150,6 @@ FluScrollablePage {
                 name: "ZXing-C++"
                 url: "https://github.com/zhuzichu520/zxing-cpps"
                 license: "Apache License 2.0"
-            }
-
-            Component.onCompleted: {
-                col.children[children.length - 1].is_last = true
             }
 
         }
