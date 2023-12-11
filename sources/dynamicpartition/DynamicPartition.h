@@ -223,13 +223,12 @@ public:
 };
 
 class DynamicPartition : public QObject {
-Q_OBJECT
 
-    General_Constrictor(DynamicPartition, {
-        strategy = FF;
-        m_update = true;
-        last = nullptr;
-    })
+General_Constrictor(DynamicPartition, {
+    strategy = FF;
+    m_update = true;
+    last = nullptr;
+})
 
 private:
 
@@ -241,7 +240,6 @@ private:
 
 public:
 
-SINGLETON(DynamicPartition)
 
     void init(char *argv[]) {
         loadDefaultData();
