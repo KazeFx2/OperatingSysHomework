@@ -484,9 +484,52 @@
 <context>
     <name>DynamicPartitions</name>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="6"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="9"/>
         <source>Dynamic Partitions</source>
         <translation>动态分区分配</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="61"/>
+        <source>Select all</source>
+        <translation type="unfinished">全选</translation>
+    </message>
+    <message>
+        <source>Add resource</source>
+        <translation type="obsolete">添加资源</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="37"/>
+        <source>Delete</source>
+        <translation type="unfinished">删除</translation>
+    </message>
+    <message>
+        <source>Delete process successfully</source>
+        <translation type="obsolete">成功删除进程</translation>
+    </message>
+    <message>
+        <source>Delete process failed</source>
+        <translation type="obsolete">删除进程失败</translation>
+    </message>
+    <message>
+        <source>Apply</source>
+        <translation type="obsolete">应用修改</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="obsolete">没有</translation>
+    </message>
+    <message>
+        <source>Nothing changed</source>
+        <translation type="obsolete">没有变化</translation>
+    </message>
+    <message>
+        <source>&apos;{0}&apos; columns modified successfully, &apos;{1}&apos; columns modified unsuccessfully</source>
+        <translation type="obsolete">&apos;{0}&apos; 列成功修改，&apos;{1}&apos; 列修改失败</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="234"/>
+        <source>Operation</source>
+        <translation type="unfinished">操作</translation>
     </message>
 </context>
 <context>

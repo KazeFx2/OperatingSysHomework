@@ -30,7 +30,7 @@ bool addExistNodeBefore(list_t _head, void *target, node_t *node);
 
 bool removeNode(node_t *node);
 
-bool removeEnd(list_t head);
+node_t *removeEnd(list_t head);
 
 bool clearList(list_t head);
 

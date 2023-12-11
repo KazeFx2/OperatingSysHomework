@@ -109,9 +109,10 @@ bool removeNode(node_t *node) {
     return true;
 }
 
-bool removeEnd(list_t head) {
+node_t *removeEnd(list_t head) {
     node_t *del = op_ptr(findNode(head, NULL), -offset_of(node_t, next));
     removeNode(del);
+    return del;
 }
 
 bool clearList(list_t head) {

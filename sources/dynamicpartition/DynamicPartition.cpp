@@ -6,6 +6,13 @@
 
 zone_node_t *DynamicPartition::checkNewZone(int size, int start) {
     int end = start + size;
+    FOREACH(zone_node_t, i, used_zone) {
+        if (i->zone.start_addr + i->zone.size <= start)
+            continue;
+        if (end > i->zone.start_addr)
+            return nullptr;
+        break;
+    }
     FOREACH(zone_node_t, i, zone_list) {
         if (i->zone.start_addr + i->zone.size <= start)
             continue;
@@ -24,6 +31,8 @@ void DynamicPartition::reset() {
     // TODO
 }
 
+#define list_op_after(node, op) FOREACH(zone_node_t, __i, node) __i->zone.zone_num op
+
 int DynamicPartition::addZone(int size, int start) {
     zone_node_t *after = checkNewZone(size, start);
     if (after == nullptr)
@@ -41,7 +50,7 @@ int DynamicPartition::addZone(int size, int start) {
     if (!addNodeBefore(zone_list, after, &zd, sizeof(zone_desc_t)))
         return -1;
     if (after)
-        FOREACH(zone_node_t, i, after->list.prev)i->zone.zone_num++;
+        list_op_after(after->list.prev, ++);
     length++;
     updateNotify();
     return (int) num;
@@ -56,8 +65,8 @@ bool DynamicPartition::deleteZone(int zone_num) {
     node_t *dn = *n;
     if (!removeNode(dn))
         return false;
-    free(dn);
-    FOREACH(zone_node_t, i, op_ptr(n, -offset_of(node_t, next)))i->zone.zone_num--;
+    __free(dn);
+    list_op_after(op_ptr(n, -offset_of(node_t, next)), --);
     length--;
     updateNotify();
     return true;
@@ -93,8 +102,51 @@ QVariantMap DynamicPartition::allocMem(int size) {
 }
 
 bool DynamicPartition::freeMem(int start) {
-    // TODO
-    return true;
+    FOREACH(zone_node_t, i, used_zone) {
+        if (i->zone.start_addr == start) {
+            if (i->zone.size == 0) {
+                if (!removeNode((node_t *) i))
+                    return false;
+                __free(i);
+                return true;
+            }
+            bool mk = false;
+            FOREACH(zone_node_t, j, zone_list) {
+                if (j->zone.start_addr + j->zone.size < start)
+                    continue;
+                if (j->zone.start_addr + j->zone.size == start) {
+                    j->zone.size += i->zone.size;
+                    removeNode((node_t *) i);
+                    mk = true;
+                } else if (j->zone.start_addr == start + i->zone.size) {
+                    if (i->list.prev->next != (node_t *) i) {
+                        ((zone_node_t *) j->list.prev)->zone.size += j->zone.size;
+                        removeNode((node_t *) j);
+                        list_op_after(j->list.prev, --);
+                        length--;
+                        __free(j);
+                    } else {
+                        j->zone.size += i->zone.size;
+                        j->zone.start_addr = start;
+                        removeNode((node_t *) i);
+                    }
+                    __free(i);
+                    break;
+                } else if (!mk) {
+                    removeNode((node_t *) i);
+                    addExistNodeBefore(zone_list, j, (node_t *) i);
+                    list_op_after(i, ++);
+                    length++;
+                    break;
+                } else {
+                    __free(i);
+                    break;
+                }
+            }
+            return true;
+        }
+    }
+    return false;
 }
 
 bool DynamicPartition::setStrategy(QString strategy) {
