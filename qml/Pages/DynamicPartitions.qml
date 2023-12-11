@@ -2,6 +2,7 @@ import QtQuick 2.15
 import FluentUI 1.0
 import QtQuick.Layouts 1.15
 
+
 FluScrollablePage {
 
     id: root
@@ -12,7 +13,7 @@ FluScrollablePage {
     height: parent.height
 
     Component{
-        id:checbox
+        id: checbox
         Item{
             FluCheckBox{
                 anchors.centerIn: parent
@@ -24,6 +25,43 @@ FluScrollablePage {
                     tableModel.setRow(row,obj)
                     checkBoxChanged()
                 }
+            }
+        }
+    }
+
+    Component{
+        id: type_column
+        Item{
+            FluComboBox{
+                id: combobox
+                editable: false
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.right: parent.right
+                model: ListModel {
+                    id: model
+                    ListElement { text: qsTr("Both") }
+                    ListElement { text: qsTr("Used") }
+                    ListElement { text: qsTr("Free") }
+                }
+                onAccepted: {
+
+                }
+                Component.onCompleted: {
+
+                    combobox.currentIndex = options.type
+
+                }
+            }
+        }
+    }
+
+    Component{
+        id: type
+        Item{
+            FluText {
+                anchors.centerIn: parent
+                text: options.used === true ? qsTr("Used") : qsTr("Free")
             }
         }
     }
@@ -174,7 +212,7 @@ FluScrollablePage {
                 padding: 10
                 font.bold: true
                 font.pixelSize: 16
-                text: "Partitions"
+                text: qsTr("Partitions")
 
             }
 
@@ -204,30 +242,37 @@ FluScrollablePage {
                         dataIndex: 'checkbox',
                         width: 100,
                         minimumWidth: 100,
-                        maximumWidth: 100,
+                        maximumWidth: 100
                     },
                     {
-                        title: table_view.customItem(column_sort_src, {name: "Number", inx: 0}),
+                        title: table_view.customItem(type_column, {type: 0}),
+                        dataIndex: 'type',
+                        width: 100,
+                        minimumWidth: 100,
+                        maximumWidth: 100
+                    },
+                    {
+                        title: table_view.customItem(column_sort_src, {name: qsTr("Number"), inx: 0}),
                         dataIndex: 'index',
-                        width: (parent.width - 232) / 3 > 120 ? (parent.width - 232) / 3 : 120,
+                        width: (parent.width - 332) / 3 > 120 ? (parent.width - 332) / 3 : 120,
                         minimumWidth: 120,
-                        maximumWidth: (parent.width - 232) / 3 > 120 ? (parent.width - 232) / 3 : 120,
+                        maximumWidth: (parent.width - 332) / 3 > 120 ? (parent.width - 332) / 3 : 120,
                         readOnly: true
                     },
                     {
-                        title: table_view.customItem(column_sort_src, {name: "StartAddress", inx: 1}),
+                        title: table_view.customItem(column_sort_src, {name: qsTr("StartAddress"), inx: 1}),
                         dataIndex: 'start',
-                        width: (parent.width - 232) / 3 > 120 ? (parent.width - 232) / 3 : 120,
+                        width: (parent.width - 332) / 3 > 120 ? (parent.width - 332) / 3 : 120,
                         minimumWidth: 120,
-                        maximumWidth: (parent.width - 232) / 3 > 120 ? (parent.width - 232) / 3 : 120,
+                        maximumWidth: (parent.width - 332) / 3 > 120 ? (parent.width - 332) / 3 : 120,
                         readOnly: true
                     },
                     {
-                        title: table_view.customItem(column_sort_src, {name: "Size", inx: 2}),
+                        title: table_view.customItem(column_sort_src, {name: qsTr("Size"), inx: 2}),
                         dataIndex: 'size',
-                        width: (parent.width - 232) / 3 > 120 ? (parent.width - 232) / 3 : 120,
+                        width: (parent.width - 332) / 3 > 120 ? (parent.width - 332) / 3 : 120,
                         minimumWidth: 120,
-                        maximumWidth: (parent.width - 232) / 3 > 120 ? (parent.width - 232) / 3 : 120,
+                        maximumWidth: (parent.width - 332) / 3 > 120 ? (parent.width - 332) / 3 : 120,
                         readOnly: true
                     },
                     {
@@ -249,7 +294,7 @@ FluScrollablePage {
             FluFilledButton {
 
                 x: (parent.width - width) / 2
-                text: "Delete Selected"
+                text: qsTr("Delete Selected")
 
             }
 
@@ -258,7 +303,7 @@ FluScrollablePage {
                 padding: 10
                 font.bold: true
                 font.pixelSize: 16
-                text: "Management"
+                text: qsTr("Management")
 
             }
 
@@ -285,7 +330,12 @@ FluScrollablePage {
 
                     anchors.left: parent.left
 
-                    text: "Clear All"
+                    text: qsTr("Clear All")
+
+                    onClicked: {
+                        CppDynamicPart.reset()
+                        showInfo(qsTr("Clear finished"))
+                    }
 
                 }
 
@@ -294,11 +344,11 @@ FluScrollablePage {
                     width: childrenRect.width
                     height: childrenRect.height
                     color: FluColors.Transparent
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.centerIn: parent
 
                     FluText {
 
-                        text: "Strategy"
+                        text: qsTr("Strategy")
                         anchors.verticalCenter: parent.verticalCenter
 
                     }
@@ -313,6 +363,7 @@ FluScrollablePage {
                         width: 100
 
                         FluComboBox{
+                            id: strategy
                             editable: false
                             anchors.left: parent.left
                             anchors.right: parent.right
@@ -327,6 +378,14 @@ FluScrollablePage {
 
                             }
                         }
+
+                        Component.onCompleted: {
+                            for (var i = 0; i < model.count; i++)
+                                if (model.get(i).text === CppDynamicPart.getStrategy()){
+                                    strategy.currentIndex = i
+                                    break;
+                                }
+                        }
                     }
 
                     FluFilledButton {
@@ -334,7 +393,21 @@ FluScrollablePage {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: parent.children[1].right
                         anchors.leftMargin: 10
-                        text: "Apply"
+                        text: qsTr("Apply")
+
+                        onClicked: {
+                            if (CppDynamicPart.setStrategy(strategy.currentText)){
+                                showSuccess(qsTr("Apply successfully"))
+                            }else {
+                                showError(qsTr("Apply failed"))
+                                for (var i = 0; i < model.count; i++)
+                                    if (model.get(i).text === CppDynamicPart.getStrategy()){
+                                        strategy.currentIndex = i
+                                        break;
+                                    }
+                            }
+
+                        }
 
                     }
 
@@ -344,7 +417,12 @@ FluScrollablePage {
 
                     anchors.right: parent.right
 
-                    text: "Load Default"
+                    text: qsTr("Load Default")
+
+                    onClicked: {
+                        CppDynamicPart.loadDefaultData()
+                        showInfo(qsTr("Reset finished"))
+                    }
 
                 }
 
@@ -359,7 +437,7 @@ FluScrollablePage {
             FluText {
                 padding: 10
                 font.bold: true
-                text: "Add Partition"
+                text: qsTr("Add Partition")
             }
 
             Rectangle {
@@ -393,16 +471,18 @@ FluScrollablePage {
 
                         anchors.verticalCenter: parent.verticalCenter
                         padding: 10
-                        text: "Start Address"
+                        text: qsTr("Start Address")
 
                     }
 
                     FluTextBox {
 
+                        id: add_addr
                         anchors.left: parent.children[0].right
                         anchors.verticalCenter: parent.verticalCenter
                         width: parent.width - parent.children[0].width - 10
                         validator: IntValidator {}
+                        placeholderText: qsTr("Start address of memory zone")
 
                     }
 
@@ -420,16 +500,18 @@ FluScrollablePage {
 
                         anchors.verticalCenter: parent.verticalCenter
                         padding: 10
-                        text: "Size"
+                        text: qsTr("Size")
 
                     }
 
                     FluTextBox {
 
+                        id: add_size
                         anchors.left: parent.children[0].right
                         anchors.verticalCenter: parent.verticalCenter
                         width: parent.width - parent.children[0].width - 10
                         validator: IntValidator {}
+                        placeholderText: qsTr("Byte size of memory zone")
 
                     }
 
@@ -447,7 +529,19 @@ FluScrollablePage {
 
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
-                        text: "Add"
+                        text: qsTr("Add")
+                        disabled: add_addr.text === "" || add_size.text === ""
+
+                        onClicked: {
+                            var start = parseInt(add_addr.text)
+                            var size = parseInt(add_size.text)
+                            if (CppDynamicPart.addZone(size, start) !== -1){
+                                showSuccess(qsTr("Add successfully"))
+                                add_addr.text = ""
+                                add_size.text = ""
+                            }else
+                                showError(qsTr("Add failed"))
+                        }
 
                     }
 
@@ -464,7 +558,7 @@ FluScrollablePage {
             FluText {
                 padding: 10
                 font.bold: true
-                text: "Allocate memory / Free memory"
+                text: qsTr("Allocate memory / Free memory")
             }
 
             Rectangle {
@@ -497,15 +591,18 @@ FluScrollablePage {
 
                         anchors.verticalCenter: parent.verticalCenter
                         padding: 10
-                        text: "Size"
+                        text: qsTr("Size")
 
                     }
 
                     FluTextBox {
 
+                        id: malloc_size
+                        validator: IntValidator {}
                         anchors.verticalCenter: parent.verticalCenter
                         width: parent.width - parent.children[0].width - parent.children[2].width - 10
                         anchors.left: parent.children[0].right
+                        placeholderText: qsTr("Byte size of memory")
 
                     }
 
@@ -513,7 +610,18 @@ FluScrollablePage {
 
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
-                        text: "Allocate"
+                        text: qsTr("Allocate")
+                        disabled: malloc_size.text === ""
+
+                        onClicked: {
+                            var ret = CppDynamicPart.allocMem(parseInt(malloc_size.text))
+                            if (ret.status === -1)
+                                showError(qsTr("Allocation failed"))
+                            else {
+                                showSuccess(qsTr("Allocation successfully"))
+                                malloc_size.text = ""
+                            }
+                        }
 
                     }
 
@@ -531,15 +639,18 @@ FluScrollablePage {
 
                         anchors.verticalCenter: parent.verticalCenter
                         padding: 10
-                        text: "Address"
+                        text: qsTr("Address")
 
                     }
 
                     FluTextBox {
 
+                        id: free_addr
+                        validator: IntValidator {}
                         anchors.verticalCenter: parent.verticalCenter
                         width: parent.width - parent.children[0].width - parent.children[2].width - 10
                         anchors.left: parent.children[0].right
+                        placeholderText: qsTr("Start Address to free")
 
                     }
 
@@ -547,7 +658,16 @@ FluScrollablePage {
 
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
-                        text: "Free"
+                        text: qsTr("Free")
+                        disabled: free_addr.text === ""
+
+                        onClicked: {
+                            if (CppDynamicPart.freeMem(parseInt(free_addr.text))){
+                                showSuccess(qsTr("Free successfully"))
+                                free_addr.text = ""
+                            } else
+                                showError(qsTr("Free failed"))
+                        }
 
                     }
 
@@ -559,13 +679,15 @@ FluScrollablePage {
     }
 
     function loadData(){
+        var data = CppDynamicPart.getAllZones()
         const dataSource = []
-        for(var i = 0; i < 5; i++){
+        for(var i = 0; i < data.length; i++){
             var tmp = {
-                checkbox: table_view.customItem(checbox,{checked: false}),
-                index: i,
-                start: i,
-                size: i,
+                checkbox: table_view.customItem(checbox, {checked: false}),
+                type: table_view.customItem(type, {used: data[i].type === 'Used'}),
+                index: data[i].index + 1,
+                start: data[i].start,
+                size: data[i].size,
                 action: table_view.customItem(action),
                 minimumHeight: 50
             }
@@ -576,6 +698,13 @@ FluScrollablePage {
 
     Component.onCompleted: {
         loadData()
+    }
+
+    Connections {
+        target: CppDynamicPart
+        onUpdateChanged: {
+            loadData()
+        }
     }
 
 }

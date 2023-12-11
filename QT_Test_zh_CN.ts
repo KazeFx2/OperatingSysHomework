@@ -484,23 +484,188 @@
 <context>
     <name>DynamicPartitions</name>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="9"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="10"/>
         <source>Dynamic Partitions</source>
         <translation>动态分区分配</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="61"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="99"/>
         <source>Select all</source>
-        <translation type="unfinished">全选</translation>
+        <translation>全选</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="400"/>
+        <source>Apply successfully</source>
+        <translation>应用成功</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="402"/>
+        <source>Apply failed</source>
+        <translation>应用失败</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="474"/>
+        <source>Start Address</source>
+        <translation>起始地址</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="485"/>
+        <source>Start address of memory zone</source>
+        <translation>内存区的起始地址</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="271"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="503"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="594"/>
+        <source>Size</source>
+        <translation>大小</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="43"/>
+        <source>Both</source>
+        <translation>全部</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="44"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="64"/>
+        <source>Used</source>
+        <translation>已使用</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="215"/>
+        <source>Partitions</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="255"/>
+        <source>Number</source>
+        <translation>区号</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="263"/>
+        <source>StartAddress</source>
+        <translation>起始地址</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="297"/>
+        <source>Delete Selected</source>
+        <translation>删除选中</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="306"/>
+        <source>Management</source>
+        <translation>管理</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="333"/>
+        <source>Clear All</source>
+        <translation>清除全部</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="337"/>
+        <source>Clear finished</source>
+        <translation>清除完成</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="351"/>
+        <source>Strategy</source>
+        <translation>策略</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="420"/>
+        <source>Load Default</source>
+        <translation>加载默认数据</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="424"/>
+        <source>Reset finished</source>
+        <translation>重置完成</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="440"/>
+        <source>Add Partition</source>
+        <translation>添加分区</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="514"/>
+        <source>Byte size of memory zone</source>
+        <translation>分区字节数</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="532"/>
+        <source>Add</source>
+        <translation>添加</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="539"/>
+        <source>Add successfully</source>
+        <translation>成功添加</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="543"/>
+        <source>Add failed</source>
+        <translation>添加失败</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="561"/>
+        <source>Allocate memory / Free memory</source>
+        <translation>内存申请/内存释放</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="605"/>
+        <source>Byte size of memory</source>
+        <translation>内存字节数</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="613"/>
+        <source>Allocate</source>
+        <translation>申请</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="619"/>
+        <source>Allocation failed</source>
+        <translation>申请失败</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="621"/>
+        <source>Allocation successfully</source>
+        <translation>申请成功</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="642"/>
+        <source>Address</source>
+        <translation>地址</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="653"/>
+        <source>Start Address to free</source>
+        <translation>释放分区起始地址</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="45"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="64"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="661"/>
+        <source>Free</source>
+        <translation>释放</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="666"/>
+        <source>Free successfully</source>
+        <translation>释放成功</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="669"/>
+        <source>Free failed</source>
+        <translation>释放失败</translation>
     </message>
     <message>
         <source>Add resource</source>
         <translation type="obsolete">添加资源</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="37"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="75"/>
         <source>Delete</source>
-        <translation type="unfinished">删除</translation>
+        <translation>删除</translation>
     </message>
     <message>
         <source>Delete process successfully</source>
@@ -511,8 +676,9 @@
         <translation type="obsolete">删除进程失败</translation>
     </message>
     <message>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="396"/>
         <source>Apply</source>
-        <translation type="obsolete">应用修改</translation>
+        <translation>应用修改</translation>
     </message>
     <message>
         <source>No</source>
@@ -527,9 +693,9 @@
         <translation type="obsolete">&apos;{0}&apos; 列成功修改，&apos;{1}&apos; 列修改失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="234"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="279"/>
         <source>Operation</source>
-        <translation type="unfinished">操作</translation>
+        <translation>操作</translation>
     </message>
 </context>
 <context>

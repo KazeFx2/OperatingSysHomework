@@ -9,6 +9,7 @@
 #include "AppInfo.h"
 #include "helper/SettingsHelper.h"
 #include "bankalgorithm/BankAlgorithm.h"
+#include "dynamicpartition/DynamicPartition.h"
 
 #include <iostream>
 
@@ -27,6 +28,7 @@ int main(int argc, char *argv[]) {
 #endif
     }
     BankAlgorithm::getInstance()->init(argv);
+    DynamicPartition::getInstance()->init(argv);
 
     QGuiApplication app(argc, argv);
 
@@ -45,6 +47,7 @@ int main(int argc, char *argv[]) {
 
     AppInfo::getInstance()->init(&engine);
     engine.rootContext()->setContextProperty("CppBankAlgorithm", BankAlgorithm::getInstance());
+    engine.rootContext()->setContextProperty("CppDynamicPart", DynamicPartition::getInstance());
     engine.rootContext()->setContextProperty("SettingsHelper", SettingsHelper::getInstance());
 
     const QUrl url(QStringLiteral("qrc:qml/main.qml"));

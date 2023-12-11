@@ -4,70 +4,41 @@
 
 #include "DynamicPartition.h"
 
-zone_node_t *DynamicPartition::checkNewZone(int size, int start) {
-    int end = start + size;
-    FOREACH(zone_node_t, i, used_zone) {
-        if (i->zone.start_addr + i->zone.size <= start)
-            continue;
-        if (end > i->zone.start_addr)
-            return nullptr;
-        break;
-    }
-    FOREACH(zone_node_t, i, zone_list) {
-        if (i->zone.start_addr + i->zone.size <= start)
-            continue;
-        if (end > i->zone.start_addr)
-            return nullptr;
-        return i;
-    }
-    return (zone_node_t *) this->zone_list;
-}
-
 void DynamicPartition::updateNotify() {
     m_update = !m_update;
+    emit updateChanged();
 }
 
 void DynamicPartition::reset() {
-    // TODO
+    free_zone.clear();
+    used_zone.clear();
+    last = nullptr;
+    updateNotify();
 }
 
-#define list_op_after(node, op) FOREACH(zone_node_t, __i, node) __i->zone.zone_num op
-
 int DynamicPartition::addZone(int size, int start) {
-    zone_node_t *after = checkNewZone(size, start);
-    if (after == nullptr)
-        return -1;
     uint num;
-    if (after == (zone_node_t *) zone_list)
-        after = nullptr, num = length;
-    else
-        num = after->zone.zone_num;
-    zone_desc_t zd = {
-            num,
-            (uint) size,
-            (uintptr_t) start
-    };
-    if (!addNodeBefore(zone_list, after, &zd, sizeof(zone_desc_t)))
+    zone_node_t *added;
+    if (!free_zone.addNewMem(start, size, num, added))
         return -1;
-    if (after)
-        list_op_after(after->list.prev, ++);
-    length++;
     updateNotify();
     return (int) num;
 }
 
 bool DynamicPartition::deleteZone(int zone_num) {
-    if (zone_num >= length)
+    if (zone_num < 0)
         return false;
-    node_t **n = findNodeByIndex(&zone_list, zone_num);
-    if (!n)
+    if (!free_zone.deleteNode(zone_num))
         return false;
-    node_t *dn = *n;
-    if (!removeNode(dn))
+    updateNotify();
+    return true;
+}
+
+bool DynamicPartition::deleteZoneUsed(int zone_num) {
+    if (zone_num < 0)
         return false;
-    __free(dn);
-    list_op_after(op_ptr(n, -offset_of(node_t, next)), --);
-    length--;
+    if (!used_zone.deleteNode(zone_num))
+        return false;
     updateNotify();
     return true;
 }
@@ -80,7 +51,7 @@ inline QVariantMap nodeToQMap(const zone_desc_t &zone) {
     return map;
 }
 
-inline QVariantList listToQList(const list_t &head) {
+inline QVariantList listToQList(const list_t head) {
     auto ret = QVariantList();
     FOREACH(zone_node_t, i, head) {
         ret.append(nodeToQMap(i->zone));
@@ -89,60 +60,151 @@ inline QVariantList listToQList(const list_t &head) {
 }
 
 QVariantList DynamicPartition::getZones() const {
-    return listToQList(zone_list);
+    return listToQList(free_zone);
 }
 
 QVariantList DynamicPartition::getZonesUsed() const {
     return listToQList(used_zone);
 }
 
+QVariantList DynamicPartition::getAllZones() const {
+    auto ret = QVariantList();
+    FOREACH(zone_node_t, i, free_zone) {
+        auto tmp = nodeToQMap(i->zone);
+        tmp.insert("type", "Free");
+        ret.append(tmp);
+    }
+    FOREACH(zone_node_t, i, used_zone) {
+        auto tmp = nodeToQMap(i->zone);
+        tmp.insert("type", "Used");
+        ret.append(tmp);
+    }
+    return ret;
+}
+
+inline
+zone_node_t *divideMem(MemList &used, MemList &free, zone_node_t *node, size_t size, size_t s) {
+    if (node->zone.size < size)
+        return nullptr;
+    zone_node_t *next, *tmp;
+    uintptr_t addr_;
+    size_t size_;
+    uint num;
+    uintptr_t addr = node->zone.start_addr;
+    if (node->zone.size - size > s) {
+        // divide
+        addr_ = node->zone.start_addr + size;
+        size_ = node->zone.size - size;
+        free.deleteNode(node->zone.zone_num);
+        free.addNewMem(addr_, size_, num, next);
+    } else {
+        size = node->zone.size;
+        next = (zone_node_t *) node->list.next;
+        free.deleteNode(node->zone.zone_num);
+    }
+    used.addNewMem(addr, size, num, tmp);
+    return next;
+}
+
 QVariantMap DynamicPartition::allocMem(int size) {
-    // TODO
-    return QVariantMap();
+    uintptr_t addr;
+    auto ret = QVariantMap();
+    switch (strategy) {
+        case FF: {
+            for (size_t i = 0; i < free_zone.Size(); i++) {
+                if (free_zone[i]->zone.size >= size) {
+                    // find
+                    addr = free_zone[i]->zone.start_addr;
+                    last = divideMem(used_zone, free_zone, free_zone[i], size, 0);
+                    goto ok;
+                }
+            }
+            goto err;
+        }
+            break;
+        case NF: {
+            if (!last)
+                last = free_zone[0];
+            if (!last)
+                goto err;
+            auto mk = last;
+            auto updt = last;
+            FOREACH(zone_node_t, i, last->list.prev) {
+                if (i->zone.size >= size) {
+                    // find
+                    addr = i->zone.start_addr;
+                    last = divideMem(used_zone, free_zone, i, size, 0);
+                    goto ok;
+                    // update last
+                }
+            }
+            FOREACH(zone_node_t, i, free_zone) {
+                if (i == last)
+                    break;
+                if (i->zone.size >= size) {
+                    // find
+                    addr = i->zone.start_addr;
+                    last = divideMem(used_zone, free_zone, i, size, 0);
+                    goto ok;
+                    // update last
+                }
+            }
+            goto err;
+        }
+            break;
+        case BF: {
+            for (size_t i = 0; i < free_zone.Size(); i++) {
+                if (free_zone.getSorted()[i]->zone.size >= size) {
+                    // find
+                    addr = free_zone.getSorted()[i]->zone.start_addr;
+                    last = divideMem(used_zone, free_zone, free_zone.getSorted()[i], size, 0);
+                    goto ok;
+                }
+            }
+            goto err;
+        }
+            break;
+        case WF: {
+            for (size_t i = free_zone.Size() - 1;; i--) {
+                if (free_zone.getSorted()[i]->zone.size >= size) {
+                    // find
+                    addr = free_zone.getSorted()[i]->zone.start_addr;
+                    last = divideMem(used_zone, free_zone, free_zone.getSorted()[i], size, 0);
+                    goto ok;
+                }
+                if (i == 0)
+                    break;
+            }
+            goto err;
+        }
+            break;
+        default:
+            goto err;
+            break;
+    }
+    err:
+    ret.insert("status", -1);
+    return ret;
+    ok:
+    ret.insert("status", 0);
+    ret.insert("addr", addr);
+    updateNotify();
+    return ret;
 }
 
 bool DynamicPartition::freeMem(int start) {
     FOREACH(zone_node_t, i, used_zone) {
         if (i->zone.start_addr == start) {
-            if (i->zone.size == 0) {
-                if (!removeNode((node_t *) i))
-                    return false;
-                __free(i);
-                return true;
-            }
-            bool mk = false;
-            FOREACH(zone_node_t, j, zone_list) {
-                if (j->zone.start_addr + j->zone.size < start)
-                    continue;
-                if (j->zone.start_addr + j->zone.size == start) {
-                    j->zone.size += i->zone.size;
-                    removeNode((node_t *) i);
-                    mk = true;
-                } else if (j->zone.start_addr == start + i->zone.size) {
-                    if (i->list.prev->next != (node_t *) i) {
-                        ((zone_node_t *) j->list.prev)->zone.size += j->zone.size;
-                        removeNode((node_t *) j);
-                        list_op_after(j->list.prev, --);
-                        length--;
-                        __free(j);
-                    } else {
-                        j->zone.size += i->zone.size;
-                        j->zone.start_addr = start;
-                        removeNode((node_t *) i);
-                    }
-                    __free(i);
-                    break;
-                } else if (!mk) {
-                    removeNode((node_t *) i);
-                    addExistNodeBefore(zone_list, j, (node_t *) i);
-                    list_op_after(i, ++);
-                    length++;
-                    break;
-                } else {
-                    __free(i);
-                    break;
-                }
-            }
+            uintptr_t _s = i->zone.start_addr;
+            size_t _size = i->zone.size;
+            used_zone.deleteNode(i->zone.zone_num);
+            uint num;
+            zone_node_t *added;
+            if (!free_zone.addNewMem(_s, _size, num, added))
+                return false;
+            if (!free_zone.mergeAfterFree(added))
+                return false;
+            updateNotify();
             return true;
         }
     }

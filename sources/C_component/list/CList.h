@@ -34,4 +34,6 @@ node_t *removeEnd(list_t head);
 
 bool clearList(list_t head);
 
+bool destroyList(list_t head);
+
 #endif //QT_TEST_CLIST_H

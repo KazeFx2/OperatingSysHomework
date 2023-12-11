@@ -118,7 +118,17 @@ node_t *removeEnd(list_t head) {
 bool clearList(list_t head) {
     if (!head)
         return false;
-    while (head->next)
+    while (head->next) {
+        void *n = head->next;
         removeNode(head->next);
+        __free(n);
+    }
+    return true;
+}
+
+bool destroyList(list_t head) {
+    if (!clearList(head))
+        return false;
+    __free(head);
     return true;
 }
