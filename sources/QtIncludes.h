@@ -10,7 +10,7 @@
 #include "singleton.h"
 
 
-#define General_Constrictor(_class, inner) Q_OBJECT \
+#define General_Constrictor(_class, inner) \
 SINGLETON(_class)\
 explicit _class(QObject *parent = nullptr) : QObject(parent) { \
     inner   \

@@ -8,7 +8,7 @@
 #include "QtIncludes.h"
 
 class ProcessSchedule : public QObject {
-
+Q_OBJECT
 General_Constrictor(ProcessSchedule,)
 
 private:

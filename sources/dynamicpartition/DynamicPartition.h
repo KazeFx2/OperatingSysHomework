@@ -223,7 +223,7 @@ public:
 };
 
 class DynamicPartition : public QObject {
-
+Q_OBJECT
 General_Constrictor(DynamicPartition, {
     strategy = FF;
     m_update = true;

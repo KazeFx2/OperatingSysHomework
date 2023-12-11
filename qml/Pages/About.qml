@@ -71,7 +71,7 @@ FluScrollablePage {
                 width: parent.width
                 wrapMode: Text.WordWrap
                 padding: 10
-                text: qsTr("    This is an experimental course鈥榮 homework of operating system. Meanwhile, I am learning the Qt programming, so I tried to combinate them together. Then this project is given birth to. In order to learn to work with 'git' and 'camke', I uploaded it to the github. lisence? Maybe the MIT, I'll add it after I read the lisences and rules.")
+                text: qsTr("    This is an experimental course‘s homework of operating system. Meanwhile, I am learning the Qt programming, so I tried to combinate them together. Then this project is given birth to. In order to learn to work with 'git' and 'camke', I uploaded it to the github. lisence? Maybe the MIT, I'll add it after I read the lisences and rules.")
             }
 
             FluText {

@@ -20,12 +20,14 @@
     </message>
     <message>
         <location filename="qml/Pages/About.qml" line="74"/>
-        <source>    This is an experimental course鈥榮 homework of operating system. Meanwhile, I am learning the Qt programming, so I tried to combinate them together. Then this project is given birth to. In order to learn to work with &apos;git&apos; and &apos;camke&apos;, I uploaded it to the github. lisence? Maybe the MIT, I&apos;ll add it after I read the lisences and rules.</source>
-        <translation type="unfinished"></translation>
+        <source>    This is an experimental course‘s homework of operating system. Meanwhile, I am learning the Qt programming, so I tried to combinate them together. Then this project is given birth to. In order to learn to work with &apos;git&apos; and &apos;camke&apos;, I uploaded it to the github. lisence? Maybe the MIT, I&apos;ll add it after I read the lisences and rules.</source>
+        <oldsource>    This is an experimental course鈥榮 homework of operating system. Meanwhile, I am learning the Qt programming, so I tried to combinate them together. Then this project is given birth to. In order to learn to work with &apos;git&apos; and &apos;camke&apos;, I uploaded it to the github. lisence? Maybe the MIT, I&apos;ll add it after I read the lisences and rules.</oldsource>
+        <translation type="unfinished">    这是操作系统实验课程的一个（些）作业。同时，我正在学习Qt，于是乎我便试着把这俩写在了一起，诞生了这个项目。又为了学一下用‘git’和‘cmake’这俩生产力，我便将该项目上传至了Github仓库。关于许可证？应该会挂MIT许可证？我将会在读完那些乱七八糟的条款后再决定（大概）。</translation>
     </message>
     <message>
+        <location filename="qml/Pages/About.qml" line="74"/>
         <source>    This is an experimental course‘s homework of operating system. Meanwhile, I am learning the Qt programming, so I tried to combinate them together. Then this project is given birth to. In order to learn to work with &apos;git&apos; and &apos;camke&apos;, I uploaded it to the github. lisence? Maybe the MIT, I&apos;ll add it after I read the lisences and rules.</source>
-        <translation type="vanished">    这是操作系统实验课程的一个（些）作业。同时，我正在学习Qt，于是乎我便试着把这俩写在了一起，诞生了这个项目。又为了学一下用‘git’和‘cmake’这俩生产力，我便将该项目上传至了Github仓库。关于许可证？应该会挂MIT许可证？我将会在读完那些乱七八糟的条款后再决定（大概）。</translation>
+        <translation>    这是操作系统实验课程的一个（些）作业。同时，我正在学习Qt，于是乎我便试着把这俩写在了一起，诞生了这个项目。又为了学一下用‘git’和‘cmake’这俩生产力，我便将该项目上传至了Github仓库。关于许可证？应该会挂MIT许可证？我将会在读完那些乱七八糟的条款后再决定（大概）。</translation>
     </message>
     <message>
         <location filename="qml/Pages/About.qml" line="81"/>
