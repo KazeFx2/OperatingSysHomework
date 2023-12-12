@@ -348,7 +348,6 @@ FluScrollablePage {
                 height: (dataSource.length + 1) * 50 - 8
                 color: FluTools.colorAlpha(FluColors.Black, FluTheme.dark ? 0.2 : 0.05)
                 radius: 8
-                anchors.topMargin: 20
                 columnSource: [{
                     "title": table_view.customItem(column_checbox, {
                         "checked": false

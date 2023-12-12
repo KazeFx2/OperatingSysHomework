@@ -13,6 +13,7 @@
         <file>src/ico/FluentUI.ico</file>
         <file>src/ico/App.ico</file>
         <file>src/ico/Qt.ico</file>
+        <file>src/ico/GitHub.ico</file>
         <file>src/svg/GitHub.svg</file>
         <file>qml/NavItems/OriginalItems.qml</file>
         <file>qml/Pages/BankAlgorithm.qml</file>

@@ -86,6 +86,31 @@ bool addExistNodeBefore(list_t _head, void *target, node_t *node) {
     return true;
 }
 
+bool addExistComparedBefore(list_t _head, node_t *node, compare_func func, bool asc) {
+    FOREACH(node_t, i, _head) {
+        if (asc) {
+            if (func(node, i) < 0) {
+                return addExistNodeBefore(_head, i, node);
+            }
+        } else if (func(node, i) > 0) {
+            return addExistNodeBefore(_head, i, node);
+        }
+    }
+    return addExistNodeBefore(_head, NULL, node);
+}
+
+bool addComparedBefore(list_t _head, const void *data, size_t data_size, compare_func func, bool asc) {
+    node_t *new = (node_t *) __malloc(sizeof(list_t) + data_size);
+    if (!new)
+        return false;
+    memcpy(new + 1, data, data_size);
+    if (!addExistComparedBefore(_head, new, func, asc)) {
+        __free(new);
+        return false;
+    }
+    return true;
+}
+
 bool pushEnd(list_t head, const void *data, size_t data_size) {
     return addNodeBefore(head, NULL, data, data_size);
 }
@@ -131,4 +156,25 @@ bool destroyList(list_t head) {
         return false;
     __free(head);
     return true;
+}
+
+size_t listSize(list_t head) {
+    size_t len = 0;
+    while (head->next)
+        head = head->next, len++;
+    return len;
+}
+
+list_t sortBy(list_t old, compare_func func, size_t data_size, bool asc) {
+    list_t new = initList();
+    if (!new)
+        return NULL;
+    FOREACH(node_t, i, old) {
+        if (!addComparedBefore(new, i + 1, data_size, func, asc))
+            goto err;
+    }
+    return new;
+    err:
+    destroyList(new);
+    return NULL;
 }

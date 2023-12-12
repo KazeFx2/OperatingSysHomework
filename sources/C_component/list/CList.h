@@ -11,10 +11,15 @@
 
 #define GetFirst(list, type) ((type *)((list)->next))
 
+#define ASC true
+#define DESC false
+
 typedef struct list_s {
     struct list_s *prev;
     struct list_s *next;
 } node_t, *list_t;
+
+typedef int (*compare_func)(node_t *, node_t *);
 
 list_t initList();
 
@@ -28,6 +33,10 @@ bool addNodeBefore(list_t _head, void *target, const void *data, size_t data_siz
 
 bool addExistNodeBefore(list_t _head, void *target, node_t *node);
 
+bool addExistComparedBefore(list_t _head, node_t *node, compare_func func, bool asc);
+
+bool addComparedBefore(list_t _head, const void *data, size_t data_size, compare_func func, bool asc);
+
 bool removeNode(node_t *node);
 
 node_t *removeEnd(list_t head);
@@ -35,5 +44,9 @@ node_t *removeEnd(list_t head);
 bool clearList(list_t head);
 
 bool destroyList(list_t head);
+
+size_t listSize(list_t head);
+
+list_t sortBy(list_t old, compare_func fun, size_t data_size, bool asc);
 
 #endif //QT_TEST_CLIST_H

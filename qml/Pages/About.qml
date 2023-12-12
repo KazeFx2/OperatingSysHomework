@@ -139,14 +139,14 @@ FluScrollablePage {
             }
 
             NamedUrlItem {
-                ico: "qrc:///src/svg/GitHub.svg"
+                ico: "qrc:///src/ico/GitHub.ico"
                 name: "FramelessHelper 2.x"
                 url: "https://github.com/wangwenx190/framelesshelper"
                 license: "MIT License"
             }
 
             NamedUrlItem {
-                ico: "qrc:///src/svg/GitHub.svg"
+                ico: "qrc:///src/ico/GitHub.ico"
                 name: "ZXing-C++"
                 url: "https://github.com/zhuzichu520/zxing-cpps"
                 license: "Apache License 2.0"
