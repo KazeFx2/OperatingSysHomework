@@ -4,6 +4,8 @@
 
 #include "ProcessSchedule.h"
 
+#include <utility>
+
 bool ProcessSchedule::checkConflict(int pid) {
     FOREACH(PCB_node_t, i, pcb_list) if (i->pcb.pid == pid) return true;
     return false;
@@ -35,6 +37,8 @@ bool ProcessSchedule::doFCFS() {
             destroyList(sorted);
             return false;
         }
+        if (now < tar->pcb.submit_time)
+            now = tar->pcb.submit_time;
         tar->pcb.start_time = now;
         now += tar->pcb.server_need;
     }
@@ -45,8 +49,10 @@ bool ProcessSchedule::doFCFS() {
 bool ProcessSchedule::addProcess(QString name, int pid, int submit, int time_need, int priority) {
     if (checkConflict(pid))
         return false;
+    if (time_need <= 0)
+        return false;
     PCB_t tmp = {
-            name,
+            new QString(name),
             (uint) pid,
             (uint32_t) time_need,
             (uint32_t) submit,
@@ -56,9 +62,44 @@ bool ProcessSchedule::addProcess(QString name, int pid, int submit, int time_nee
     };
     if (!pushEnd(pcb_list, &tmp, sizeof(PCB_t)))
         return false;
+    updateNotify();
     return true;
 }
 
+bool ProcessSchedule::deleteProcess(int pid) {
+    FOREACH(PCB_node_t, i, pcb_list) {
+        if (i->pcb.pid == pid) {
+            if (i->pcb.name)
+                delete i->pcb.name;
+            removeNode((node_t *) i);
+            updateNotify();
+            return true;
+        }
+    }
+    return false;
+}
+
 bool ProcessSchedule::doSchedule() {
+    doFCFS();
     return true;
+}
+
+inline
+QVariantMap node2map(PCB_node_t *node) {
+    QVariantMap map;
+    map.insert("name", *node->pcb.name);
+    map.insert("pid", node->pcb.pid);
+    map.insert("priority", node->pcb.priority);
+    map.insert("submit", node->pcb.submit_time);
+    map.insert("serve", node->pcb.server_need);
+    map.insert("start", node->pcb.start_time);
+    return map;
+}
+
+QVariantList ProcessSchedule::getProcesses() {
+    QVariantList ret;
+    FOREACH(PCB_node_t, i, pcb_list) {
+        ret.append(node2map(i));
+    }
+    return ret;
 }

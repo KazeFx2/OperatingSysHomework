@@ -392,6 +392,8 @@ FluScrollablePage {
                     }
 
                     FluTextBox {
+                        id: name
+
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
                         width: 200
@@ -414,6 +416,8 @@ FluScrollablePage {
                     }
 
                     FluTextBox {
+                        id: pid
+
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: parent.children[0].right
                         width: 200
@@ -451,6 +455,8 @@ FluScrollablePage {
                     }
 
                     FluTextBox {
+                        id: priority
+
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
                         width: 200
@@ -474,6 +480,8 @@ FluScrollablePage {
                     }
 
                     FluTextBox {
+                        id: serve
+
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: parent.children[0].right
                         width: 200
@@ -511,6 +519,8 @@ FluScrollablePage {
                     }
 
                     FluTextBox {
+                        id: submit
+
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
                         width: 200
@@ -530,10 +540,24 @@ FluScrollablePage {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
                         text: qsTr("Add")
+                        disabled: name.text === "" || pid.text === "" || priority.text === "" || serve.text === "" || submit.text === ""
 
                         onClicked: {
-                            // TODO
-
+                            var _name = name.text
+                            var _pid = parseInt(pid.text)
+                            var _priority = parseInt(priority.text)
+                            var _serve = parseInt(serve.text)
+                            var _submit = parseInt(submit.text)
+                            if (CppProcessSchedule.addProcess(_name, _pid, _submit, _serve, _priority)) {
+                                showSuccess(qsTr("Add process successfully"))
+                                name.text = ""
+                                pid.text = ""
+                                priority.text = ""
+                                serve.text = ""
+                                submit.text = ""
+                            } else {
+                                showError(qsTr("Add process failed"))
+                            }
                         }
                     }
                 }
@@ -580,6 +604,8 @@ FluScrollablePage {
                     }
 
                     FluTextBox {
+                        id: delete_pid
+
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
                         width: 200
@@ -599,10 +625,16 @@ FluScrollablePage {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
                         text: qsTr("Delete")
+                        disabled: delete_pid.text === ""
 
                         onClicked: {
-                            // TODO
-
+                            var _pid = parseInt(delete_pid.text)
+                            if (CppProcessSchedule.deleteProcess(_pid)) {
+                                showSuccess(qsTr("Delete process successfully"))
+                                delete_pid.text = ""
+                            } else {
+                                showError(qsTr("Delete process failed"))
+                            }
                         }
                     }
                 }
@@ -614,20 +646,29 @@ FluScrollablePage {
         loadData()
     }
 
+    Connections {
+        target: CppProcessSchedule
+
+        function onUpdateChanged() {
+            loadData()
+        }
+    }
+
     function loadData() {
         const data = []
-        for (var i = 0; i < 5; i++) {
+        var cd = CppProcessSchedule.getProcesses()
+        for (var i = 0; i < cd.length; i++) {
             var tmp = {
-                "name": "name_" + i.toString(),
-                "pid": i,
-                "priority": i,
-                "submit": i,
-                "serve": i,
-                "start": i,
-                "finish": i,
-                "response": i,
-                "turnaround": i,
-                "turnaround_weight": i,
+                "name": cd[i].name,
+                "pid": cd[i].pid,
+                "priority": cd[i].priority,
+                "submit": cd[i].submit,
+                "serve": cd[i].serve,
+                "start": cd[i].start === CppProcessSchedule.unset ? "null" : cd[i].start,
+                "finish": cd[i].start === CppProcessSchedule.unset ? "null" : cd[i].start + cd[i].serve,
+                "response": cd[i].start === CppProcessSchedule.unset ? "null" : cd[i].start - cd[i].submit,
+                "turnaround": cd[i].start === CppProcessSchedule.unset ? "null" : cd[i].start + cd[i].serve - cd[i].submit,
+                "turnaround_weight": cd[i].start === CppProcessSchedule.unset ? "null" : (cd[i].start + cd[i].serve - cd[i].submit) / cd[i].serve,
                 "minimumHeight": 50
             }
             data.push(tmp)

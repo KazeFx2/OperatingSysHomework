@@ -807,14 +807,14 @@
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="136"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="413"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="579"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="415"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="603"/>
         <source>PID</source>
         <translation></translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="146"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="450"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="454"/>
         <source>Priority</source>
         <translation>优先级</translation>
     </message>
@@ -891,55 +891,75 @@
         <translation>添加进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="398"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="400"/>
         <source>Input the name</source>
         <translation>请输入进程名称</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="420"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="586"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="424"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="612"/>
         <source>Input the pid</source>
         <translation>请输入PID</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="457"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="463"/>
         <source>Input the priority</source>
         <translation>请输入进程优先级</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="473"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="479"/>
         <source>Serve Time</source>
         <translation>服务时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="480"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="488"/>
         <source>Input the serve time</source>
         <translation>请输入服务时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="510"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="518"/>
         <source>Submit Time</source>
         <translation>提交时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="517"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="527"/>
         <source>Input the submit time</source>
         <translation>请输入提交时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="532"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="542"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="545"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="552"/>
+        <source>Add process successfully</source>
+        <translation type="unfinished">成功添加进程</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="559"/>
+        <source>Add process failed</source>
+        <translation type="unfinished">添加进程失败</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="569"/>
         <source>Delete Process</source>
         <translation>删除进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="601"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="627"/>
         <source>Delete</source>
         <translation>删除</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="633"/>
+        <source>Delete process successfully</source>
+        <translation type="unfinished">成功删除进程</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="636"/>
+        <source>Delete process failed</source>
+        <translation type="unfinished">删除进程失败</translation>
     </message>
 </context>
 <context>

@@ -100,7 +100,7 @@ bool addExistComparedBefore(list_t _head, node_t *node, compare_func func, bool 
 }
 
 bool addComparedBefore(list_t _head, const void *data, size_t data_size, compare_func func, bool asc) {
-    node_t *new = (node_t *) __malloc(sizeof(list_t) + data_size);
+    node_t *new = (node_t *) __malloc(sizeof(node_t) + data_size);
     if (!new)
         return false;
     memcpy(new + 1, data, data_size);
