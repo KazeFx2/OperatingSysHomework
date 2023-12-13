@@ -41,6 +41,10 @@ FluScrollablePage {
         table_view.dataSource = dataSource;
         sortTypeUp = sortTypeDown = -1;
         checkBoxChanged();
+        for (i = 0; i < strategy.model.count; i++) if (strategy.model.get(i).text === CppDynamicPart.getStrategy()) {
+            strategy.currentIndex = i;
+            break;
+        }
     }
 
     title: qsTr("Dynamic Partitions")

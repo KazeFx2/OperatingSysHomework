@@ -485,198 +485,198 @@
 <context>
     <name>DynamicPartitions</name>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="46"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="50"/>
         <source>Dynamic Partitions</source>
         <translation>动态分区分配</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="196"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="200"/>
         <source>Select all</source>
         <translation>全选</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="544"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="548"/>
         <source>Apply successfully</source>
         <translation>应用成功</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="546"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="550"/>
         <source>Apply failed</source>
         <translation>应用失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="610"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="614"/>
         <source>Start Address</source>
         <translation>起始地址</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="619"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="623"/>
         <source>Start address of memory zone</source>
         <translation>内存区的起始地址</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="387"/>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="638"/>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="724"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="391"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="642"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="728"/>
         <source>Size</source>
         <translation>大小</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="122"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="126"/>
         <source>Both</source>
         <translation>全部</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="126"/>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="147"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="130"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="151"/>
         <source>Used</source>
         <translation>已使用</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="170"/>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="175"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="174"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="179"/>
         <source>Delete successfully</source>
         <translation>成功删除</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="172"/>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="177"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="176"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="181"/>
         <source>Delete failed</source>
         <translation>删除失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="328"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="332"/>
         <source>Partitions</source>
         <translation>分区表</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="367"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="371"/>
         <source>Number</source>
         <translation>区号</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="377"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="381"/>
         <source>StartAddress</source>
         <translation>起始地址</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="412"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="416"/>
         <source>Delete Selected</source>
         <translation>删除选中</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="437"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="441"/>
         <source>Deleted {0} Zone(s)</source>
         <translation>删除了 {0} 个分区</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="447"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="451"/>
         <source>Management</source>
         <translation>管理</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="470"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="474"/>
         <source>Clear All</source>
         <translation>清除全部</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="474"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="478"/>
         <source>Clear finished</source>
         <translation>清除完成</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="485"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="489"/>
         <source>Strategy</source>
         <translation>策略</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="559"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="563"/>
         <source>Load Default</source>
         <translation>加载默认数据</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="563"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="567"/>
         <source>Reset finished</source>
         <translation>重置完成</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="578"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="582"/>
         <source>Add Partition</source>
         <translation>添加分区</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="647"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="651"/>
         <source>Byte size of memory zone</source>
         <translation>分区字节数</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="666"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="670"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="672"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="676"/>
         <source>Add successfully</source>
         <translation>成功添加</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="676"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="680"/>
         <source>Add failed</source>
         <translation>添加失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="694"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="698"/>
         <source>Allocate memory / Free memory</source>
         <translation>内存申请/内存释放</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="733"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="737"/>
         <source>Byte size of memory</source>
         <translation>内存字节数</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="743"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="747"/>
         <source>Allocate</source>
         <translation>申请</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="748"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="752"/>
         <source>Allocation failed</source>
         <translation>申请失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="750"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="754"/>
         <source>Allocation successfully</source>
         <translation>申请成功</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="768"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="772"/>
         <source>Address</source>
         <translation>地址</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="777"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="781"/>
         <source>Start Address to free</source>
         <translation>释放分区起始地址</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="130"/>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="147"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="134"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="151"/>
         <source>Free</source>
         <translation>未使用</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="787"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="791"/>
         <source>Dealloc</source>
         <translation>释放</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="791"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="795"/>
         <source>Free successfully</source>
         <translation>释放成功</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="794"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="798"/>
         <source>Free failed</source>
         <translation>释放失败</translation>
     </message>
@@ -685,7 +685,7 @@
         <translation type="obsolete">添加资源</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="162"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="166"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
@@ -698,9 +698,9 @@
         <translation type="obsolete">删除进程失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="541"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="545"/>
         <source>Apply</source>
-        <translation>应用修改</translation>
+        <translation>应用</translation>
     </message>
     <message>
         <source>No</source>
@@ -715,7 +715,7 @@
         <translation type="obsolete">&apos;{0}&apos; 列成功修改，&apos;{1}&apos; 列修改失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DynamicPartitions.qml" line="396"/>
+        <location filename="qml/Pages/DynamicPartitions.qml" line="400"/>
         <source>Operation</source>
         <translation>操作</translation>
     </message>
@@ -801,17 +801,19 @@
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="128"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="371"/>
         <source>Name</source>
         <translation type="unfinished">名称</translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="136"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="216"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="393"/>
         <source>PID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="146"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="430"/>
         <source>Priority</source>
         <translation type="unfinished"></translation>
     </message>
@@ -843,6 +845,83 @@
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="206"/>
         <source>TurnaroundTime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="216"/>
+        <source>W_TurnaroundTime</source>
+        <oldsource>WeightTurnaroundTime</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="231"/>
+        <source>Management</source>
+        <translation type="unfinished">管理</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="254"/>
+        <source>Clear All</source>
+        <translation type="unfinished">清除全部</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="268"/>
+        <source>Strategy</source>
+        <translation type="unfinished">策略</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="325"/>
+        <source>Apply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="337"/>
+        <source>Add Process</source>
+        <oldsource>Add Processes</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="378"/>
+        <source>Input the name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="400"/>
+        <source>Input the pid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="437"/>
+        <source>Input the priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="453"/>
+        <source>Serve Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="460"/>
+        <source>Input the serve time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="490"/>
+        <source>Submit Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="497"/>
+        <source>Input the submit time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="512"/>
+        <source>Add</source>
+        <translation type="unfinished">添加</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="525"/>
+        <source>Delete Process</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
