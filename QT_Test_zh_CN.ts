@@ -797,132 +797,149 @@
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="103"/>
         <source>Processes</source>
-        <translation type="unfinished"></translation>
+        <translation>进程表</translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="128"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="371"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="391"/>
         <source>Name</source>
-        <translation type="unfinished">名称</translation>
+        <translation>名称</translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="136"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="393"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="413"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="579"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="146"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="430"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="450"/>
         <source>Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>优先级</translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="156"/>
         <source>SubmitTime</source>
-        <translation type="unfinished"></translation>
+        <translation>提交时间</translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="166"/>
         <source>ServeTime</source>
-        <translation type="unfinished"></translation>
+        <translation>服务时间</translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="176"/>
         <source>StartTime</source>
-        <translation type="unfinished"></translation>
+        <translation>开始时间</translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="186"/>
         <source>FinishTime</source>
-        <translation type="unfinished"></translation>
+        <translation>结束时间</translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="196"/>
         <source>ResponseTime</source>
-        <translation type="unfinished"></translation>
+        <translation>响应时间</translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="206"/>
         <source>TurnaroundTime</source>
-        <translation type="unfinished"></translation>
+        <translation>周转时间</translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="216"/>
         <source>W_TurnaroundTime</source>
         <oldsource>WeightTurnaroundTime</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>带权周转时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="231"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="236"/>
+        <source>Mean of Turnaround Time: {0}</source>
+        <translation>平均周转时间: {0}</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="243"/>
+        <source>Mean of Turnaround Time with Weight: {0}</source>
+        <translation>平均带权周转时间: {0}</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="251"/>
         <source>Management</source>
-        <translation type="unfinished">管理</translation>
+        <translation>管理</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="254"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="274"/>
         <source>Clear All</source>
-        <translation type="unfinished">清除全部</translation>
+        <translation>清除全部</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="268"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="288"/>
         <source>Strategy</source>
-        <translation type="unfinished">策略</translation>
+        <translation>策略</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="325"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="345"/>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>应用</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="337"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="357"/>
         <source>Add Process</source>
         <oldsource>Add Processes</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>添加进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="378"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="398"/>
         <source>Input the name</source>
-        <translation type="unfinished"></translation>
+        <translation>请输入进程名称</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="400"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="420"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="586"/>
         <source>Input the pid</source>
-        <translation type="unfinished"></translation>
+        <translation>请输入PID</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="437"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="457"/>
         <source>Input the priority</source>
-        <translation type="unfinished"></translation>
+        <translation>请输入进程优先级</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="453"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="473"/>
         <source>Serve Time</source>
-        <translation type="unfinished"></translation>
+        <translation>服务时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="460"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="480"/>
         <source>Input the serve time</source>
-        <translation type="unfinished"></translation>
+        <translation>请输入服务时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="490"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="510"/>
         <source>Submit Time</source>
-        <translation type="unfinished"></translation>
+        <translation>提交时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="497"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="517"/>
         <source>Input the submit time</source>
-        <translation type="unfinished"></translation>
+        <translation>请输入提交时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="512"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="532"/>
         <source>Add</source>
-        <translation type="unfinished">添加</translation>
+        <translation>添加</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="525"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="545"/>
         <source>Delete Process</source>
-        <translation type="unfinished"></translation>
+        <translation>删除进程</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="601"/>
+        <source>Delete</source>
+        <translation>删除</translation>
     </message>
 </context>
 <context>

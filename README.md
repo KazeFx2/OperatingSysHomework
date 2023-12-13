@@ -19,7 +19,7 @@
 
 - [x] 动态分区（100%）
 
-- [ ] 页面交换（1%）
+- [ ] 页面交换（50%）
 
 - [ ] 进程调度（0%）
 
@@ -32,10 +32,10 @@
 :(
 
 # 截图
-
-![screenshot1](./Screenshots/screenshot_1_zh.png)
-![screenshot1](./Screenshots/screenshot_2_zh.png)
-![screenshot1](./Screenshots/screenshot_3_zh.png)
+![screenshot1](./Screenshots/screenshot_3in1_zh.png)
+![screenshot2](./Screenshots/screenshot_1_zh.png)
+![screenshot3](./Screenshots/screenshot_2_zh.png)
+![screenshot4](./Screenshots/screenshot_3_zh.png)
 
 # 构建
 

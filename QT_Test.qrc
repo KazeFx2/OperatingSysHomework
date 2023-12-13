@@ -15,6 +15,7 @@
         <file>src/ico/Qt.ico</file>
         <file>src/ico/GitHub.ico</file>
         <file>src/svg/GitHub.svg</file>
+        <file>src/svg/FluentUI.svg</file>
         <file>qml/NavItems/OriginalItems.qml</file>
         <file>qml/Pages/BankAlgorithm.qml</file>
         <file>src/png/Kaze.png</file>

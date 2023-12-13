@@ -224,6 +224,26 @@ FluScrollablePage {
                 }]
             }
 
+            Rectangle {
+                width: parent.width
+                height: childrenRect.height
+                color: FluColors.Transparent
+
+                FluText {
+                    padding: 10
+                    anchors.left: parent.left
+                    property string value: "null"
+                    text: Tools.format(qsTr("Mean of Turnaround Time: {0}"), value)
+                }
+
+                FluText {
+                    padding: 10
+                    anchors.right: parent.right
+                    property string value: "null"
+                    text: Tools.format(qsTr("Mean of Turnaround Time with Weight: {0}"), value)
+                }
+            }
+
             FluText {
                 padding: 10
                 font.bold: true
@@ -358,7 +378,7 @@ FluScrollablePage {
                 Rectangle {
                     id: line1
 
-                    width: Math.max(line1.childrenRect.width, line2.childrenRect.width, line3.childrenRect.width)
+                    width: Math.max(line1.childrenRect.width, line2.childrenRect.width, line3.childrenRect.width, line4.childrenRect.width)
                     height: childrenRect.height
                     color: FluColors.Transparent
                     anchors.left: parent.left
@@ -417,7 +437,7 @@ FluScrollablePage {
                 Rectangle {
                     id: line2
 
-                    width: Math.max(line1.childrenRect.width, line2.childrenRect.width, line3.childrenRect.width)
+                    width: line1.width
                     height: childrenRect.height
                     color: FluColors.Transparent
                     anchors.left: parent.left
@@ -477,7 +497,7 @@ FluScrollablePage {
                 Rectangle {
                     id: line3
 
-                    width: Math.max(line1.childrenRect.width, line2.childrenRect.width, line3.childrenRect.width)
+                    width: line1.width
                     height: childrenRect.height
                     color: FluColors.Transparent
                     anchors.left: parent.left
@@ -536,6 +556,56 @@ FluScrollablePage {
                 height: 10
                 width: parent.width
                 color: FluColors.Transparent
+            }
+
+            Rectangle {
+                height: childrenRect.height
+                width: parent.width
+                color: FluColors.Transparent
+
+                Rectangle {
+                    id: line4
+
+                    width: line1.width
+                    height: childrenRect.height
+                    color: FluColors.Transparent
+                    anchors.left: parent.left
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    FluText {
+                        padding: 10
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.children[1].left
+                        text: qsTr("PID")
+                    }
+
+                    FluTextBox {
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.right
+                        width: 200
+                        placeholderText: qsTr("Input the pid")
+                        validator: IntValidator {}
+                    }
+                }
+
+                Rectangle {
+                    width: childrenRect.width
+                    height: childrenRect.height
+                    color: FluColors.Transparent
+                    anchors.right: parent.right
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    FluFilledButton {
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.right
+                        text: qsTr("Delete")
+
+                        onClicked: {
+                            // TODO
+
+                        }
+                    }
+                }
             }
         }
     }

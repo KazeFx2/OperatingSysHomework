@@ -132,7 +132,7 @@ FluScrollablePage {
             }
 
             NamedUrlItem {
-                ico: "qrc:///src/ico/FluentUI.ico"
+                ico: "qrc:///src/svg/FluentUI.svg"
                 name: "FluenUI"
                 url: "https://github.com/zhuzichu520/FluentUI"
                 license: "MIT License"
