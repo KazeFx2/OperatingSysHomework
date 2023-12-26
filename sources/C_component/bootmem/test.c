@@ -16,7 +16,7 @@ void testMax() {
                     start = tmp;
         if (tmp - start > max)
             max = tmp - start;
-        printf("max: %llu, i: %d, acc: 0x%p\n", max, i, tmp);
+        printf("max: %llu, i: %d, acc: 0x%p\n", max, i, (void *)tmp);
         i++;
     }
 }

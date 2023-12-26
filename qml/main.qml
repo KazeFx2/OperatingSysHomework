@@ -16,7 +16,8 @@ Item {
         FluTheme.darkMode = SettingsHelper.getDarkMode();
         FluTheme.enableAnimation = true;
         FluApp.routes = {
-            "/": "qrc:/qml/MainWindow.qml"
+            "/": "qrc:/qml/MainWindow.qml",
+            "/login":"qrc:/qml/LoginWindow.qml"
         };
         FluApp.initialRoute = "/";
         FluApp.httpInterceptor = interceptor;

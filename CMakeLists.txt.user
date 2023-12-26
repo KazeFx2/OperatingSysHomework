@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 12.0.0, 2023-12-13T23:46:43. -->
+<!-- Written by QtCreator 12.0.0, 2023-12-26T06:50:54. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -115,8 +115,7 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}</value>
-    <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\Kaze Fx\CLionProjects\build-QT_Test-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">E:\build-OperatingSysHomework_LastOrder-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -172,7 +171,7 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\Kaze Fx\CLionProjects\build-QT_Test-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">E:\build-OperatingSysHomework_LastOrder-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-Release</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -228,7 +227,7 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\Kaze Fx\CLionProjects\build-QT_Test-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-RelWithDebInfo</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">E:\build-OperatingSysHomework_LastOrder-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-RelWithDebInfo</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -283,7 +282,7 @@
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}</value>
     <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\Kaze Fx\CLionProjects\build-QT_Test-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">E:\build-OperatingSysHomework_LastOrder-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-Profile</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -337,7 +336,7 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\Kaze Fx\CLionProjects\build-QT_Test-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-MinSizeRel</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">E:\build-OperatingSysHomework_LastOrder-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-MinSizeRel</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -408,7 +407,7 @@
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Kaze Fx/CLionProjects/build-QT_Test-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-Debug</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/build-OperatingSysHomework_LastOrder-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-Debug</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.1">
     <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
@@ -426,7 +425,7 @@
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Kaze Fx/CLionProjects/build-QT_Test-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-Debug/sources/C_component/bootmem</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/build-OperatingSysHomework_LastOrder-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-Debug/sources/C_component/bootmem</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.2">
     <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
@@ -444,7 +443,7 @@
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Kaze Fx/CLionProjects/build-QT_Test-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-Debug/sources/C_component/list</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/build-OperatingSysHomework_LastOrder-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-Debug/sources/C_component/list</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.3">
     <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
@@ -462,7 +461,7 @@
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Kaze Fx/CLionProjects/build-QT_Test-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-Debug/sources/C_component/rbtree</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/build-OperatingSysHomework_LastOrder-Desktop_Qt_5_15_2_MSVC2019_64bit_8da348-Debug/sources/C_component/rbtree</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">4</value>
   </valuemap>

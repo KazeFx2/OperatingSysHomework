@@ -734,20 +734,103 @@
     </message>
 </context>
 <context>
+    <name>LoginWindow</name>
+    <message>
+        <location filename="qml/LoginWindow.qml" line="23"/>
+        <location filename="qml/LoginWindow.qml" line="104"/>
+        <source>Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/LoginWindow.qml" line="43"/>
+        <source>User</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/LoginWindow.qml" line="65"/>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/LoginWindow.qml" line="84"/>
+        <source>Not have an account? </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/LoginWindow.qml" line="90"/>
+        <source>Register now!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
-        <location filename="qml/MainWindow.qml" line="8"/>
-        <location filename="qml/MainWindow.qml" line="35"/>
         <source>Executable for Operating System Experiment</source>
         <oldsource>Operating System Executable</oldsource>
-        <translation>操作系统实验可执行程序</translation>
+        <translation type="vanished">操作系统实验可执行程序</translation>
     </message>
     <message>
         <source>FluentUI</source>
         <translation type="vanished">FluentUI</translation>
     </message>
     <message>
+        <location filename="qml/MainWindow.qml" line="11"/>
         <location filename="qml/MainWindow.qml" line="50"/>
+        <source>File Explorer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="112"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="138"/>
+        <source>Current User:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="157"/>
+        <source>Fast operations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="252"/>
+        <source>Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="258"/>
+        <source>Paste</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="264"/>
+        <source>Rename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="270"/>
+        <source>Delete</source>
+        <translation type="unfinished">删除</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="276"/>
+        <source>NewFolder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="282"/>
+        <source>NewFile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="288"/>
+        <source>ChangeMode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="505"/>
         <source>SwitchTheme</source>
         <translation>切换主题</translation>
     </message>
