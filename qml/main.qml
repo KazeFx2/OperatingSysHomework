@@ -17,7 +17,8 @@ Item {
         FluTheme.enableAnimation = true;
         FluApp.routes = {
             "/": "qrc:/qml/MainWindow.qml",
-            "/login":"qrc:/qml/LoginWindow.qml"
+            "/login":"qrc:/qml/LoginWindow.qml",
+            "/editor":"qrc:/qml/FileEditor.qml"
         };
         FluApp.initialRoute = "/";
         FluApp.httpInterceptor = interceptor;

@@ -27,5 +27,6 @@
         <file>qml/Pages/BankAlgorithm_PMalloced.qml</file>
         <file>qml/Pages/BankAlgorithm_PNeed.qml</file>
         <file>src/js/tools.js</file>
+        <file>qml/FileEditor.qml</file>
     </qresource>
 </RCC>
