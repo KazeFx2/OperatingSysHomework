@@ -780,102 +780,146 @@
     </message>
     <message>
         <location filename="qml/MainWindow.qml" line="24"/>
-        <location filename="qml/MainWindow.qml" line="89"/>
+        <location filename="qml/MainWindow.qml" line="352"/>
         <source>File Explorer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="66"/>
+        <location filename="qml/MainWindow.qml" line="329"/>
         <source>Oops! You canceled the login!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="131"/>
+        <location filename="qml/MainWindow.qml" line="371"/>
+        <source>Current Directory: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="412"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="157"/>
+        <location filename="qml/MainWindow.qml" line="441"/>
         <source>Current User:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="187"/>
+        <location filename="qml/MainWindow.qml" line="471"/>
         <source>Tool box</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="365"/>
+        <location filename="qml/MainWindow.qml" line="663"/>
         <source>Quick Operations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="371"/>
-        <location filename="qml/MainWindow.qml" line="537"/>
+        <location filename="qml/MainWindow.qml" line="669"/>
+        <location filename="qml/MainWindow.qml" line="809"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="377"/>
-        <location filename="qml/MainWindow.qml" line="546"/>
+        <location filename="qml/MainWindow.qml" line="675"/>
+        <location filename="qml/MainWindow.qml" line="818"/>
         <source>Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="383"/>
-        <location filename="qml/MainWindow.qml" line="555"/>
+        <location filename="qml/MainWindow.qml" line="681"/>
+        <location filename="qml/MainWindow.qml" line="827"/>
         <source>Rename</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="389"/>
-        <location filename="qml/MainWindow.qml" line="589"/>
+        <location filename="qml/MainWindow.qml" line="42"/>
+        <location filename="qml/MainWindow.qml" line="687"/>
+        <location filename="qml/MainWindow.qml" line="867"/>
         <source>Delete</source>
         <translation type="unfinished">删除</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="395"/>
+        <location filename="qml/MainWindow.qml" line="38"/>
+        <source>Delete File(s)</source>
+        <oldsource>Delete File</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="39"/>
+        <source>Confirm delete?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="41"/>
+        <location filename="qml/MainWindow.qml" line="180"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="179"/>
+        <source>Input the new name</source>
+        <oldsource>Input new name</oldsource>
+        <translation>请输入名称</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="181"/>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="693"/>
         <source>NewFolder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="401"/>
+        <location filename="qml/MainWindow.qml" line="699"/>
         <source>NewFile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="407"/>
-        <location filename="qml/MainWindow.qml" line="564"/>
+        <location filename="qml/MainWindow.qml" line="705"/>
+        <location filename="qml/MainWindow.qml" line="837"/>
         <source>ChangeMode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="419"/>
+        <location filename="qml/MainWindow.qml" line="717"/>
         <source>SelectAll</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="425"/>
+        <location filename="qml/MainWindow.qml" line="723"/>
         <source>UnselectAll</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="431"/>
+        <location filename="qml/MainWindow.qml" line="729"/>
         <source>Inverse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="525"/>
+        <location filename="qml/MainWindow.qml" line="797"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="574"/>
+        <location filename="qml/MainWindow.qml" line="847"/>
         <source>Select</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="813"/>
+        <location filename="qml/MainWindow.qml" line="1169"/>
+        <source>About</source>
+        <translation type="unfinished">关于</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="1171"/>
+        <source>This Project...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="1143"/>
         <source>SwitchTheme</source>
         <translation>切换主题</translation>
     </message>

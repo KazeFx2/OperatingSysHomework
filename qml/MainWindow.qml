@@ -33,6 +33,269 @@ FluWindow {
         editorPageRegister.launch({stayTop: stayTop})
     }
 
+    FluPopup {
+        id: del_dialog
+        property string title: qsTr("Delete File(s)")
+        property string message: qsTr("Confirm delete?")
+        property string neutralText: "Neutral"
+        property string negativeText: qsTr("Cancel")
+        property string positiveText: qsTr("Delete")
+        property alias messageTextFormart: text_message.textFormat
+        property int delayTime: 100
+        signal neutralClicked
+        signal negativeClicked
+        signal positiveClicked
+        onPositiveClicked: {
+        }
+        onNegativeClicked: {
+        }
+        property int buttonFlags: FluContentDialogType.NegativeButton | FluContentDialogType.PositiveButton
+        focus: true
+        implicitWidth: 400
+        implicitHeight: text_title.height + sroll_message.height + layout_actions.height
+        Rectangle {
+            id:layout_content
+            anchors.fill: parent
+            color: 'transparent'
+            radius:5
+            FluText{
+                id:text_title
+                font: FluTextStyle.Title
+                text:del_dialog.title
+                topPadding: 20
+                leftPadding: 20
+                rightPadding: 20
+                wrapMode: Text.WrapAnywhere
+                anchors{
+                    top:parent.top
+                    left: parent.left
+                    right: parent.right
+                }
+            }
+            Flickable{
+                id:sroll_message
+                contentWidth: width
+                clip: true
+                anchors{
+                    top:text_title.bottom
+                    left: parent.left
+                    right: parent.right
+                }
+                boundsBehavior:Flickable.StopAtBounds
+                contentHeight: text_message.height
+                height: Math.min(text_message.height,300)
+                ScrollBar.vertical: FluScrollBar {}
+                FluText{
+                    id:text_message
+                    font: FluTextStyle.Body
+                    wrapMode: Text.WrapAnywhere
+                    text:del_dialog.message
+                    width: parent.width
+                    topPadding: 14
+                    leftPadding: 20
+                    rightPadding: 20
+                    bottomPadding: 14
+                }
+            }
+            Rectangle{
+                id:layout_actions
+                height: 68
+                radius: 5
+                color: FluTheme.dark ? Qt.rgba(32/255,32/255,32/255,1) : Qt.rgba(243/255,243/255,243/255,1)
+                anchors{
+                    top:sroll_message.bottom
+                    left: parent.left
+                    right: parent.right
+                }
+                RowLayout{
+                    anchors
+                    {
+                        centerIn: parent
+                        margins: spacing
+                        fill: parent
+                    }
+                    spacing: 15
+                    FluButton{
+                        id:neutral_btn
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        visible: del_dialog.buttonFlags&FluContentDialogType.NeutralButton
+                        text: del_dialog.neutralText
+                        onClicked: {
+                            del_dialog.close()
+                            timer_delay.targetFlags = FluContentDialogType.NeutralButton
+                            timer_delay.restart()
+                        }
+                    }
+                    FluButton{
+                        id:negative_btn
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        visible: del_dialog.buttonFlags&FluContentDialogType.NegativeButton
+                        text: del_dialog.negativeText
+                        onClicked: {
+                            del_dialog.close()
+                            timer_delay.targetFlags = FluContentDialogType.NegativeButton
+                            timer_delay.restart()
+                        }
+                    }
+                    FluButton{
+                        id:positive_btn
+                        normalColor: FluColors.Red.light
+                        hoverColor: FluColors.Red.normal
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        visible: del_dialog.buttonFlags&FluContentDialogType.PositiveButton
+                        text: del_dialog.positiveText
+                        onClicked: {
+                            del_dialog.close()
+                            timer_delay.targetFlags = FluContentDialogType.PositiveButton
+                            timer_delay.restart()
+                        }
+                    }
+                }
+            }
+        }
+        Timer{
+            property int targetFlags
+            id:timer_delay
+            interval: del_dialog.delayTime
+            onTriggered: {
+                if(targetFlags === FluContentDialogType.NegativeButton){
+                    del_dialog.negativeClicked()
+                }
+                if(targetFlags === FluContentDialogType.NeutralButton){
+                    del_dialog.neutralClicked()
+                }
+                if(targetFlags === FluContentDialogType.PositiveButton){
+                    del_dialog.positiveClicked()
+                }
+            }
+        }
+    }
+
+    FluPopup {
+        id: name_input
+        property string title: qsTr("Input the new name")
+        property string negativeText: qsTr("Cancel")
+        property string positiveText: qsTr("OK")
+        property alias messageTextFormart: text_message.textFormat
+        property int delayTime: 100
+        signal negativeClicked
+        signal positiveClicked
+        onPositiveClicked: {
+        }
+        onNegativeClicked: {
+        }
+        property int buttonFlags: FluContentDialogType.NegativeButton | FluContentDialogType.PositiveButton
+        focus: true
+        implicitWidth: 400
+        implicitHeight: ni_title.height + ni_actions.height + btm_m.height + name_in.height + 20
+        Rectangle {
+            anchors.fill: parent
+            color: 'transparent'
+            radius:5
+            FluText{
+                id:ni_title
+                font: FluTextStyle.Title
+                text:name_input.title
+                topPadding: 20
+                leftPadding: 20
+                rightPadding: 20
+                wrapMode: Text.WrapAnywhere
+                anchors{
+                    top:parent.top
+                    left: parent.left
+                    right: parent.right
+                }
+            }
+
+            FluTextBox {
+                id: name_in
+                anchors.top: ni_title.bottom
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.topMargin: 20
+                width: parent.width - 50
+            }
+
+            Rectangle {
+                id: btm_m
+                anchors.top: name_in.bottom
+                height: 20
+                width: parent.width
+                color: 'transparent'
+            }
+
+            Rectangle{
+                id:ni_actions
+                height: 68
+                radius: 5
+                color: FluTheme.dark ? Qt.rgba(32/255,32/255,32/255,1) : Qt.rgba(243/255,243/255,243/255,1)
+                anchors{
+                    top:btm_m.bottom
+                    left: parent.left
+                    right: parent.right
+                }
+                RowLayout{
+                    anchors
+                    {
+                        centerIn: parent
+                        margins: spacing
+                        fill: parent
+                    }
+                    spacing: 15
+                    FluButton{
+                        id:neg_btn
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        visible: name_input.buttonFlags&FluContentDialogType.NegativeButton
+                        text: name_input.negativeText
+                        onClicked: {
+                            name_input.close()
+                            ni_timer_delay.targetFlags = FluContentDialogType.NegativeButton
+                            ni_timer_delay.restart()
+                        }
+                    }
+                    FluFilledButton{
+                        id:pos_btn
+                        disabled: name_in.text == ""
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        visible: name_input.buttonFlags&FluContentDialogType.PositiveButton
+                        text: name_input.positiveText
+                        onClicked: {
+                            name_input.close()
+                            ni_timer_delay.targetFlags = FluContentDialogType.PositiveButton
+                            ni_timer_delay.restart()
+                        }
+                    }
+                }
+            }
+        }
+        Timer{
+            property int targetFlags
+            id:ni_timer_delay
+            interval: name_input.delayTime
+            onTriggered: {
+                if(targetFlags === FluContentDialogType.NegativeButton){
+                    name_input.negativeClicked()
+                }
+                if(targetFlags === FluContentDialogType.PositiveButton){
+                    name_input.positiveClicked()
+                }
+            }
+        }
+    }
+
+    function deleteFile() {
+            del_dialog.open()
+    }
+
+    function nameInput() {
+        name_in.text = ""
+        name_input.open()
+    }
+
     Connections {
         target: window.loginPageRegister
         function onResult(data){
@@ -101,7 +364,24 @@ FluWindow {
                     height: childrenRect.height
                     color: FluColors.Transparent
 
+                    FluText {
+                        padding: 10
+                        anchors.verticalCenter: parent.verticalCenter
+                        font.bold: true
+                        text: qsTr("Current Directory: ")
+                        font.pixelSize: dir_url.textSize - 5
+                    }
+
+                    FluText {
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: parent.children[0].right
+                        text: "/"
+                        font.pixelSize: dir_url.textSize
+                    }
+
                     FluBreadcrumbBar{
+                        id: dir_url
+                        anchors.left: parent.children[1].right
                         anchors.verticalCenter: parent.verticalCenter
                         width: parent.width - search_rect.width
                         separator: "/"
@@ -128,10 +408,12 @@ FluWindow {
                             anchors.left: parent.left
                             anchors.verticalCenter: parent.verticalCenter
                             padding: 10
+                            font.bold: true
                             text: qsTr("Search")
                         }
 
                         FluTextBox {
+                            id: search_input
                             anchors.left: parent.children[0].right
                             anchors.verticalCenter: parent.verticalCenter
                             width: 250
@@ -142,6 +424,7 @@ FluWindow {
                             anchors.leftMargin: 10
                             anchors.verticalCenter: parent.verticalCenter
                             iconSource: FluentIcons.Search
+                            disabled: search_input.text == ""
                         }
                     }
                 }
@@ -153,6 +436,7 @@ FluWindow {
                     color: FluColors.Transparent
 
                     FluText {
+                        font.bold: true
                         padding: 10
                         text: qsTr("Current User:")
                     }
@@ -172,7 +456,7 @@ FluWindow {
                         property int minW: 52 + pad_inner * 2
                         anchors.left: parent.left
                         anchors.top: parent.children[0].bottom
-                        width: parent.width > 850 ? parent.width * 1 / 5 : minW
+                        width: parent.width > 900 ? parent.width * 1 / 5 : minW
                         height: parent.height - parent.children[0].height
                         // color: FluColors.Transparent
                         Behavior on width {
@@ -262,6 +546,7 @@ FluWindow {
                                         padding: window.item_pad
                                         iconSize: window.item_height - padding * 2
                                         iconSource: type !== 1 ? icon : FluentIcons.AppIconDefault
+                                        iconColor: (icon != "" && icon === FluentIcons.Delete) ? FluColors.Red.light : FluTheme.dark ? "#FFFFFF" : "#000000"
                                     }
 
                                     FluText {
@@ -270,6 +555,7 @@ FluWindow {
                                         anchors.verticalCenter: parent.verticalCenter
                                         text: title
                                         font.pixelSize: parent.children[0].iconSize - 2
+                                        textColor: (icon != "" && icon === FluentIcons.Delete) ? FluColors.Red.light : FluTheme.dark ? "#FFFFFF" : "#000000"
                                     }
 
                                     Rectangle {
@@ -313,6 +599,18 @@ FluWindow {
                                         function func(index, title, type) {
                                             // showInfo(index + "_" + title + "_" + type)
                                             switch(index) {
+                                            case 3:
+                                            case 5:
+                                            case 6:
+                                            {
+                                                window.nameInput()
+                                            }
+                                                break
+                                            case 4:
+                                            {
+                                                window.deleteFile()
+                                            }
+                                                break
                                             case 9:
                                             {
                                                 for (var i = 0; i < right_files_model.count; i++){
@@ -449,32 +747,6 @@ FluWindow {
                                     }
                                 }
                             }
-
-                            // Column{
-                            //     id: cont
-                            //     width: parent.width
-                            //     Rectangle {
-                            //         // Layout.alignment: Qt.AlignHCenter
-                            //         anchors.horizontalCenter: parent.horizontalCenter
-                            //         height: 20
-                            //         width: parent.width - 20
-                            //         radius: 5
-                            //     }
-
-                            //     Rectangle {
-                            //         height: 5
-                            //         width: parent.width
-                            //         color: FluColors.Transparent
-                            //     }
-
-                            //     Rectangle {
-                            //         // Layout.alignment: Qt.AlignHCenter
-                            //         anchors.horizontalCenter: parent.horizontalCenter
-                            //         height: 20
-                            //         width: parent.width - 20
-                            //         radius: 5
-                            //     }
-                            // }
                         }
                     }
 
@@ -558,6 +830,7 @@ FluWindow {
                                         iconSpacing: window.item_pad
                                         opacity: enabled ? 1.0 : 0.5
                                         onTriggered: {
+                                            window.nameInput()
                                         }
                                     }
                                     FluMenuItem{
@@ -585,13 +858,96 @@ FluWindow {
                                         }
                                     }
                                     FluMenuSeparator {}
-                                    FluMenuItem{
+                                    T.MenuItem {
+                                        property int iconSpacing: window.item_pad
+                                        property int iconSource: FluentIcons.Delete
+                                        property int iconSize: 16
+                                        property color textColor: FluColors.Red.light
+
                                         text: qsTr("Delete")
                                         enabled: menu.name == ".." ? false : true
-                                        iconSource: FluentIcons.Delete
-                                        iconSpacing: window.item_pad
                                         opacity: enabled ? 1.0 : 0.5
+                                        id: control
+                                        implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                                                                implicitContentWidth + leftPadding + rightPadding)
+                                        implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
+                                                                 implicitContentHeight + topPadding + bottomPadding,
+                                                                 implicitIndicatorHeight + topPadding + bottomPadding)
+                                        padding: 6
+                                        spacing: 6
+                                        icon.width: 24
+                                        icon.height: 24
+                                        icon.color: control.palette.windowText
+                                        height: visible ? implicitHeight : 0
+
                                         onTriggered: {
+                                            window.deleteFile()
+                                        }
+                                        Component{
+                                            id:com_icon
+                                            FluIcon{
+                                                id:content_icon
+                                                iconSize: control.iconSize
+                                                iconSource:control.iconSource
+                                                color: FluColors.Red.light
+                                            }
+                                        }
+                                        contentItem: Item{
+                                            Row{
+                                                spacing: control.iconSpacing
+                                                readonly property real arrowPadding: control.subMenu && control.arrow ? control.arrow.width + control.spacing : 0
+                                                readonly property real indicatorPadding: control.checkable && control.indicator ? control.indicator.width + control.spacing : 0
+                                                anchors{
+                                                    verticalCenter: parent.verticalCenter
+                                                    left: parent.left
+                                                    leftMargin: (!control.mirrored ? indicatorPadding : arrowPadding)+5
+                                                    right: parent.right
+                                                    rightMargin: (control.mirrored ? indicatorPadding : arrowPadding)+5
+                                                }
+                                                FluLoader{
+                                                    id:loader_icon
+                                                    sourceComponent: com_icon
+                                                    anchors.verticalCenter: parent.verticalCenter
+                                                    visible: status === Loader.Ready
+                                                }
+                                                FluText {
+                                                    id:content_text
+                                                    text: control.text
+                                                    color: control.textColor
+                                                    anchors.verticalCenter: parent.verticalCenter
+                                                }
+                                            }
+                                        }
+                                        indicator: FluIcon {
+                                            x: control.mirrored ? control.width - width - control.rightPadding : control.leftPadding
+                                            y: control.topPadding + (control.availableHeight - height) / 2
+                                            visible: control.checked
+                                            iconSource: FluentIcons.CheckMark
+                                        }
+                                        arrow: FluIcon {
+                                            x: control.mirrored ? control.leftPadding : control.width - width - control.rightPadding
+                                            y: control.topPadding + (control.availableHeight - height) / 2
+                                            visible: control.subMenu
+                                            iconSource: FluentIcons.ChevronRightMed
+                                        }
+                                        background: Item {
+                                            implicitWidth: 150
+                                            implicitHeight: 36
+                                            x: 1
+                                            y: 1
+                                            width: control.width - 2
+                                            height: control.height - 2
+                                            Rectangle{
+                                                anchors.fill: parent
+                                                anchors.margins: 3
+                                                radius: 4
+                                                color:{
+                                                    if(control.highlighted){
+                                                        return FluTheme.itemCheckColor
+                                                    }
+                                                    return FluTheme.itemNormalColor
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -766,32 +1122,6 @@ FluWindow {
                                                         })
                                     }
                                 }
-
-                                // Column{
-                                //     id: cont
-                                //     width: parent.width
-                                //     Rectangle {
-                                //         // Layout.alignment: Qt.AlignHCenter
-                                //         anchors.horizontalCenter: parent.horizontalCenter
-                                //         height: 20
-                                //         width: parent.width - 20
-                                //         radius: 5
-                                //     }
-
-                                //     Rectangle {
-                                //         height: 5
-                                //         width: parent.width
-                                //         color: FluColors.Transparent
-                                //     }
-
-                                //     Rectangle {
-                                //         // Layout.alignment: Qt.AlignHCenter
-                                //         anchors.horizontalCenter: parent.horizontalCenter
-                                //         height: 20
-                                //         width: parent.width - 20
-                                //         radius: 5
-                                //     }
-                                // }
                             }
 
                             Rectangle {
@@ -827,6 +1157,23 @@ FluWindow {
             top: parent.top
             left: parent.left
             right: parent.right
+        }
+
+        FluMenuBar {
+           visible: wind_loader.sourceComponent === main_win
+           id: head_menu
+           padding: 5
+           x: 100
+           FluMenu {
+               id: about
+               title: qsTr("About")
+               Action {
+                    text: qsTr("This Project...")
+                    onTriggered: {
+
+                    }
+               }
+           }
         }
 
     }
