@@ -18,6 +18,7 @@ Item {
         FluApp.routes = {
             "/": "qrc:/qml/MainWindow.qml",
             "/login":"qrc:/qml/LoginWindow.qml",
+            "/register":"qrc:/qml/RegisterWindow.qml",
             "/editor":"qrc:/qml/FileEditor.qml"
         };
         FluApp.initialRoute = "/";

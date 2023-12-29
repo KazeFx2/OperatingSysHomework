@@ -5,6 +5,7 @@
 #include <QLocale>
 #include <QTranslator>
 #include <QIcon>
+#include <QTextEdit>
 
 #include "AppInfo.h"
 #include "helper/SettingsHelper.h"
@@ -12,7 +13,16 @@
 #include "dynamicpartition/DynamicPartition.h"
 #include "processschedule/ProcessSchedule.h"
 
-#include <iostream>
+#include "UIComponent/KaTextArea.h"
+
+// #include <iostream>
+
+void registerQml() {
+    int verMajor = 1;
+    int verMinor = 0;
+
+    qmlRegisterType<KaTextArea>("kaze.ui", verMajor, verMinor, "KaTextArea");
+}
 
 int main(int argc, char *argv[]) {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
@@ -52,6 +62,8 @@ int main(int argc, char *argv[]) {
     engine.rootContext()->setContextProperty("CppDynamicPart", DynamicPartition::getInstance());
     engine.rootContext()->setContextProperty("CppProcessSchedule", ProcessSchedule::getInstance());
     engine.rootContext()->setContextProperty("SettingsHelper", SettingsHelper::getInstance());
+
+    registerQml();
 
     const QUrl url(QStringLiteral("qrc:qml/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

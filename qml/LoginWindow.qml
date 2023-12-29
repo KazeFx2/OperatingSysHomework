@@ -3,14 +3,22 @@ import FluentUI 1.0
 
 
 FluWindow {
+    id: window
     property int initW: 400
-    property int initH: 400
+    property int initH: 300
+
+    property var registerPageRegister: registerForWindowResult("/register")
+
+    property bool isOk: false
+
     width: initW
     height: initH
     minimumHeight: initH
     maximumHeight: initH
     minimumWidth: initW
     maximumWidth: initW
+
+    fixSize: true
 
     onInitArgument:
         (argument)=>{
@@ -22,7 +30,7 @@ FluWindow {
     showMinimize: false
     showClose: false
 
-    flags: Qt.WindowMaximizeButtonHint | Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint
+    // flags: Qt.WindowMaximizeButtonHint | Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint
 
     modality: Qt.ApplicationModal
 
@@ -34,6 +42,11 @@ FluWindow {
         height: childrenRect.height
         color: FluColors.Transparent
 
+        Component.onCompleted: {
+            usr_txt.width = Math.max(usr_txt.width, psw_txt.width)
+            psw_txt.width = Math.max(usr_txt.width, psw_txt.width)
+        }
+
         Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
@@ -42,7 +55,7 @@ FluWindow {
             color: FluColors.Transparent
 
             FluText {
-                width: psw_txt.width
+                id: usr_txt
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
                 padding: 10
@@ -50,6 +63,7 @@ FluWindow {
             }
 
             FluTextBox {
+                id: usr
                 anchors.verticalCenter: parent.verticalCenter
                 width: 250
                 anchors.left: parent.children[0].right
@@ -72,6 +86,7 @@ FluWindow {
             }
 
             FluTextBox {
+                id: psw
                 anchors.verticalCenter: parent.verticalCenter
                 width: 250
                 echoMode: TextInput.Password
@@ -95,6 +110,9 @@ FluWindow {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.children[0].right
                 text: qsTr("Register now!")
+                onClicked: {
+                    registerPageRegister.launch({stayTop: stayTop})
+                }
             }
         }
 
@@ -109,7 +127,31 @@ FluWindow {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.children[0].right
                 text: qsTr("Login")
+                disabled: usr.text == "" || psw.text == ""
+                onClicked: {
+                    var user = usr.text
+                    var pswd = psw.text
+                    // TODO
+                    isOk = true
+                    onResult({status: 0, usr: user, pswd: pswd})
+                    window.close()
+                }
             }
+        }
+    }
+
+    Connections {
+        target: registerPageRegister
+        function onResult(data){
+            // TODO
+            usr.text = data.usr
+            showSuccess(qsTr("Register successfully!"))
+        }
+    }
+
+    Component.onDestruction: {
+        if (!isOk) {
+            onResult({status: -1, usr: "", pswd: ""})
         }
     }
 }

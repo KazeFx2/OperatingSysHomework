@@ -28,5 +28,6 @@
         <file>qml/Pages/BankAlgorithm_PNeed.qml</file>
         <file>src/js/tools.js</file>
         <file>qml/FileEditor.qml</file>
+        <file>qml/RegisterWindow.qml</file>
     </qresource>
 </RCC>
