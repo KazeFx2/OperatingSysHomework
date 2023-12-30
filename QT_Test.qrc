@@ -4,10 +4,6 @@
         <file>qml/main.qml</file>
         <file>qml/MainWindow.qml</file>
         <file>QT_Test_zh_CN.qm</file>
-        <file>qml/NavItems/FootItems.qml</file>
-        <file>qml/Pages/Settings.qml</file>
-        <file>qml/NavItems/qmldir</file>
-        <file>qml/Pages/About.qml</file>
         <file>qml/Component/ScrollableItems.qml</file>
         <file>qml/Component/qmldir</file>
         <file>qml/Component/NamedUrlItem.qml</file>
@@ -17,16 +13,9 @@
         <file>src/ico/GitHub.ico</file>
         <file>src/svg/GitHub.svg</file>
         <file>src/svg/FluentUI.svg</file>
-        <file>qml/NavItems/OriginalItems.qml</file>
-        <file>qml/Pages/BankAlgorithm.qml</file>
         <file>src/png/Kaze.png</file>
-        <file>qml/Pages/DynamicPartitions.qml</file>
-        <file>qml/Pages/ProcessSchedule.qml</file>
-        <file>qml/Pages/PageSwapping.qml</file>
-        <file>qml/Pages/BankAlgorithm_SysStatus.qml</file>
-        <file>qml/Pages/BankAlgorithm_PMalloced.qml</file>
-        <file>qml/Pages/BankAlgorithm_PNeed.qml</file>
         <file>src/js/tools.js</file>
+        <file>src/js/data.js</file>
         <file>qml/FileEditor.qml</file>
         <file>qml/RegisterWindow.qml</file>
         <file>qml/About.qml</file>

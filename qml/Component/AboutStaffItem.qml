@@ -64,7 +64,7 @@ Rectangle{
 
                 FluCopyableText{
                     text: introduction
-                    topPadding: 10
+                    // topPadding: 10
                     font.pixelSize: 10
                     textColor: FluTools.colorAlpha(FluTheme.dark ? FluColors.White : FluColors.Grey220, 0.8)
                     opacity: mouse.clicked ? 0.5 : 1.0
