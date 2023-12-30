@@ -5,7 +5,7 @@ import "qrc:///qml/Component"
 FluWindow {
     id: window
     property int initW: 500
-    property int initH: 585
+    property int initH: 590
 
     width: initW
     height: initH
