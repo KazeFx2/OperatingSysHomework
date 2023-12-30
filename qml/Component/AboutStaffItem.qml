@@ -6,8 +6,8 @@ Rectangle{
 
     property string ico
     property string name
-    property string url
-    property string license
+    property string url: ""
+    property string introduction
     property bool is_last: false
 
     color: FluTools.colorAlpha(FluTheme.dark ? FluColors.White : FluColors.Black, mouse.entered ? 0.05 : 0)
@@ -20,7 +20,7 @@ Rectangle{
 
         id: col
 
-        topPadding: 15
+        topPadding: 10
         width: parent.width
 
         Row{
@@ -30,9 +30,9 @@ Rectangle{
             leftPadding: col.topPadding
 
             FluClip{
-                width: parent.height - 15
+                width: parent.height - 10
                 height: width
-                radius: [0,0,0,0]
+                radius: [8, 8, 8, 8]
                 Image{
                     anchors.fill: parent
                     source: ico
@@ -63,11 +63,13 @@ Rectangle{
                 }
 
                 FluCopyableText{
-                    text: license
+                    text: introduction
+                    topPadding: 10
                     font.pixelSize: 10
                     textColor: FluTools.colorAlpha(FluTheme.dark ? FluColors.White : FluColors.Grey220, 0.8)
                     opacity: mouse.clicked ? 0.5 : 1.0
                     bottomPadding: col.topPadding
+                    textFormat: TextEdit.MarkdownText
                 }
             }
         }
@@ -86,6 +88,8 @@ Rectangle{
         anchors.fill: parent
         hoverEnabled: true
         onClicked: (Mouse)=>{
+            if (url == "")
+                return
             if (Mouse.button === Qt.LeftButton){
                 Qt.openUrlExternally(url)
             }

@@ -3,7 +3,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import FluentUI 1.0
 import QtQuick.Templates 2.15 as T
-import "qrc:///qml/NavItems"
+import "qrc:/src/js/tools.js" as Tools
 
 FluWindow {
     id: window
@@ -14,6 +14,8 @@ FluWindow {
     property int selected_n: 0
     property var editorPageRegister: registerForWindowResult("/editor")
     property var loginPageRegister: registerForWindowResult("/login")
+    property var aboutPageRegister: registerForWindowResult("/about")
+    property var licensePageRegister: registerForWindowResult("/license")
 
     property string res_usr: ""
 
@@ -29,10 +31,6 @@ FluWindow {
     fitsAppBarWindows: true
     launchMode: FluWindowType.SingleTask
 
-    function editFile() {
-        editorPageRegister.launch({stayTop: stayTop})
-    }
-
     FluPopup {
         id: del_dialog
         property string title: qsTr("Delete File(s)")
@@ -42,9 +40,12 @@ FluWindow {
         property string positiveText: qsTr("Delete")
         property alias messageTextFormart: text_message.textFormat
         property int delayTime: 100
-        signal neutralClicked
-        signal negativeClicked
-        signal positiveClicked
+            signal
+        neutralClicked
+            signal
+        negativeClicked
+            signal
+        positiveClicked
         onPositiveClicked: {
         }
         onNegativeClicked: {
@@ -54,42 +55,43 @@ FluWindow {
         implicitWidth: 400
         implicitHeight: text_title.height + sroll_message.height + layout_actions.height
         Rectangle {
-            id:layout_content
+            id: layout_content
             anchors.fill: parent
             color: 'transparent'
-            radius:5
-            FluText{
-                id:text_title
+            radius: 5
+            FluText {
+                id: text_title
                 font: FluTextStyle.Title
-                text:del_dialog.title
+                text: del_dialog.title
                 topPadding: 20
                 leftPadding: 20
                 rightPadding: 20
                 wrapMode: Text.WrapAnywhere
-                anchors{
-                    top:parent.top
+                anchors {
+                    top: parent.top
                     left: parent.left
                     right: parent.right
                 }
             }
-            Flickable{
-                id:sroll_message
+            Flickable {
+                id: sroll_message
                 contentWidth: width
                 clip: true
-                anchors{
-                    top:text_title.bottom
+                anchors {
+                    top: text_title.bottom
                     left: parent.left
                     right: parent.right
                 }
-                boundsBehavior:Flickable.StopAtBounds
+                boundsBehavior: Flickable.StopAtBounds
                 contentHeight: text_message.height
-                height: Math.min(text_message.height,300)
-                ScrollBar.vertical: FluScrollBar {}
-                FluText{
-                    id:text_message
+                height: Math.min(text_message.height, 300)
+                ScrollBar.vertical: FluScrollBar {
+                }
+                FluText {
+                    id: text_message
                     font: FluTextStyle.Body
                     wrapMode: Text.WrapAnywhere
-                    text:del_dialog.message
+                    text: del_dialog.message
                     width: parent.width
                     topPadding: 14
                     leftPadding: 20
@@ -97,29 +99,28 @@ FluWindow {
                     bottomPadding: 14
                 }
             }
-            Rectangle{
-                id:layout_actions
+            Rectangle {
+                id: layout_actions
                 height: 68
                 radius: 5
-                color: FluTheme.dark ? Qt.rgba(32/255,32/255,32/255,1) : Qt.rgba(243/255,243/255,243/255,1)
-                anchors{
-                    top:sroll_message.bottom
+                color: FluTheme.dark ? Qt.rgba(32 / 255, 32 / 255, 32 / 255, 1) : Qt.rgba(243 / 255, 243 / 255, 243 / 255, 1)
+                anchors {
+                    top: sroll_message.bottom
                     left: parent.left
                     right: parent.right
                 }
-                RowLayout{
-                    anchors
-                    {
+                RowLayout {
+                    anchors {
                         centerIn: parent
                         margins: spacing
                         fill: parent
                     }
                     spacing: 15
-                    FluButton{
-                        id:neutral_btn
+                    FluButton {
+                        id: neutral_btn
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        visible: del_dialog.buttonFlags&FluContentDialogType.NeutralButton
+                        visible: del_dialog.buttonFlags & FluContentDialogType.NeutralButton
                         text: del_dialog.neutralText
                         onClicked: {
                             del_dialog.close()
@@ -127,11 +128,11 @@ FluWindow {
                             timer_delay.restart()
                         }
                     }
-                    FluButton{
-                        id:negative_btn
+                    FluButton {
+                        id: negative_btn
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        visible: del_dialog.buttonFlags&FluContentDialogType.NegativeButton
+                        visible: del_dialog.buttonFlags & FluContentDialogType.NegativeButton
                         text: del_dialog.negativeText
                         onClicked: {
                             del_dialog.close()
@@ -139,13 +140,13 @@ FluWindow {
                             timer_delay.restart()
                         }
                     }
-                    FluButton{
-                        id:positive_btn
+                    FluButton {
+                        id: positive_btn
                         normalColor: FluColors.Red.light
                         hoverColor: FluColors.Red.normal
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        visible: del_dialog.buttonFlags&FluContentDialogType.PositiveButton
+                        visible: del_dialog.buttonFlags & FluContentDialogType.PositiveButton
                         text: del_dialog.positiveText
                         onClicked: {
                             del_dialog.close()
@@ -156,18 +157,18 @@ FluWindow {
                 }
             }
         }
-        Timer{
+        Timer {
             property int targetFlags
-            id:timer_delay
+            id: timer_delay
             interval: del_dialog.delayTime
             onTriggered: {
-                if(targetFlags === FluContentDialogType.NegativeButton){
+                if (targetFlags === FluContentDialogType.NegativeButton) {
                     del_dialog.negativeClicked()
                 }
-                if(targetFlags === FluContentDialogType.NeutralButton){
+                if (targetFlags === FluContentDialogType.NeutralButton) {
                     del_dialog.neutralClicked()
                 }
-                if(targetFlags === FluContentDialogType.PositiveButton){
+                if (targetFlags === FluContentDialogType.PositiveButton) {
                     del_dialog.positiveClicked()
                 }
             }
@@ -181,8 +182,10 @@ FluWindow {
         property string positiveText: qsTr("OK")
         property alias messageTextFormart: text_message.textFormat
         property int delayTime: 100
-        signal negativeClicked
-        signal positiveClicked
+            signal
+        negativeClicked
+            signal
+        positiveClicked
         onPositiveClicked: {
         }
         onNegativeClicked: {
@@ -194,17 +197,17 @@ FluWindow {
         Rectangle {
             anchors.fill: parent
             color: 'transparent'
-            radius:5
-            FluText{
-                id:ni_title
+            radius: 5
+            FluText {
+                id: ni_title
                 font: FluTextStyle.Title
-                text:name_input.title
+                text: name_input.title
                 topPadding: 20
                 leftPadding: 20
                 rightPadding: 20
                 wrapMode: Text.WrapAnywhere
-                anchors{
-                    top:parent.top
+                anchors {
+                    top: parent.top
                     left: parent.left
                     right: parent.right
                 }
@@ -226,29 +229,28 @@ FluWindow {
                 color: 'transparent'
             }
 
-            Rectangle{
-                id:ni_actions
+            Rectangle {
+                id: ni_actions
                 height: 68
                 radius: 5
-                color: FluTheme.dark ? Qt.rgba(32/255,32/255,32/255,1) : Qt.rgba(243/255,243/255,243/255,1)
-                anchors{
-                    top:btm_m.bottom
+                color: FluTheme.dark ? Qt.rgba(32 / 255, 32 / 255, 32 / 255, 1) : Qt.rgba(243 / 255, 243 / 255, 243 / 255, 1)
+                anchors {
+                    top: btm_m.bottom
                     left: parent.left
                     right: parent.right
                 }
-                RowLayout{
-                    anchors
-                    {
+                RowLayout {
+                    anchors {
                         centerIn: parent
                         margins: spacing
                         fill: parent
                     }
                     spacing: 15
-                    FluButton{
-                        id:neg_btn
+                    FluButton {
+                        id: neg_btn
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        visible: name_input.buttonFlags&FluContentDialogType.NegativeButton
+                        visible: name_input.buttonFlags & FluContentDialogType.NegativeButton
                         text: name_input.negativeText
                         onClicked: {
                             name_input.close()
@@ -256,12 +258,12 @@ FluWindow {
                             ni_timer_delay.restart()
                         }
                     }
-                    FluFilledButton{
-                        id:pos_btn
+                    FluFilledButton {
+                        id: pos_btn
                         disabled: name_in.text == ""
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        visible: name_input.buttonFlags&FluContentDialogType.PositiveButton
+                        visible: name_input.buttonFlags & FluContentDialogType.PositiveButton
                         text: name_input.positiveText
                         onClicked: {
                             name_input.close()
@@ -272,23 +274,27 @@ FluWindow {
                 }
             }
         }
-        Timer{
+        Timer {
             property int targetFlags
-            id:ni_timer_delay
+            id: ni_timer_delay
             interval: name_input.delayTime
             onTriggered: {
-                if(targetFlags === FluContentDialogType.NegativeButton){
+                if (targetFlags === FluContentDialogType.NegativeButton) {
                     name_input.negativeClicked()
                 }
-                if(targetFlags === FluContentDialogType.PositiveButton){
+                if (targetFlags === FluContentDialogType.PositiveButton) {
                     name_input.positiveClicked()
                 }
             }
         }
     }
 
+    function editFile() {
+        editorPageRegister.launch({stayTop: stayTop})
+    }
+
     function deleteFile() {
-            del_dialog.open()
+        del_dialog.open()
     }
 
     function nameInput() {
@@ -298,25 +304,31 @@ FluWindow {
 
     Connections {
         target: window.loginPageRegister
-        function onResult(data){
-            if (data.status === -1)
+
+        function onResult(data) {
+            if (data.status === -1) {
                 window.loginPageRegister.launch({stayTop: stayTop})
-            else {
+            } else {
                 res_usr = data.usr
-                wind_loader.sourceComponent = main_win
+                if (res_usr != "") {
+                    showSuccess(Tools.format(qsTr("Welcome, '{0}'!"), res_usr))
+                    wind_loader.sourceComponent = main_win
+                } else {
+                    wind_loader.sourceComponent = login_need
+                }
             }
         }
     }
 
     FluLoader {
         id: wind_loader
-        sourceComponent: login_need
+        sourceComponent: undefined
         anchors.fill: parent
     }
 
     Component {
         id: login_need
-        Item{
+        Item {
             anchors.fill: parent
             Rectangle {
                 width: childrenRect.width
@@ -328,7 +340,7 @@ FluWindow {
                     padding: 10
                     text: qsTr("Oops! You canceled the login!")
                 }
-                FluFilledButton{
+                FluFilledButton {
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.top: parent.children[0].bottom
                     text: "Retry"
@@ -379,7 +391,7 @@ FluWindow {
                         font.pixelSize: dir_url.textSize
                     }
 
-                    FluBreadcrumbBar{
+                    FluBreadcrumbBar {
                         id: dir_url
                         anchors.left: parent.children[1].right
                         anchors.verticalCenter: parent.verticalCenter
@@ -387,7 +399,7 @@ FluWindow {
                         separator: "/"
                         spacing: 1
                         textSize: 18
-                        onClickItem: (model)=>{
+                        onClickItem: (model) => {
 
                         }
 
@@ -489,7 +501,7 @@ FluWindow {
                                 anchors.right: parent.right
                                 anchors.rightMargin: 2 - left_filetree.paddings
                             }
-                            anchors{
+                            anchors {
                                 top: parent.children[0].bottom
                                 topMargin: 10
                                 left: parent.left
@@ -519,14 +531,14 @@ FluWindow {
 
                                 delegate: Rectangle {
                                     property bool _dis: {
-                                        switch(index) {
-                                        case 3:
-                                            return window.selected_n !== 1
-                                        case 4:
-                                        case 7:
-                                            return window.selected_n === 0
-                                        default:
-                                            break
+                                        switch (index) {
+                                            case 3:
+                                                return window.selected_n !== 1
+                                            case 4:
+                                            case 7:
+                                                return window.selected_n === 0
+                                            default:
+                                                break
                                         }
                                         return dis
                                     }
@@ -581,76 +593,72 @@ FluWindow {
                                             if (!hover)
                                                 clicked = false
                                         }
-                                        onPressed: (Mouse)=>{
-                                            if (Mouse.button === Qt.LeftButton){
+                                        onPressed: (Mouse) => {
+                                            if (Mouse.button === Qt.LeftButton) {
                                                 clicked = true
                                             }
                                         }
-                                        onReleased: (Mouse)=>{
-                                            if (Mouse.button === Qt.LeftButton){
+                                        onReleased: (Mouse) => {
+                                            if (Mouse.button === Qt.LeftButton) {
                                                 clicked = false
                                             }
                                         }
                                         onClicked: {
-                                            if (!_dis){
+                                            if (!_dis) {
                                                 func(index, title, type)
                                             }
                                         }
+
                                         function func(index, title, type) {
                                             // showInfo(index + "_" + title + "_" + type)
-                                            switch(index) {
-                                            case 3:
-                                            case 5:
-                                            case 6:
-                                            {
-                                                window.nameInput()
-                                            }
-                                                break
-                                            case 4:
-                                            {
-                                                window.deleteFile()
-                                            }
-                                                break
-                                            case 9:
-                                            {
-                                                for (var i = 0; i < right_files_model.count; i++){
-                                                    var tmp = right_files_model.get(i)
-                                                    if (tmp.title === "..")
-                                                        continue
-                                                    tmp.select = true
-                                                    right_files_model.set(i, tmp)
+                                            switch (index) {
+                                                case 3:
+                                                case 5:
+                                                case 6: {
+                                                    window.nameInput()
                                                 }
-                                            }
-                                                break
-                                            case 10:
-                                            {
-                                                for (i = 0; i < right_files_model.count; i++){
-                                                    tmp = right_files_model.get(i)
-                                                    if (tmp.title === "..")
-                                                        continue
-                                                    tmp.select = false
-                                                    right_files_model.set(i, tmp)
+                                                    break
+                                                case 4: {
+                                                    window.deleteFile()
                                                 }
-                                            }
-                                                break
-                                            case 11:
-                                            {
-                                                for (i = 0; i < right_files_model.count; i++){
-                                                    tmp = right_files_model.get(i)
-                                                    if (tmp.title === "..")
-                                                        continue
-                                                    tmp.select = !tmp.select
-                                                    right_files_model.set(i, tmp)
+                                                    break
+                                                case 9: {
+                                                    for (var i = 0; i < right_files_model.count; i++) {
+                                                        var tmp = right_files_model.get(i)
+                                                        if (tmp.title === "..")
+                                                            continue
+                                                        tmp.select = true
+                                                        right_files_model.set(i, tmp)
+                                                    }
                                                 }
-                                            }
-                                                break
-                                            default:
-                                                break
+                                                    break
+                                                case 10: {
+                                                    for (i = 0; i < right_files_model.count; i++) {
+                                                        tmp = right_files_model.get(i)
+                                                        if (tmp.title === "..")
+                                                            continue
+                                                        tmp.select = false
+                                                        right_files_model.set(i, tmp)
+                                                    }
+                                                }
+                                                    break
+                                                case 11: {
+                                                    for (i = 0; i < right_files_model.count; i++) {
+                                                        tmp = right_files_model.get(i)
+                                                        if (tmp.title === "..")
+                                                            continue
+                                                        tmp.select = !tmp.select
+                                                        right_files_model.set(i, tmp)
+                                                    }
+                                                }
+                                                    break
+                                                default:
+                                                    break
                                             }
                                         }
                                     }
 
-                                    FluTooltip{
+                                    FluTooltip {
                                         parent: parent.handle
                                         visible: parent.children[3].hover && !parent.children[1].visible
                                         text: String(title)
@@ -659,90 +667,90 @@ FluWindow {
 
                                 Component.onCompleted: {
                                     var dt = [{
-                                                  icon: FluentIcons.DeveloperTools,
-                                                  title: qsTr("Quick Operations"),
-                                                  type: 2,
-                                                  dis: true
-                                              },
-                                              {
-                                                  icon: FluentIcons.Copy,
-                                                  title: qsTr("Copy"),
-                                                  type: 0,
-                                                  dis: true
-                                              },
-                                              {
-                                                  icon: FluentIcons.Paste,
-                                                  title: qsTr("Paste"),
-                                                  type: 0,
-                                                  dis: true
-                                              },
-                                              {
-                                                  icon: FluentIcons.Rename,
-                                                  title: qsTr("Rename"),
-                                                  type: 0,
-                                                  dis: true
-                                              },
-                                              {
-                                                  icon: FluentIcons.Delete,
-                                                  title: qsTr("Delete"),
-                                                  type: 0,
-                                                  dis: true
-                                              },
-                                              {
-                                                  icon: FluentIcons.NewFolder,
-                                                  title: qsTr("NewFolder"),
-                                                  type: 0,
-                                                  dis: false
-                                              },
-                                              {
-                                                  icon: FluentIcons.Add,
-                                                  title: qsTr("NewFile"),
-                                                  type: 0,
-                                                  dis: false
-                                              },
-                                              {
-                                                  icon: FluentIcons.Edit,
-                                                  title: qsTr("ChangeMode"),
-                                                  type: 0,
-                                                  dis: true
-                                              },
-                                              {
-                                                  icon: "",
-                                                  title: "",
-                                                  type: 1,
-                                                  dis: true
-                                              },
-                                              {
-                                                  icon: FluentIcons.SelectAll,
-                                                  title: qsTr("SelectAll"),
-                                                  type: 0,
-                                                  dis: false
-                                              },
-                                              {
-                                                  icon: FluentIcons.ClearSelection,
-                                                  title: qsTr("UnselectAll"),
-                                                  type: 0,
-                                                  dis: false
-                                              },
-                                              {
-                                                  icon: FluentIcons.Switch,
-                                                  title: qsTr("Inverse"),
-                                                  type: 0,
-                                                  dis: false
-                                              },
-                                              {
-                                                  icon: "",
-                                                  title: "",
-                                                  type: 1,
-                                                  dis: true
-                                              },
-                                              {
-                                                  icon: FluentIcons.Folder,
-                                                  title: "Home",
-                                                  type: 0,
-                                                  dis: false
-                                              }]
-                                    for (var i = 0; i < dt.length; i++){
+                                        icon: FluentIcons.DeveloperTools,
+                                        title: qsTr("Quick Operations"),
+                                        type: 2,
+                                        dis: true
+                                    },
+                                        {
+                                            icon: FluentIcons.Copy,
+                                            title: qsTr("Copy"),
+                                            type: 0,
+                                            dis: true
+                                        },
+                                        {
+                                            icon: FluentIcons.Paste,
+                                            title: qsTr("Paste"),
+                                            type: 0,
+                                            dis: true
+                                        },
+                                        {
+                                            icon: FluentIcons.Rename,
+                                            title: qsTr("Rename"),
+                                            type: 0,
+                                            dis: true
+                                        },
+                                        {
+                                            icon: FluentIcons.Delete,
+                                            title: qsTr("Delete"),
+                                            type: 0,
+                                            dis: true
+                                        },
+                                        {
+                                            icon: FluentIcons.NewFolder,
+                                            title: qsTr("NewFolder"),
+                                            type: 0,
+                                            dis: false
+                                        },
+                                        {
+                                            icon: FluentIcons.Add,
+                                            title: qsTr("NewFile"),
+                                            type: 0,
+                                            dis: false
+                                        },
+                                        {
+                                            icon: FluentIcons.Edit,
+                                            title: qsTr("ChangeMode"),
+                                            type: 0,
+                                            dis: true
+                                        },
+                                        {
+                                            icon: "",
+                                            title: "",
+                                            type: 1,
+                                            dis: true
+                                        },
+                                        {
+                                            icon: FluentIcons.SelectAll,
+                                            title: qsTr("SelectAll"),
+                                            type: 0,
+                                            dis: false
+                                        },
+                                        {
+                                            icon: FluentIcons.ClearSelection,
+                                            title: qsTr("UnselectAll"),
+                                            type: 0,
+                                            dis: false
+                                        },
+                                        {
+                                            icon: FluentIcons.Switch,
+                                            title: qsTr("Inverse"),
+                                            type: 0,
+                                            dis: false
+                                        },
+                                        {
+                                            icon: "",
+                                            title: "",
+                                            type: 1,
+                                            dis: true
+                                        },
+                                        {
+                                            icon: FluentIcons.Folder,
+                                            title: "Home",
+                                            type: 0,
+                                            dis: false
+                                        }]
+                                    for (var i = 0; i < dt.length; i++) {
                                         left_filetree_model.append(dt[i])
                                     }
                                 }
@@ -779,7 +787,7 @@ FluWindow {
                                     anchors.right: parent.right
                                     anchors.rightMargin: 2
                                 }
-                                anchors{
+                                anchors {
                                     top: parent.children[0].bottom
                                     left: parent.left
                                     right: parent.right
@@ -793,19 +801,18 @@ FluWindow {
                                     property string name: ""
                                     property bool select: false
                                     property int index: -1
-                                    FluMenuItem{
+                                    FluMenuItem {
                                         text: qsTr("Open")
                                         enabled: true
                                         iconSource: FluentIcons.OpenFile
                                         iconSpacing: window.item_pad
                                         opacity: enabled ? 1.0 : 0.5
                                         onTriggered: {
-                                            // showInfo(menu.name)
-                                            if (type === 1)
+                                            if (menu.type === 1)
                                                 window.editFile()
                                         }
                                     }
-                                    FluMenuItem{
+                                    FluMenuItem {
                                         text: qsTr("Copy")
                                         enabled: false
                                         iconSource: FluentIcons.Copy
@@ -814,7 +821,7 @@ FluWindow {
                                         onTriggered: {
                                         }
                                     }
-                                    FluMenuItem{
+                                    FluMenuItem {
                                         text: qsTr("Paste")
                                         enabled: false
                                         iconSource: FluentIcons.Paste
@@ -823,7 +830,7 @@ FluWindow {
                                         onTriggered: {
                                         }
                                     }
-                                    FluMenuItem{
+                                    FluMenuItem {
                                         text: qsTr("Rename")
                                         enabled: menu.name == ".." ? false : true
                                         iconSource: FluentIcons.Rename
@@ -833,7 +840,7 @@ FluWindow {
                                             window.nameInput()
                                         }
                                     }
-                                    FluMenuItem{
+                                    FluMenuItem {
                                         text: qsTr("ChangeMode")
                                         enabled: menu.name == ".." ? false : true
                                         iconSource: FluentIcons.Edit
@@ -842,7 +849,8 @@ FluWindow {
                                         onTriggered: {
                                         }
                                     }
-                                    FluMenuSeparator {}
+                                    FluMenuSeparator {
+                                    }
                                     Action {
                                         text: qsTr("Select")
                                         enabled: menu.name == ".." ? false : true
@@ -857,7 +865,8 @@ FluWindow {
                                             right_files_model.set(menu.index, item)
                                         }
                                     }
-                                    FluMenuSeparator {}
+                                    FluMenuSeparator {
+                                    }
                                     T.MenuItem {
                                         property int iconSpacing: window.item_pad
                                         property int iconSource: FluentIcons.Delete
@@ -869,10 +878,10 @@ FluWindow {
                                         opacity: enabled ? 1.0 : 0.5
                                         id: control
                                         implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
-                                                                implicitContentWidth + leftPadding + rightPadding)
+                                            implicitContentWidth + leftPadding + rightPadding)
                                         implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
-                                                                 implicitContentHeight + topPadding + bottomPadding,
-                                                                 implicitIndicatorHeight + topPadding + bottomPadding)
+                                            implicitContentHeight + topPadding + bottomPadding,
+                                            implicitIndicatorHeight + topPadding + bottomPadding)
                                         padding: 6
                                         spacing: 6
                                         icon.width: 24
@@ -883,35 +892,35 @@ FluWindow {
                                         onTriggered: {
                                             window.deleteFile()
                                         }
-                                        Component{
-                                            id:com_icon
-                                            FluIcon{
-                                                id:content_icon
+                                        Component {
+                                            id: com_icon
+                                            FluIcon {
+                                                id: content_icon
                                                 iconSize: control.iconSize
-                                                iconSource:control.iconSource
+                                                iconSource: control.iconSource
                                                 color: FluColors.Red.light
                                             }
                                         }
-                                        contentItem: Item{
-                                            Row{
+                                        contentItem: Item {
+                                            Row {
                                                 spacing: control.iconSpacing
                                                 readonly property real arrowPadding: control.subMenu && control.arrow ? control.arrow.width + control.spacing : 0
                                                 readonly property real indicatorPadding: control.checkable && control.indicator ? control.indicator.width + control.spacing : 0
-                                                anchors{
+                                                anchors {
                                                     verticalCenter: parent.verticalCenter
                                                     left: parent.left
-                                                    leftMargin: (!control.mirrored ? indicatorPadding : arrowPadding)+5
+                                                    leftMargin: (!control.mirrored ? indicatorPadding : arrowPadding) + 5
                                                     right: parent.right
-                                                    rightMargin: (control.mirrored ? indicatorPadding : arrowPadding)+5
+                                                    rightMargin: (control.mirrored ? indicatorPadding : arrowPadding) + 5
                                                 }
-                                                FluLoader{
-                                                    id:loader_icon
+                                                FluLoader {
+                                                    id: loader_icon
                                                     sourceComponent: com_icon
                                                     anchors.verticalCenter: parent.verticalCenter
                                                     visible: status === Loader.Ready
                                                 }
                                                 FluText {
-                                                    id:content_text
+                                                    id: content_text
                                                     text: control.text
                                                     color: control.textColor
                                                     anchors.verticalCenter: parent.verticalCenter
@@ -937,12 +946,12 @@ FluWindow {
                                             y: 1
                                             width: control.width - 2
                                             height: control.height - 2
-                                            Rectangle{
+                                            Rectangle {
                                                 anchors.fill: parent
                                                 anchors.margins: 3
                                                 radius: 4
-                                                color:{
-                                                    if(control.highlighted){
+                                                color: {
+                                                    if (control.highlighted) {
                                                         return FluTheme.itemCheckColor
                                                     }
                                                     return FluTheme.itemNormalColor
@@ -963,12 +972,6 @@ FluWindow {
                                     model: ListModel {
                                         id: right_files_model
 
-                                        // ListElement {
-                                        //     icon: FluentIcons.Folder
-                                        //     title: "Test"
-                                        //     type: 0
-                                        //     dis: false
-                                        // }
                                     }
 
                                     delegate: Rectangle {
@@ -996,16 +999,18 @@ FluWindow {
                                                     select = false
                                                 }
                                                 if (checked) {
-                                                    window.selected_n ++
+                                                    window.selected_n++
                                                 } else {
-                                                    window.selected_n --
+                                                    window.selected_n--
                                                 }
                                             }
                                             onVisibleChanged: {
                                                 checked = select
                                             }
                                             Behavior on leftPadding {
-                                                NumberAnimation { duration: 250 }
+                                                NumberAnimation {
+                                                    duration: 250
+                                                }
                                             }
                                         }
 
@@ -1038,16 +1043,17 @@ FluWindow {
                                                 if (!hover)
                                                     clicked = false
                                             }
-                                            onPressed: (Mouse)=>{
-                                                if (Mouse.button === Qt.LeftButton){
+                                            onPressed: (Mouse) => {
+                                                if (Mouse.button === Qt.LeftButton) {
                                                     clicked = true
                                                 }
                                             }
-                                            onReleased: (Mouse)=>{
-                                                if (Mouse.button === Qt.LeftButton){
+                                            onReleased: (Mouse) => {
+                                                if (Mouse.button === Qt.LeftButton) {
                                                     clicked = false
                                                 }
                                             }
+
                                             function delay(delayTime, cb) {
                                                 var timer = Qt.createQmlObject("import QtQuick 2.0; Timer {}", window);
                                                 timer.interval = delayTime;
@@ -1055,15 +1061,17 @@ FluWindow {
                                                 timer.triggered.connect(cb);
                                                 timer.start();
                                             }
-                                            function sg_clk(){
-                                                if (doubleclickct == 0){
+
+                                            function sg_clk() {
+                                                if (doubleclickct == 0) {
                                                     select = !select
                                                 } else {
-                                                    doubleclickct --
+                                                    doubleclickct--
                                                 }
                                             }
-                                            onClicked: (Mouse)=>{
-                                                if (Mouse.button === Qt.RightButton){
+
+                                            onClicked: (Mouse) => {
+                                                if (Mouse.button === Qt.RightButton) {
                                                     menu.noAct = true
                                                     menu.type = type
                                                     menu.name = title
@@ -1078,9 +1086,9 @@ FluWindow {
                                                     delay(200, sg_clk)
                                                 }
                                             }
-                                            onDoubleClicked: (Mouse)=>{
+                                            onDoubleClicked: (Mouse) => {
                                                 if (Mouse.button === Qt.LeftButton) {
-                                                    doubleclickct ++
+                                                    doubleclickct++
                                                     // showInfo(title)
                                                     if (type === 1)
                                                         window.editFile()
@@ -1091,35 +1099,35 @@ FluWindow {
 
                                     Component.onCompleted: {
                                         var dt = [{
-                                                      title: "..",
-                                                      type: 0,
-                                                      select: false
-                                                  },
-                                                  {
-                                                      title: "Folder",
-                                                      type: 0,
-                                                      select: false
-                                                  },
-                                                  {
-                                                      title: "Folder1",
-                                                      type: 0,
-                                                      select: false
-                                                  },
-                                                  {
-                                                      title: "Empty.txt",
-                                                      type: 1,
-                                                      select: false
-                                                  }]
-                                        for (var i = 0; i < dt.length; i++){
+                                            title: "..",
+                                            type: 0,
+                                            select: false
+                                        },
+                                            {
+                                                title: "Folder",
+                                                type: 0,
+                                                select: false
+                                            },
+                                            {
+                                                title: "Folder1",
+                                                type: 0,
+                                                select: false
+                                            },
+                                            {
+                                                title: "Empty.txt",
+                                                type: 1,
+                                                select: false
+                                            }]
+                                        for (var i = 0; i < dt.length; i++) {
                                             right_files_model.append(dt[i])
                                         }
                                         for (i = 0; i < 37; i++)
                                             right_files_model.append(
-                                                        {
-                                                            title: "Empty" + i + ".txt",
-                                                            type: 1,
-                                                            select: false
-                                                        })
+                                                {
+                                                    title: "Empty" + i + ".txt",
+                                                    type: 1,
+                                                    select: false
+                                                })
                                     }
                                 }
                             }
@@ -1160,22 +1168,33 @@ FluWindow {
         }
 
         FluMenuBar {
-           visible: wind_loader.sourceComponent === main_win
-           id: head_menu
-           padding: 5
-           x: 100
-           FluMenu {
-               id: about
-               title: qsTr("About")
-               Action {
+            // visible: wind_loader.sourceComponent === main_win
+            id: head_menu
+            padding: 5
+            x: wind_loader.sourceComponent === main_win ? 80 : 0
+
+            Behavior on x {
+                NumberAnimation {
+                    duration: 250
+                }
+            }
+
+            FluMenu {
+                id: about
+                title: qsTr("About")
+                Action {
                     text: qsTr("This Project...")
                     onTriggered: {
-
+                        window.aboutPageRegister.launch({stayTop: stayTop})
                     }
-               }
-           }
+                }
+                Action {
+                    text: qsTr("Open Source Licenses")
+                    onTriggered: {
+                        window.licensePageRegister.launch({stayTop: stayTop})
+                    }
+                }
+            }
         }
-
     }
-
 }

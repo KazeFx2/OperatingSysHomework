@@ -29,5 +29,10 @@
         <file>src/js/tools.js</file>
         <file>qml/FileEditor.qml</file>
         <file>qml/RegisterWindow.qml</file>
+        <file>qml/About.qml</file>
+        <file>qml/Component/AboutStaffItem.qml</file>
+        <file>src/png/Fish.png</file>
+        <file>src/png/Nine.png</file>
+        <file>qml/License.qml</file>
     </qresource>
 </RCC>

@@ -17,9 +17,9 @@ FluWindow {
     fixSize: true
 
     onInitArgument:
-        (argument)=>{
-            stayTop = argument.stayTop
-        }
+            (argument) => {
+        stayTop = argument.stayTop
+    }
 
     showStayTop: false
     showMaximize: false
@@ -68,21 +68,31 @@ FluWindow {
                 width: 250
                 anchors.left: parent.children[0].right
                 text: ""
+
+                Keys.onEnterPressed: {
+                    focus = false
+                    psw.focus = true
+                }
+                Keys.onReturnPressed: {
+                    focus = false
+                    psw.focus = true
+                }
+
                 onTextChanged: {
-                    if (text != ""){
+                    if (text != "") {
                         if (!sts[0]) {
                             window.st++
                             sts[0] = 1
                         }
-                    }else if(sts[0]) {
+                    } else if (sts[0]) {
                         window.st--
                         sts[0] = 0
                     }
                     if (psw.text != "" && psw_rpt.text != psw.text) {
                         info.text = qsTr("The passwords entered do not match!")
-                    } else if (usr.text == ""){
+                    } else if (usr.text == "") {
                         info.text = "Please input the user name!"
-                    }else{
+                    } else {
                         info.text = ""
                     }
                 }
@@ -111,22 +121,31 @@ FluWindow {
                 echoMode: TextInput.Password
                 anchors.left: parent.children[0].right
                 text: ""
+
+                Keys.onEnterPressed: {
+                    focus = false
+                    psw_rpt.focus = true
+                }
+                Keys.onReturnPressed: {
+                    focus = false
+                    psw_rpt.focus = true
+                }
+
                 onTextChanged: {
-                    if (text != ""){
+                    if (text != "") {
                         if (!sts[1]) {
                             window.st++
                             sts[1] = 1
                         }
-                    }
-                    else if(sts[1]) {
+                    } else if (sts[1]) {
                         window.st--
                         sts[1] = 0
                     }
                     if (psw_rpt.text != "" && psw_rpt.text != text) {
                         info.text = qsTr("The passwords entered do not match!")
-                    } else if (usr.text == ""){
+                    } else if (usr.text == "") {
                         info.text = "Please input the user name!"
-                    }else{
+                    } else {
                         info.text = ""
                     }
                 }
@@ -155,21 +174,31 @@ FluWindow {
                 echoMode: TextInput.Password
                 anchors.left: parent.children[0].right
                 text: ""
+
+                Keys.onEnterPressed: {
+                    if (!ok_bt.disabled)
+                        ok_bt.clicked()
+                }
+                Keys.onReturnPressed: {
+                    if (!ok_bt.disabled)
+                        ok_bt.clicked()
+                }
+
                 onTextChanged: {
-                    if (text != "" && text == psw.text){
+                    if (text != "" && text == psw.text) {
                         if (!sts[2]) {
                             window.st++
                             sts[2] = 1
                         }
-                    }else if (sts[2]) {
+                    } else if (sts[2]) {
                         window.st--
                         sts[2] = 0
                     }
                     if (psw.text != "" && psw.text != text) {
                         info.text = qsTr("The passwords entered do not match!")
-                    } else if (usr.text == ""){
+                    } else if (usr.text == "") {
                         info.text = "Please input the user name!"
-                    }else{
+                    } else {
                         info.text = ""
                     }
                 }
@@ -209,6 +238,7 @@ FluWindow {
             color: FluColors.Transparent
 
             FluFilledButton {
+                id: ok_bt
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.children[0].right
                 text: qsTr("OK")

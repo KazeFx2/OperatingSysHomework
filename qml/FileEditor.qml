@@ -16,12 +16,12 @@ FluWindow {
     // maximumWidth: width
 
     onInitArgument:
-        (argument)=>{
-            stayTop = argument.stayTop
-            if (stayTop){
-                showStayTop = false
-            }
+            (argument) => {
+        stayTop = argument.stayTop
+        if (stayTop) {
+            showStayTop = false
         }
+    }
 
     // showStayTop: false
     // showMaximize: false
@@ -82,13 +82,13 @@ FluWindow {
                 width: parent.width
                 opacity: 0.2
 
-                Behavior on y{
-                    NumberAnimation{
+                Behavior on y {
+                    NumberAnimation {
                         duration: 100
                     }
                 }
-                Behavior on height{
-                    NumberAnimation{
+                Behavior on height {
+                    NumberAnimation {
                         duration: 100
                     }
                 }
@@ -127,7 +127,7 @@ FluWindow {
                             var tmp = count + 1
                             while (tmp > 1)
                                 tmp /= 10
-                            if (tmp === 1){
+                            if (tmp === 1) {
                                 var t = inner.contentItem
                                 inner.max_w = inner.contentItem.children[count - 1].width
                             }
@@ -153,8 +153,8 @@ FluWindow {
                             }
                         }
 
-                        Behavior on x{
-                            NumberAnimation{
+                        Behavior on x {
+                            NumberAnimation {
                                 duration: 100
                             }
                         }
@@ -179,13 +179,12 @@ FluWindow {
                 wrapMode: TextEdit.WrapAnywhere
                 selectByMouse: true
                 focus: true
-                selectionColor: FluTools.colorAlpha(FluTheme.primaryColor,0.5)
+                selectionColor: FluTools.colorAlpha(FluTheme.primaryColor, 0.5)
                 selectedTextColor: FluTheme.dark ? FluColors.White : FluColors.Grey220
 
-                onWidthFreshed:
-                {
+                onWidthFreshed: {
                     var ref = refreshList
-                    for (var i = 0; i < ref.length; i++){
+                    for (var i = 0; i < ref.length; i++) {
                         var d = lineList_model.get(ref[i])
                         d.lineH = lineHeights[ref[i]]
                         lineList_model.set(ref[i], d)
@@ -197,17 +196,17 @@ FluWindow {
                 onLineFreshed: {
                     var line = cursorLineNum
                     if (lineHeights.length > lineList_model.count) {
-                        for (var i = lineList_model.count; i < lineHeights.length; i++){
+                        for (var i = lineList_model.count; i < lineHeights.length; i++) {
                             lineList_model.append({
-                                                    lineH: lineHeights[i],
-                                                    lineNumber: i + 1
-                                                  })
+                                lineH: lineHeights[i],
+                                lineNumber: i + 1
+                            })
                         }
                     }
                     for (i = lineList_model.count - 1; i >= lineHeights.length; i--) {
                         lineList_model.remove(i)
                     }
-                    for (i = 0; i < lineList_model.count; i++){
+                    for (i = 0; i < lineList_model.count; i++) {
                         var d = lineList_model.get(i)
                         if (d !== lineHeights[i]) {
                             d.lineH = lineHeights[i]

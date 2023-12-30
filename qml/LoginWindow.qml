@@ -21,9 +21,9 @@ FluWindow {
     fixSize: true
 
     onInitArgument:
-        (argument)=>{
-            stayTop = argument.stayTop
-        }
+            (argument) => {
+        stayTop = argument.stayTop
+    }
 
     showStayTop: false
     showMaximize: false
@@ -67,6 +67,15 @@ FluWindow {
                 anchors.verticalCenter: parent.verticalCenter
                 width: 250
                 anchors.left: parent.children[0].right
+
+                Keys.onEnterPressed: {
+                    focus = false
+                    psw.focus = true
+                }
+                Keys.onReturnPressed: {
+                    focus = false
+                    psw.focus = true
+                }
             }
         }
 
@@ -91,6 +100,18 @@ FluWindow {
                 width: 250
                 echoMode: TextInput.Password
                 anchors.left: parent.children[0].right
+
+                Keys.onEnterPressed: {
+                    if (!login_bt.disabled)
+                        login_bt.clicked()
+                }
+                Keys.onReturnPressed: {
+                    if (!login_bt.disabled)
+                        login_bt.clicked()
+                }
+                Keys.onEscapePressed: {
+                    cancel_bt.clicked()
+                }
             }
         }
 
@@ -124,8 +145,9 @@ FluWindow {
             color: FluColors.Transparent
 
             FluFilledButton {
+                id: login_bt
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.left: parent.children[0].right
+                anchors.left: parent.left
                 text: qsTr("Login")
                 disabled: usr.text == "" || psw.text == ""
                 onClicked: {
@@ -137,12 +159,27 @@ FluWindow {
                     window.close()
                 }
             }
+
+            FluFilledButton {
+                id: cancel_bt
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.children[0].right
+                anchors.leftMargin: 10
+                text: qsTr("Cancel")
+                onClicked: {
+                    // TODO
+                    isOk = true
+                    onResult({status: 0, usr: "", pswd: ""})
+                    window.close()
+                }
+            }
         }
     }
 
     Connections {
         target: registerPageRegister
-        function onResult(data){
+
+        function onResult(data) {
             // TODO
             usr.text = data.usr
             showSuccess(qsTr("Register successfully!"))
