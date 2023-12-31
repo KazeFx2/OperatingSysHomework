@@ -3,11 +3,18 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import FluentUI 1.0
 import kaze.ui 1.0
+import QFMS 1.0
 
 
 FluWindow {
     property int initW: 400
     property int initH: 400
+    property bool changed: false
+    property bool txtch: false
+    property bool chsaved: false
+    property bool nopsave: true
+
+    id: window
     width: initW
     height: initH
     minimumHeight: initH
@@ -15,12 +22,19 @@ FluWindow {
     minimumWidth: initW
     // maximumWidth: width
 
+    property string tt
+
     onInitArgument:
             (argument) => {
         stayTop = argument.stayTop
         if (stayTop) {
             showStayTop = false
         }
+        tt = argument.fname
+        changed = false
+        txtch = false
+        chsaved = false
+        nopsave = true
     }
 
     // showStayTop: false
@@ -32,7 +46,54 @@ FluWindow {
 
     modality: Qt.ApplicationModal
 
-    title: "[File Name]"
+    title: tt
+
+    appBar: FluAppBar {
+        title: tt
+        showDark: false
+        closeClickListener: () => {
+            if (!changed && !txtch) {
+                FMS.noCh()
+                window.close()
+            } else if (txtch && !chsaved) {
+                dialog.open()
+            } else {
+                var ret = FMS.Close()
+                console.log(ret)
+                window.close()
+            }
+        }
+        z: 0
+
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+
+    }
+
+    FluContentDialog {
+        id: dialog
+        title: qsTr("Warnning")
+        message: qsTr("Change not saved")
+        negativeText: qsTr("Cancel")
+        buttonFlags: FluContentDialogType.NegativeButton | FluContentDialogType.PositiveButton
+        onNegativeClicked: {
+            if (nopsave)
+                FMS.noCh()
+            var ret = FMS.Close()
+            console.log(ret)
+            window.close()
+        }
+        positiveText: qsTr("Save")
+        onPositiveClicked: {
+            var ret = FMS.Write(editor.text)
+            ret = FMS.Close()
+            console.log(ret)
+            window.close()
+        }
+    }
 
     FluArea {
         anchors.centerIn: parent
@@ -46,6 +107,18 @@ FluWindow {
 
             FluIconButton {
                 iconSource: FluentIcons.Save
+                onClicked: {
+                    changed = true
+                    chsaved = true
+                    nopsave = false
+                    var ret = FMS.Write(editor.text)
+                    if (ret === FMST.Pass) {
+                        showSuccess(qsTr("Saved!"))
+                    } else {
+                        showError(qsTr("Save failed!"))
+                    }
+                    console.log(ret)
+                }
             }
         }
 
@@ -217,12 +290,19 @@ FluWindow {
                     highlight.y = cursorYH[0]
                 }
                 Component.onCompleted: {
+                    text = FMS.Read()
                     highlight.height = cursorYH[1]
                     highlight.y = cursorYH[0]
                 }
                 onCursorPositionChanged: {
                     highlight.height = cursorYH[1]
                     highlight.y = cursorYH[0]
+                }
+                onTextChanged: {
+                    console.log("ch")
+                    chsaved = false
+                    changed = true
+                    txtch = true
                 }
             }
         }

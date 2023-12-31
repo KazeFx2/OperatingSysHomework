@@ -4,6 +4,7 @@ import QtQuick.Controls 2.15
 import FluentUI 1.0
 import QtQuick.Templates 2.15 as T
 import "qrc:/src/js/tools.js" as Tools
+import QFMS 1.0
 
 FluWindow {
     id: window
@@ -16,6 +17,26 @@ FluWindow {
     property var loginPageRegister: registerForWindowResult("/login")
     property var aboutPageRegister: registerForWindowResult("/about")
     property var licensePageRegister: registerForWindowResult("/license")
+
+    property string c_mod: ""
+
+    property int create_type: 0
+
+    property var modes: ({})
+
+    property string search_res: ""
+
+    property var l_model
+    property var dir_get
+
+    property string iname: ""
+    property string name_del: ""
+
+    property int chType: 1
+
+    property string chName: ""
+
+    property int deleteType: 1
 
     property string res_usr: ""
 
@@ -30,6 +51,10 @@ FluWindow {
     minimumHeight: 500
     fitsAppBarWindows: true
     launchMode: FluWindowType.SingleTask
+
+    Component.onDestruction: {
+        FMS.clean()
+    }
 
     FluPopup {
         id: del_dialog
@@ -47,6 +72,19 @@ FluWindow {
             signal
         positiveClicked
         onPositiveClicked: {
+            if (deleteType === 0)
+                window.deleteCurrent(name_del)
+            else {
+                for (var i = 0; i < l_model.count; i++) {
+                    var row = l_model.get(i)
+                    if (row.select === true && row.title !== "..") {
+                        window.deleteCurrentNoRef(row.title)
+                        row.select = false
+                        l_model.set(i, row)
+                    }
+                }
+                window.fileListRefresh()
+            }
         }
         onNegativeClicked: {
         }
@@ -180,15 +218,32 @@ FluWindow {
         property string title: qsTr("Input the new name")
         property string negativeText: qsTr("Cancel")
         property string positiveText: qsTr("OK")
-        property alias messageTextFormart: text_message.textFormat
         property int delayTime: 100
             signal
         negativeClicked
             signal
         positiveClicked
         onPositiveClicked: {
+            iname = name_in.text
+            var ret = FMS.Create(iname, create_type)
+            switch (ret) {
+                case FMST.Errors:
+                    showError(Tools.format(qsTr("Create {0} failed"), create_type === FMST.Folder ? qsTr("Folder") : qsTr("File")))
+                    break
+                case FMST.Exists:
+                    showError(Tools.format(qsTr("File/Folder '{0}' already exists!"), iname))
+                    break
+                case FMST.Full:
+                    showError(qsTr("No free space for creator"))
+                    break
+                case FMST.Pass:
+                    showSuccess(Tools.format(qsTr("Create {0} '{1}' successfully!"), create_type === FMST.Folder ? qsTr("Folder") : qsTr("File"), iname))
+                    break
+            }
+            fileListRefresh()
         }
         onNegativeClicked: {
+            iname = ""
         }
         property int buttonFlags: FluContentDialogType.NegativeButton | FluContentDialogType.PositiveButton
         focus: true
@@ -219,6 +274,19 @@ FluWindow {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.topMargin: 20
                 width: parent.width - 50
+                Keys.onEnterPressed: {
+                    if (!pos_btn.disabled) {
+                        pos_btn.clicked()
+                    }
+                }
+                Keys.onReturnPressed: {
+                    if (!pos_btn.disabled) {
+                        pos_btn.clicked()
+                    }
+                }
+                validator: RegExpValidator {
+                    regExp: /[0-9a-zA-Z._]*/
+                }
             }
 
             Rectangle {
@@ -289,8 +357,208 @@ FluWindow {
         }
     }
 
-    function editFile() {
-        editorPageRegister.launch({stayTop: stayTop})
+    FluContentDialog {
+        id: search_dialog
+        title: qsTr("Result")
+        message: search_res === "" ? qsTr("Not found") : Tools.format(qsTr("Find a file/folder: '//{0}'"), search_res.slice(5))
+        negativeText: qsTr("Cancel")
+        buttonFlags: FluContentDialogType.PositiveButton
+        positiveText: qsTr("OK")
+        onPositiveClicked: {
+        }
+    }
+
+    FluPopup {
+        id: mod_input
+        property string title: qsTr("Input the new mode")
+        property string negativeText: qsTr("Cancel")
+        property string positiveText: qsTr("OK")
+        property int delayTime: 100
+
+            signal
+        negativeClicked
+            signal
+        positiveClicked
+        onPositiveClicked: {
+            if (chType === 0) {
+                var ret = FMS.Change(chName, parseInt(mname_in.text))
+                if (ret === FMST.Pass) {
+                    showSuccess(qsTr("ChangeMode successfully"))
+                } else {
+                    showError(qsTr("ChangeMode failed"))
+                    return
+                }
+            } else {
+                for (var i = 0; i < l_model.count; i++) {
+                    var row = l_model.get(i)
+                    if (row.select === true && row.title !== "..") {
+                        FMS.Change(row.title, parseInt(mname_in.text))
+                        row.select = false
+                        l_model.set(i, row)
+                    }
+                }
+            }
+            fileListRefresh()
+        }
+        onNegativeClicked: {
+        }
+        property int buttonFlags: FluContentDialogType.NegativeButton | FluContentDialogType.PositiveButton
+        focus: true
+        implicitWidth: 400
+        implicitHeight: mni_title.height + mni_actions.height + btm_m.height + mname_in.height + 20
+        Rectangle {
+            anchors.fill: parent
+            color: 'transparent'
+            radius: 5
+            FluText {
+                id: mni_title
+                font: FluTextStyle.Title
+                text: mod_input.title
+                topPadding: 20
+                leftPadding: 20
+                rightPadding: 20
+                wrapMode: Text.WrapAnywhere
+                anchors {
+                    top: parent.top
+                    left: parent.left
+                    right: parent.right
+                }
+            }
+
+            FluTextBox {
+                id: mname_in
+                anchors.top: mni_title.bottom
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.topMargin: 20
+                width: parent.width - 50
+                placeholderText: chType === 1 ? "" : Tools.format(qsTr("Current Mode: {0}"), c_mod)
+                Keys.onEnterPressed: {
+                    if (!mpos_btn.disabled) {
+                        mpos_btn.clicked()
+                    }
+                }
+                Keys.onReturnPressed: {
+                    if (!mpos_btn.disabled) {
+                        mpos_btn.clicked()
+                    }
+                }
+                validator: RegExpValidator {
+                    regExp: /[0-8][0-8][0-8]/
+                }
+            }
+
+            Rectangle {
+                id: mbtm_m
+                anchors.top: mname_in.bottom
+                height: 20
+                width: parent.width
+                color: 'transparent'
+            }
+
+            Rectangle {
+                id: mni_actions
+                height: 68
+                radius: 5
+                color: FluTheme.dark ? Qt.rgba(32 / 255, 32 / 255, 32 / 255, 1) : Qt.rgba(243 / 255, 243 / 255, 243 / 255, 1)
+                anchors {
+                    top: mbtm_m.bottom
+                    left: parent.left
+                    right: parent.right
+                }
+                RowLayout {
+                    anchors {
+                        centerIn: parent
+                        margins: spacing
+                        fill: parent
+                    }
+                    spacing: 15
+                    FluButton {
+                        id: mneg_btn
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        visible: mod_input.buttonFlags & FluContentDialogType.NegativeButton
+                        text: mod_input.negativeText
+                        onClicked: {
+                            mod_input.close()
+                            mni_timer_delay.targetFlags = FluContentDialogType.NegativeButton
+                            mni_timer_delay.restart()
+                        }
+                    }
+                    FluFilledButton {
+                        id: mpos_btn
+                        disabled: mname_in.text == ""
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        visible: mod_input.buttonFlags & FluContentDialogType.PositiveButton
+                        text: mod_input.positiveText
+                        onClicked: {
+                            mod_input.close()
+                            mni_timer_delay.targetFlags = FluContentDialogType.PositiveButton
+                            mni_timer_delay.restart()
+                        }
+                    }
+                }
+            }
+        }
+        Timer {
+            property int targetFlags
+            id: mni_timer_delay
+            interval: mod_input.delayTime
+            onTriggered: {
+                if (targetFlags === FluContentDialogType.NegativeButton) {
+                    mod_input.negativeClicked()
+                }
+                if (targetFlags === FluContentDialogType.PositiveButton) {
+                    mod_input.positiveClicked()
+                }
+            }
+        }
+    }
+
+    function delay(delayTime, cb) {
+        var timer = Qt.createQmlObject("import QtQuick 2.0; Timer {}", window);
+        timer.interval = delayTime;
+        timer.repeat = false;
+        timer.triggered.connect(cb);
+        timer.start();
+    }
+
+    function fileListRefresh() {
+        var list_result = FMS.Ls()
+        console.log(list_result.length)
+        if (dir_get.items.length > 1)
+            var dt = [{
+                title: "..",
+                type: 0,
+                select: false
+            }]
+        else
+            dt = []
+        window.l_model.clear()
+        // window.modes = ({})
+        for (var i = 0; i < list_result.length; i++) {
+            var lst = list_result[i].split('/')
+            var a = lst[0]
+            var b = lst[2]
+            var c = lst[1]
+            for (var j = 0; j < 3 - c.length; j++)
+                c = "0" + c
+            window.modes[a] = c
+            console.log(window.modes[a])
+            dt.push({
+                title: a,
+                type: b === "f" ? 1 : 0,
+                select: false
+            })
+        }
+        for (i = 0; i < dt.length; i++) {
+            window.l_model.append(dt[i])
+        }
+        selected_n = 0
+    }
+
+    function editFile(name) {
+        editorPageRegister.launch({stayTop: stayTop, fname: name})
     }
 
     function deleteFile() {
@@ -300,6 +568,25 @@ FluWindow {
     function nameInput() {
         name_in.text = ""
         name_input.open()
+    }
+
+    function relative2abs(name) {
+        var path = "root/"
+        for (var i = 0; i < dir_get.items.length; i++) {
+            var t = dir_get.items[i].title + "/"
+            path += t
+        }
+        path += name
+        return path
+    }
+
+    function deleteCurrent(name) {
+        deleteCurrentNoRef(name)
+        fileListRefresh()
+    }
+
+    function deleteCurrentNoRef(name) {
+        FMS.Delete(relative2abs(name))
     }
 
     Connections {
@@ -343,7 +630,7 @@ FluWindow {
                 FluFilledButton {
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.top: parent.children[0].bottom
-                    text: "Retry"
+                    text: qsTr("Retry")
                     onClicked: {
                         window.loginPageRegister.launch({stayTop: stayTop})
                     }
@@ -400,12 +687,29 @@ FluWindow {
                         spacing: 1
                         textSize: 18
                         onClickItem: (model) => {
-
+                            var res = []
+                            //不是点击最后一个item元素
+                            if (model.index + 1 !== count()) {
+                                var t_path = "//"
+                                for (var i = 0; i <= model.index; i++) {
+                                    t_path += dir_url.items[i].title
+                                    res.push({title: dir_url.items[i].title})
+                                    if (i !== model.index) {
+                                        t_path += "/"
+                                    }
+                                }
+                                console.log(t_path)
+                                FMS.Cd(t_path)
+                                // dir_url.remove(model.index+1,count()-model.index-1)
+                                dir_url.items = res
+                                window.fileListRefresh()
+                            }
                         }
 
                         Component.onCompleted: {
                             var its = [{title: res_usr}]
                             items = its
+                            window.dir_get = dir_url
                         }
                     }
 
@@ -429,6 +733,9 @@ FluWindow {
                             anchors.left: parent.children[0].right
                             anchors.verticalCenter: parent.verticalCenter
                             width: 250
+                            validator: RegExpValidator {
+                                regExp: /[0-9a-zA-Z._]*/
+                            }
                         }
 
                         FluIconButton {
@@ -437,6 +744,12 @@ FluWindow {
                             anchors.verticalCenter: parent.verticalCenter
                             iconSource: FluentIcons.Search
                             disabled: search_input.text == ""
+                            onClicked: {
+                                var ret = FMS.Search(search_input.text)
+                                search_res = ret
+                                search_dialog.open()
+                                console.log(ret)
+                            }
                         }
                     }
                 }
@@ -521,19 +834,13 @@ FluWindow {
                                 model: ListModel {
                                     id: left_filetree_model
 
-                                    // ListElement {
-                                    //     icon: FluentIcons.Folder
-                                    //     title: "Test"
-                                    //     type: 0
-                                    //     dis: false
-                                    // }
                                 }
 
                                 delegate: Rectangle {
                                     property bool _dis: {
                                         switch (index) {
                                             case 3:
-                                                return window.selected_n !== 1
+                                                return true // window.selected_n !== 1
                                             case 4:
                                             case 7:
                                                 return window.selected_n === 0
@@ -613,12 +920,27 @@ FluWindow {
                                             // showInfo(index + "_" + title + "_" + type)
                                             switch (index) {
                                                 case 3:
-                                                case 5:
-                                                case 6: {
+                                                case 5: // Folder
+                                                {
+                                                    window.create_type = FMST.Folder
                                                     window.nameInput()
                                                 }
                                                     break
-                                                case 4: {
+                                                case 6: // File
+                                                {
+                                                    window.create_type = FMST.File
+                                                    window.nameInput()
+                                                }
+                                                    break
+                                                case 7:
+                                                    chType = 1
+                                                    chName = ""
+                                                    mname_in.text = ""
+                                                    mod_input.open()
+                                                    break
+                                                case 4: { // Delete
+                                                    window.deleteType = 1
+                                                    name_del = ""
                                                     window.deleteFile()
                                                 }
                                                     break
@@ -651,6 +973,11 @@ FluWindow {
                                                         right_files_model.set(i, tmp)
                                                     }
                                                 }
+                                                    break
+                                                case 13:
+                                                    FMS.Cd("//" + res_usr)
+                                                    dir_get.items = [{title: res_usr}]
+                                                    window.fileListRefresh()
                                                     break
                                                 default:
                                                     break
@@ -746,7 +1073,7 @@ FluWindow {
                                         },
                                         {
                                             icon: FluentIcons.Folder,
-                                            title: "Home",
+                                            title: res_usr,
                                             type: 0,
                                             dis: false
                                         }]
@@ -808,8 +1135,29 @@ FluWindow {
                                         iconSpacing: window.item_pad
                                         opacity: enabled ? 1.0 : 0.5
                                         onTriggered: {
-                                            if (menu.type === 1)
-                                                window.editFile()
+                                            if (menu.type === 1) {
+                                                var ret = FMS.Open("//" + window.relative2abs(menu.name).slice(5))
+                                                if (ret === FMST.Errors) {
+                                                    showError(Tools.format(qsTr("Open file '{0}' failed"), menu.name))
+                                                    return
+                                                } else {
+                                                    window.editFile(menu.name)
+                                                }
+                                            } else {
+                                                console.log("//" + window.relative2abs(menu.name).slice(5))
+                                                ret = FMS.Cd("//" + window.relative2abs(menu.name).slice(5))
+                                                if (ret === FMST.Pass) {
+                                                    console.log("pass")
+                                                    var dt = dir_url.items
+                                                    if (menu.name !== "..")
+                                                        dt.push({title: menu.name})
+                                                    else
+                                                        dt.pop()
+                                                    dir_url.items = dt
+                                                }
+                                                console.log(ret)
+                                                window.fileListRefresh()
+                                            }
                                         }
                                     }
                                     FluMenuItem {
@@ -832,7 +1180,7 @@ FluWindow {
                                     }
                                     FluMenuItem {
                                         text: qsTr("Rename")
-                                        enabled: menu.name == ".." ? false : true
+                                        enabled: false // menu.name == ".." ? false : true
                                         iconSource: FluentIcons.Rename
                                         iconSpacing: window.item_pad
                                         opacity: enabled ? 1.0 : 0.5
@@ -847,6 +1195,11 @@ FluWindow {
                                         iconSpacing: window.item_pad
                                         opacity: enabled ? 1.0 : 0.5
                                         onTriggered: {
+                                            chType = 0
+                                            chName = menu.name
+                                            c_mod = window.modes[chName]
+                                            mname_in.text = ""
+                                            mod_input.open()
                                         }
                                     }
                                     FluMenuSeparator {
@@ -890,6 +1243,8 @@ FluWindow {
                                         height: visible ? implicitHeight : 0
 
                                         onTriggered: {
+                                            window.deleteType = 0
+                                            window.name_del = menu.name
                                             window.deleteFile()
                                         }
                                         Component {
@@ -1054,14 +1409,6 @@ FluWindow {
                                                 }
                                             }
 
-                                            function delay(delayTime, cb) {
-                                                var timer = Qt.createQmlObject("import QtQuick 2.0; Timer {}", window);
-                                                timer.interval = delayTime;
-                                                timer.repeat = false;
-                                                timer.triggered.connect(cb);
-                                                timer.start();
-                                            }
-
                                             function sg_clk() {
                                                 if (doubleclickct == 0) {
                                                     select = !select
@@ -1090,44 +1437,37 @@ FluWindow {
                                                 if (Mouse.button === Qt.LeftButton) {
                                                     doubleclickct++
                                                     // showInfo(title)
-                                                    if (type === 1)
-                                                        window.editFile()
+                                                    if (type === 1) {
+                                                        var ret = FMS.Open("//" + window.relative2abs(title).slice(5))
+                                                        if (ret === FMST.Errors) {
+                                                            showError(Tools.format(qsTr("Open file '{0}' failed"), title))
+                                                            return
+                                                        } else {
+                                                            window.editFile(title)
+                                                        }
+                                                    } else {
+                                                        console.log("//" + window.relative2abs(title).slice(5))
+                                                        ret = FMS.Cd("//" + window.relative2abs(title).slice(5))
+                                                        if (ret === FMST.Pass) {
+                                                            console.log("pass")
+                                                            var dt = dir_url.items
+                                                            if (title !== "..")
+                                                                dt.push({title: title})
+                                                            else
+                                                                dt.pop()
+                                                            dir_url.items = dt
+                                                        }
+                                                        console.log(ret)
+                                                        window.fileListRefresh()
+                                                    }
                                                 }
                                             }
                                         }
                                     }
 
                                     Component.onCompleted: {
-                                        var dt = [{
-                                            title: "..",
-                                            type: 0,
-                                            select: false
-                                        },
-                                            {
-                                                title: "Folder",
-                                                type: 0,
-                                                select: false
-                                            },
-                                            {
-                                                title: "Folder1",
-                                                type: 0,
-                                                select: false
-                                            },
-                                            {
-                                                title: "Empty.txt",
-                                                type: 1,
-                                                select: false
-                                            }]
-                                        for (var i = 0; i < dt.length; i++) {
-                                            right_files_model.append(dt[i])
-                                        }
-                                        for (i = 0; i < 37; i++)
-                                            right_files_model.append(
-                                                {
-                                                    title: "Empty" + i + ".txt",
-                                                    type: 1,
-                                                    select: false
-                                                })
+                                        window.l_model = right_files_model
+                                        window.fileListRefresh()
                                     }
                                 }
                             }

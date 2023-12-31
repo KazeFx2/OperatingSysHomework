@@ -1,5 +1,7 @@
 import QtQuick 2.15
 import FluentUI 1.0
+import "qrc:/src/js/tools.js" as Tools
+import QFMS 1.0
 
 
 FluWindow {
@@ -76,6 +78,9 @@ FluWindow {
                     focus = false
                     psw.focus = true
                 }
+                validator: RegExpValidator {
+                    regExp: /[0-9a-zA-Z._]*/
+                }
             }
         }
 
@@ -111,6 +116,9 @@ FluWindow {
                 }
                 Keys.onEscapePressed: {
                     cancel_bt.clicked()
+                }
+                validator: RegExpValidator {
+                    regExp: /[0-9a-zA-Z._]*/
                 }
             }
         }
@@ -154,6 +162,14 @@ FluWindow {
                     var user = usr.text
                     var pswd = psw.text
                     // TODO
+                    var ret = FMS.Login(user, pswd)
+                    if (ret === FMST.NotExists) {
+                        showError(Tools.format(qsTr("User '{0}' not exist!"), user))
+                        return
+                    } else if (ret === FMST.PasswordError) {
+                        showError(qsTr("Wrong password"))
+                        return
+                    }
                     isOk = true
                     onResult({status: 0, usr: user, pswd: pswd})
                     window.close()
@@ -167,7 +183,6 @@ FluWindow {
                 anchors.leftMargin: 10
                 text: qsTr("Cancel")
                 onClicked: {
-                    // TODO
                     isOk = true
                     onResult({status: 0, usr: "", pswd: ""})
                     window.close()

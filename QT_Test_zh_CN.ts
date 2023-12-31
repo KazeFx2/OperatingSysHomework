@@ -572,6 +572,39 @@
     </message>
 </context>
 <context>
+    <name>FileEditor</name>
+    <message>
+        <location filename="qml/FileEditor.qml" line="78"/>
+        <source>Warnning</source>
+        <translation>警告</translation>
+    </message>
+    <message>
+        <location filename="qml/FileEditor.qml" line="79"/>
+        <source>Change not saved</source>
+        <translation>更改未保存</translation>
+    </message>
+    <message>
+        <location filename="qml/FileEditor.qml" line="80"/>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <location filename="qml/FileEditor.qml" line="89"/>
+        <source>Save</source>
+        <translation>保存</translation>
+    </message>
+    <message>
+        <location filename="qml/FileEditor.qml" line="116"/>
+        <source>Saved!</source>
+        <translation>保存成功！</translation>
+    </message>
+    <message>
+        <location filename="qml/FileEditor.qml" line="118"/>
+        <source>Save failed!</source>
+        <translation>保存失败！</translation>
+    </message>
+</context>
+<context>
     <name>FootItems</name>
     <message>
         <source>About</source>
@@ -591,51 +624,61 @@
     <message>
         <location filename="qml/License.qml" line="33"/>
         <source>Licenses</source>
-        <translation type="unfinished"></translation>
+        <translation>许可证</translation>
     </message>
     <message>
         <location filename="qml/License.qml" line="72"/>
         <source>Open Source Licenses</source>
-        <translation type="unfinished">开放源代码许可</translation>
+        <translation>开放源代码许可</translation>
     </message>
 </context>
 <context>
     <name>LoginWindow</name>
     <message>
-        <location filename="qml/LoginWindow.qml" line="37"/>
-        <location filename="qml/LoginWindow.qml" line="151"/>
+        <location filename="qml/LoginWindow.qml" line="39"/>
+        <location filename="qml/LoginWindow.qml" line="159"/>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>登录</translation>
     </message>
     <message>
-        <location filename="qml/LoginWindow.qml" line="62"/>
+        <location filename="qml/LoginWindow.qml" line="64"/>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation>用户名</translation>
     </message>
     <message>
-        <location filename="qml/LoginWindow.qml" line="94"/>
+        <location filename="qml/LoginWindow.qml" line="99"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>密码</translation>
     </message>
     <message>
-        <location filename="qml/LoginWindow.qml" line="127"/>
+        <location filename="qml/LoginWindow.qml" line="135"/>
         <source>Not have an account? </source>
-        <translation type="unfinished"></translation>
+        <translation>没有账户？ </translation>
     </message>
     <message>
-        <location filename="qml/LoginWindow.qml" line="133"/>
+        <location filename="qml/LoginWindow.qml" line="141"/>
         <source>Register now!</source>
-        <translation type="unfinished"></translation>
+        <translation>立即注册！</translation>
     </message>
     <message>
-        <location filename="qml/LoginWindow.qml" line="168"/>
+        <location filename="qml/LoginWindow.qml" line="167"/>
+        <source>User &apos;{0}&apos; not exist!</source>
+        <translation>用户 &apos;{0}&apos; 不存在！</translation>
+    </message>
+    <message>
+        <location filename="qml/LoginWindow.qml" line="170"/>
+        <source>Wrong password</source>
+        <translation>密码错误</translation>
+    </message>
+    <message>
+        <location filename="qml/LoginWindow.qml" line="184"/>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
-        <location filename="qml/LoginWindow.qml" line="185"/>
+        <location filename="qml/LoginWindow.qml" line="200"/>
         <source>Register successfully!</source>
-        <translation type="unfinished"></translation>
+        <translation>成功注册！</translation>
     </message>
 </context>
 <context>
@@ -650,160 +693,242 @@
         <translation type="vanished">FluentUI</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="26"/>
-        <location filename="qml/MainWindow.qml" line="364"/>
+        <location filename="qml/MainWindow.qml" line="47"/>
+        <location filename="qml/MainWindow.qml" line="651"/>
         <source>File Explorer</source>
-        <translation type="unfinished"></translation>
+        <translation>File Explorer</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="341"/>
+        <location filename="qml/MainWindow.qml" line="363"/>
+        <source>Find a file/folder: &apos;//{0}&apos;</source>
+        <translation>找到一个文件/目录：&apos;//{0}&apos;</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="628"/>
         <source>Oops! You canceled the login!</source>
-        <translation type="unfinished"></translation>
+        <translation>Oops！你取消了登录！</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="383"/>
+        <location filename="qml/MainWindow.qml" line="670"/>
         <source>Current Directory: </source>
-        <translation type="unfinished"></translation>
+        <translation>当前目录: </translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="424"/>
+        <location filename="qml/MainWindow.qml" line="728"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>搜索</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="453"/>
+        <location filename="qml/MainWindow.qml" line="766"/>
         <source>Current User:</source>
-        <translation type="unfinished"></translation>
+        <translation>当前用户:</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="483"/>
+        <location filename="qml/MainWindow.qml" line="796"/>
         <source>Tool box</source>
-        <translation type="unfinished"></translation>
+        <translation>工具箱</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="671"/>
+        <location filename="qml/MainWindow.qml" line="998"/>
         <source>Quick Operations</source>
-        <translation type="unfinished"></translation>
+        <translation>快速操作</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="677"/>
-        <location filename="qml/MainWindow.qml" line="816"/>
+        <location filename="qml/MainWindow.qml" line="1004"/>
+        <location filename="qml/MainWindow.qml" line="1164"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>复制</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="683"/>
-        <location filename="qml/MainWindow.qml" line="825"/>
+        <location filename="qml/MainWindow.qml" line="1010"/>
+        <location filename="qml/MainWindow.qml" line="1173"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="689"/>
-        <location filename="qml/MainWindow.qml" line="834"/>
+        <location filename="qml/MainWindow.qml" line="1016"/>
+        <location filename="qml/MainWindow.qml" line="1182"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>重命名</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="40"/>
-        <location filename="qml/MainWindow.qml" line="695"/>
-        <location filename="qml/MainWindow.qml" line="876"/>
+        <location filename="qml/MainWindow.qml" line="65"/>
+        <location filename="qml/MainWindow.qml" line="1022"/>
+        <location filename="qml/MainWindow.qml" line="1229"/>
         <source>Delete</source>
-        <translation type="unfinished">删除</translation>
+        <translation>删除</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="36"/>
+        <location filename="qml/MainWindow.qml" line="61"/>
         <source>Delete File(s)</source>
         <oldsource>Delete File</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>删除文件</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="37"/>
+        <location filename="qml/MainWindow.qml" line="62"/>
         <source>Confirm delete?</source>
-        <translation type="unfinished"></translation>
+        <translation>确认删除？</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="39"/>
-        <location filename="qml/MainWindow.qml" line="181"/>
+        <location filename="qml/MainWindow.qml" line="64"/>
+        <location filename="qml/MainWindow.qml" line="219"/>
+        <location filename="qml/MainWindow.qml" line="364"/>
+        <location filename="qml/MainWindow.qml" line="374"/>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="180"/>
+        <location filename="qml/MainWindow.qml" line="218"/>
         <source>Input the new name</source>
         <oldsource>Input new name</oldsource>
         <translation>请输入名称</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="182"/>
+        <location filename="qml/MainWindow.qml" line="220"/>
+        <location filename="qml/MainWindow.qml" line="366"/>
+        <location filename="qml/MainWindow.qml" line="375"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="314"/>
+        <location filename="qml/MainWindow.qml" line="231"/>
+        <source>Create {0} failed</source>
+        <translation>创建 {0} 失败</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="231"/>
+        <location filename="qml/MainWindow.qml" line="240"/>
+        <source>Folder</source>
+        <translation>目录</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="231"/>
+        <location filename="qml/MainWindow.qml" line="240"/>
+        <source>File</source>
+        <translation>文件</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="234"/>
+        <source>File/Folder &apos;{0}&apos; already exists!</source>
+        <translation>已经存在文件或目录 &apos;{0}&apos;！</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="237"/>
+        <source>No free space for creator</source>
+        <translation>没有用于创建的多余空间</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="240"/>
+        <source>Create {0} &apos;{1}&apos; successfully!</source>
+        <translation>成功创建{0} &apos;{1}&apos;！</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="362"/>
+        <source>Result</source>
+        <translation>结果</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="363"/>
+        <source>Not found</source>
+        <translation>没有找到</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="373"/>
+        <source>Input the new mode</source>
+        <translation>请输入新权限</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="386"/>
+        <source>ChangeMode successfully</source>
+        <translation>修改权限成功</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="388"/>
+        <source>ChangeMode failed</source>
+        <translation>修改权限失败</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="434"/>
+        <source>Current Mode: {0}</source>
+        <translation>当前权限: {0}</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="601"/>
         <source>Welcome, &apos;{0}&apos;!</source>
         <oldsource>Welcome, &apos;{0}&apos;</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>欢迎您，&apos;{0}&apos;！</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="701"/>
+        <location filename="qml/MainWindow.qml" line="633"/>
+        <source>Retry</source>
+        <translation>重试</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="1028"/>
         <source>NewFolder</source>
-        <translation type="unfinished"></translation>
+        <translation>新建目录</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="707"/>
+        <location filename="qml/MainWindow.qml" line="1034"/>
         <source>NewFile</source>
-        <translation type="unfinished"></translation>
+        <translation>新建文件</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="713"/>
-        <location filename="qml/MainWindow.qml" line="844"/>
-        <source>ChangeMode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="qml/MainWindow.qml" line="725"/>
-        <source>SelectAll</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="qml/MainWindow.qml" line="731"/>
-        <source>UnselectAll</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="qml/MainWindow.qml" line="737"/>
-        <source>Inverse</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="qml/MainWindow.qml" line="805"/>
-        <source>Open</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="qml/MainWindow.qml" line="855"/>
-        <source>Select</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="qml/MainWindow.qml" line="1184"/>
-        <source>About</source>
-        <translation type="unfinished">关于</translation>
-    </message>
-    <message>
-        <location filename="qml/MainWindow.qml" line="1186"/>
-        <source>This Project...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
+        <location filename="qml/MainWindow.qml" line="1040"/>
         <location filename="qml/MainWindow.qml" line="1192"/>
-        <source>Open Source Licenses</source>
-        <translation type="unfinished">开放源代码许可</translation>
+        <source>ChangeMode</source>
+        <translation>修改权限</translation>
     </message>
     <message>
-        <location filename="qml/MainWindow.qml" line="1151"/>
+        <location filename="qml/MainWindow.qml" line="1052"/>
+        <source>SelectAll</source>
+        <translation>全选</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="1058"/>
+        <source>UnselectAll</source>
+        <translation>取消全选</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="1064"/>
+        <source>Inverse</source>
+        <translation>反选</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="1132"/>
+        <source>Open</source>
+        <translation>打开</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="1141"/>
+        <location filename="qml/MainWindow.qml" line="1443"/>
+        <source>Open file &apos;{0}&apos; failed</source>
+        <translation>打开文件 &apos;{0}&apos; 失败</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="1208"/>
+        <source>Select</source>
+        <translation>选择</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="1524"/>
+        <source>About</source>
+        <translation>关于</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="1526"/>
+        <source>This Project...</source>
+        <translation>这个项目...</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="1532"/>
+        <source>Open Source Licenses</source>
+        <translation>开放源代码许可</translation>
+    </message>
+    <message>
+        <location filename="qml/MainWindow.qml" line="1491"/>
         <source>SwitchTheme</source>
-        <translation>切换主题</translation>
+        <translation>夜间模式</translation>
     </message>
     <message>
         <source>test</source>
@@ -972,36 +1097,52 @@
 <context>
     <name>RegisterWindow</name>
     <message>
-        <location filename="qml/RegisterWindow.qml" line="62"/>
+        <location filename="qml/RegisterWindow.qml" line="64"/>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation>用户名</translation>
     </message>
     <message>
-        <location filename="qml/RegisterWindow.qml" line="33"/>
+        <location filename="qml/RegisterWindow.qml" line="35"/>
         <source>Register</source>
-        <translation type="unfinished"></translation>
+        <translation>注册</translation>
     </message>
     <message>
-        <location filename="qml/RegisterWindow.qml" line="114"/>
+        <location filename="qml/RegisterWindow.qml" line="119"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>密码</translation>
     </message>
     <message>
-        <location filename="qml/RegisterWindow.qml" line="167"/>
+        <location filename="qml/RegisterWindow.qml" line="175"/>
         <source>Repeat</source>
-        <translation type="unfinished"></translation>
+        <translation>确认密码</translation>
     </message>
     <message>
-        <location filename="qml/RegisterWindow.qml" line="92"/>
-        <location filename="qml/RegisterWindow.qml" line="145"/>
-        <location filename="qml/RegisterWindow.qml" line="198"/>
+        <location filename="qml/RegisterWindow.qml" line="264"/>
+        <source>User &apos;{0}&apos; already exists!</source>
+        <oldsource>User &apos;{0}&apos; not exist!</oldsource>
+        <translation>用户 &apos;{0}&apos; 已经存在！</translation>
+    </message>
+    <message>
+        <location filename="qml/RegisterWindow.qml" line="267"/>
+        <source>No free space for register</source>
+        <translation>没有用于注册的多余空间</translation>
+    </message>
+    <message>
+        <location filename="qml/RegisterWindow.qml" line="270"/>
+        <source>Register failed</source>
+        <translation>注册失败</translation>
+    </message>
+    <message>
+        <location filename="qml/RegisterWindow.qml" line="97"/>
+        <location filename="qml/RegisterWindow.qml" line="153"/>
+        <location filename="qml/RegisterWindow.qml" line="209"/>
         <source>The passwords entered do not match!</source>
-        <translation type="unfinished"></translation>
+        <translation>两次输入的密码不匹配！</translation>
     </message>
     <message>
-        <location filename="qml/RegisterWindow.qml" line="244"/>
+        <location filename="qml/RegisterWindow.qml" line="255"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>

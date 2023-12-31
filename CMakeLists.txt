@@ -60,7 +60,10 @@ file(RELATIVE_PATH BUILD_D ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_BINARY_DIR})
 set(except_dir ${sub_dir})
 list(APPEND except_dir ${BUILD_D})
 list(APPEND except_dir cmake)
+# list(APPEND except_dir sources/FS/test)
 # list(APPEND except_dir sources/C_)
+
+list(APPEND except_cpp sources/FS/test.cpp)
 
 # recurse all cpp/head files
 file(GLOB_RECURSE CPP_FILES *.cpp *.h)
@@ -78,6 +81,10 @@ foreach (filepath ${CPP_FILES})
         list(APPEND sources_files ${filename})
     endif ()
 endforeach (filepath)
+
+foreach (fn ${except_cpp})
+    list(REMOVE_ITEM sources_files ${fn})
+endforeach ()
 
 # recurse all *.qml files
 file(GLOB_RECURSE QML_PATHS *.qml)
@@ -152,8 +159,10 @@ foreach (filepath ${RES_PATHS})
     endif ()
 endforeach (filepath)
 
-set(C_COMPONENT_C_TEST ON)
-add_subdirectory(sources/C_component)
+# set(C_COMPONENT_C_TEST ON)
+# add_subdirectory(sources/C_component)
+
+add_subdirectory(sources/FS)
 
 # add executable
 if (WIN32)
@@ -241,7 +250,7 @@ target_link_libraries(QT_Test PRIVATE
         Qt${QT_VERSION_MAJOR}::Network
         # dynamic link
         fluentuiplugin
-        CList
+        # CList
 )
 
 # installation

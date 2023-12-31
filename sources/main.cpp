@@ -9,12 +9,10 @@
 
 #include "AppInfo.h"
 #include "helper/SettingsHelper.h"
-#include "bankalgorithm/BankAlgorithm.h"
-#include "dynamicpartition/DynamicPartition.h"
-#include "processschedule/ProcessSchedule.h"
+#include "FS/New_FS_Types.h"
 
 #include "UIComponent/KaTextArea.h"
-
+#include <filesystem>
 // #include <iostream>
 
 void registerQml() {
@@ -22,9 +20,16 @@ void registerQml() {
     int verMinor = 0;
 
     qmlRegisterType<KaTextArea>("kaze.ui", verMajor, verMinor, "KaTextArea");
+    qmlRegisterType<QFMS>("QFMS", verMajor, verMinor, "FMST");
+}
+
+void cleanRoot() {
+    std::filesystem::remove_all("./root");
 }
 
 int main(int argc, char *argv[]) {
+    cleanRoot();
+
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
@@ -38,9 +43,7 @@ int main(int argc, char *argv[]) {
         QQuickWindow::setSceneGraphBackend(QSGRendererInterface::Software);
 #endif
     }
-    BankAlgorithm::getInstance()->init(argv);
-    DynamicPartition::getInstance()->init(argv);
-    ProcessSchedule::getInstance()->init(argv);
+    QFMS::getInstance()->init(argv);
 
     QGuiApplication app(argc, argv);
 
@@ -58,9 +61,7 @@ int main(int argc, char *argv[]) {
     QQmlApplicationEngine engine;
 
     AppInfo::getInstance()->init(&engine);
-    engine.rootContext()->setContextProperty("CppBankAlgorithm", BankAlgorithm::getInstance());
-    engine.rootContext()->setContextProperty("CppDynamicPart", DynamicPartition::getInstance());
-    engine.rootContext()->setContextProperty("CppProcessSchedule", ProcessSchedule::getInstance());
+    engine.rootContext()->setContextProperty("FMS", QFMS::getInstance());
     engine.rootContext()->setContextProperty("SettingsHelper", SettingsHelper::getInstance());
 
     registerQml();
@@ -75,6 +76,7 @@ int main(int argc, char *argv[]) {
     engine.addImportPath(QString("qml/"));
     engine.addImportPath(QString("/"));
     engine.load(url);
-
-    return app.exec();
+    auto ret = app.exec();
+    delete QFMS::getInstance();
+    return 0;
 }

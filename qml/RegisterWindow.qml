@@ -1,5 +1,7 @@
 import QtQuick 2.15
 import FluentUI 1.0
+import QFMS 1.0
+import "qrc:/src/js/tools.js" as Tools
 
 
 FluWindow {
@@ -77,6 +79,9 @@ FluWindow {
                     focus = false
                     psw.focus = true
                 }
+                validator: RegExpValidator {
+                    regExp: /[0-9a-zA-Z._]*/
+                }
 
                 onTextChanged: {
                     if (text != "") {
@@ -121,6 +126,9 @@ FluWindow {
                 echoMode: TextInput.Password
                 anchors.left: parent.children[0].right
                 text: ""
+                validator: RegExpValidator {
+                    regExp: /[0-9a-zA-Z._]*/
+                }
 
                 Keys.onEnterPressed: {
                     focus = false
@@ -183,6 +191,9 @@ FluWindow {
                     if (!ok_bt.disabled)
                         ok_bt.clicked()
                 }
+                validator: RegExpValidator {
+                    regExp: /[0-9a-zA-Z._]*/
+                }
 
                 onTextChanged: {
                     if (text != "" && text == psw.text) {
@@ -214,7 +225,7 @@ FluWindow {
 
             FluIcon {
                 visible: info.text != ""
-                iconSource: FluentIcons.Error
+                iconSource: FluentIcons.Errors
                 iconColor: FluColors.Red.light
                 iconSize: 15
                 padding: 5
@@ -247,6 +258,20 @@ FluWindow {
                     var usr_name = usr.text
                     var pwd = psw.text
                     // TODO
+                    var ret = FMS.Register(usr_name, pwd)
+                    switch (ret) {
+                        case FMST.Exists:
+                            showError(Tools.format(qsTr("User '{0}' already exists!"), usr_name))
+                            return
+                        case FMST.Full:
+                            showError(qsTr("No free space for register"))
+                            return
+                        case FMST.Errors:
+                            showError(qsTr("Register failed"))
+                            return
+                        case FMST.Pass:
+                            break
+                    }
                     onResult({usr: usr_name, pswd: pwd})
                     window.close()
                 }

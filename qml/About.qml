@@ -6,7 +6,7 @@ import "qrc:/src/js/data.js" as Data
 FluWindow {
     id: window
     property int initW: 500
-    property int initH: 475
+    property int initH: 495
 
     width: initW
     height: initH
@@ -61,7 +61,7 @@ FluWindow {
                 top: parent.children[1].bottom
             }
             readOnly: true
-            text: "OS Finnal Experiment/Test"
+            text: "OS Final Experiment/Test"
         }
 
         FluCopyableText {

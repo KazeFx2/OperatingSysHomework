@@ -20,17 +20,17 @@ Rectangle{
 
         id: col
 
-        topPadding: 10
+        // topPadding: 10
         width: parent.width
 
         Row{
 
             width: parent.width
 
-            leftPadding: col.topPadding
+            leftPadding: 10
 
             FluClip{
-                width: parent.height - 10
+                width: parent.height - itro.height + 30
                 height: width
                 radius: [8, 8, 8, 8]
                 Image{
@@ -38,10 +38,11 @@ Rectangle{
                     source: ico
                     sourceSize: Qt.size(80,80)
                 }
+                anchors.verticalCenter: parent.verticalCenter
             }
 
             Rectangle  {
-                width: col.topPadding
+                width: 10
                 height: parent.height
                 color: FluColors.Transparent
             }
@@ -49,6 +50,7 @@ Rectangle{
             Column {
 
                 FluCopyableText{
+                    topPadding: 10
                     text: name
                     font.pixelSize: 15
                     width: parent.width
@@ -63,12 +65,13 @@ Rectangle{
                 }
 
                 FluCopyableText{
+                    id: itro
                     text: introduction
                     // topPadding: 10
                     font.pixelSize: 10
                     textColor: FluTools.colorAlpha(FluTheme.dark ? FluColors.White : FluColors.Grey220, 0.8)
                     opacity: mouse.clicked ? 0.5 : 1.0
-                    bottomPadding: col.topPadding
+                    bottomPadding: 10
                     textFormat: TextEdit.MarkdownText
                 }
             }
