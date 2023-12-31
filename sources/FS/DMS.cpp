@@ -384,7 +384,6 @@ int FMS::Write(string value) {
     return PASS;
 }
 
-////文件名 权限->信息(change)
 ///文件名 权限->信息(change)
 int FMS::Change(string name, int mod) {
     ull name_hash = Hash(name);

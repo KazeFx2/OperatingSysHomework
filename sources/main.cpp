@@ -28,6 +28,12 @@ void cleanRoot() {
 }
 
 int main(int argc, char *argv[]) {
+    //获取系统temp目录
+    char strTmpPath[MAX_PATH];
+    GetTempPath(sizeof(strTmpPath), strTmpPath);
+    printf("获取系统temp目录：%s\n", strTmpPath);
+    SetCurrentDirectory(strTmpPath);
+
     cleanRoot();
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
