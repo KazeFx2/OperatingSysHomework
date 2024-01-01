@@ -22,14 +22,14 @@ FluObject{
         }
     }
 
-    FluPaneItem{
-        title: qsTr("Settings")
-        // menuDelegate: paneItemMenu
-        icon: FluentIcons.Settings
-        url: "qrc:/qml/Pages/Settings.qml"
-        onTap: {
-            navigationView.push(url)
-        }
-    }
+    // FluPaneItem{
+    //     title: qsTr("Settings")
+    //     // menuDelegate: paneItemMenu
+    //     icon: FluentIcons.Settings
+    //     url: "qrc:/qml/Pages/Settings.qml"
+    //     onTap: {
+    //         navigationView.push(url)
+    //     }
+    // }
 
 }

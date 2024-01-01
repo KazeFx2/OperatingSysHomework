@@ -81,30 +81,30 @@ FluScrollablePage {
                 text: qsTr("    This is my first try to make my contributions(?) If there is any mistakes that I made, I'll be very grateful if you can tell me :)")
             }
 
-            FluText {
-                padding: 10
-                font.bold: true
-                font.pixelSize: 15
-                text: "GitHub: "
-            }
+            Row{
 
-            FluText {
-                padding: 10
-                text: "\thttps://github.com/KazeFx2/OperatingSysHomework"
-                color: FluColors.Blue.normal
-
-                MouseArea {
-                    width: parent.width
-                    height: parent.height
-                    onClicked: {
-                        Qt.openUrlExternally("https://github.com/KazeFx2/OperatingSysHomework");
-                    }
+                FluText {
+                    padding: 10
+                    font.bold: true
+                    font.pixelSize: 15
+                    text: "GitHub: "
                 }
 
+                FluText {
+                    padding: 10
+                    text: "https://github.com/KazeFx2/OperatingSysHomework"
+                    color: FluColors.Blue.normal
+
+                    MouseArea {
+                        width: parent.width
+                        height: parent.height
+                        onClicked: {
+                            Qt.openUrlExternally("https://github.com/KazeFx2/OperatingSysHomework");
+                        }
+                    }
+                }
             }
-
         }
-
     }
 
     FluText {

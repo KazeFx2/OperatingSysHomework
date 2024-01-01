@@ -984,9 +984,8 @@
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="qml/NavItems/FootItems.qml" line="26"/>
         <source>Settings</source>
-        <translation>设置</translation>
+        <translation type="vanished">设置</translation>
     </message>
 </context>
 <context>
