@@ -749,7 +749,7 @@
     <message>
         <location filename="qml/MainWindow.qml" line="50"/>
         <source>SwitchTheme</source>
-        <translation>切换主题</translation>
+        <translation>夜间模式</translation>
     </message>
     <message>
         <source>test</source>
@@ -789,61 +789,66 @@
     <message>
         <location filename="qml/Pages/PageSwapping.qml" line="26"/>
         <source>Add Page</source>
-        <translation type="unfinished"></translation>
+        <translation>添加页</translation>
     </message>
     <message>
         <location filename="qml/Pages/PageSwapping.qml" line="27"/>
         <source>Input the page number</source>
-        <translation type="unfinished"></translation>
+        <translation>请输入页号</translation>
     </message>
     <message>
         <location filename="qml/Pages/PageSwapping.qml" line="28"/>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <location filename="qml/Pages/PageSwapping.qml" line="54"/>
         <source>Pages</source>
-        <translation type="unfinished"></translation>
+        <translation>页时序</translation>
     </message>
     <message>
         <location filename="qml/Pages/PageSwapping.qml" line="92"/>
         <source>Settings</source>
-        <translation type="unfinished">设置</translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="qml/Pages/PageSwapping.qml" line="125"/>
         <source>Max online pages</source>
-        <translation type="unfinished"></translation>
+        <translation>最大在线页数</translation>
     </message>
     <message>
         <location filename="qml/Pages/PageSwapping.qml" line="147"/>
-        <location filename="qml/Pages/PageSwapping.qml" line="226"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="230"/>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>应用</translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="247"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="155"/>
+        <source>Apply failed</source>
+        <translation>应用失败</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/PageSwapping.qml" line="251"/>
         <source>Results</source>
-        <translation type="unfinished"></translation>
+        <translation>结果</translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="291"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="295"/>
         <source>Max n pages: </source>
         <oldsource>Max n pages:</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>最大在线页数: </translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="297"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="301"/>
         <source>Pages faults: </source>
         <oldsource>Pages faults:</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>缺页错误数: </translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="303"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="307"/>
         <source>Fault rate: </source>
         <oldsource>Fault rate:</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>缺页率: </translation>
     </message>
     <message>
         <source>Processes</source>
@@ -902,19 +907,20 @@
         <translation type="obsolete">清除全部</translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="164"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="168"/>
         <source>Strategy</source>
-        <translation type="unfinished">策略</translation>
+        <translation>策略</translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="231"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="152"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="235"/>
         <source>Apply successfully</source>
-        <translation type="unfinished">应用成功</translation>
+        <translation>应用成功</translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="234"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="238"/>
         <source>Apply failed, not supported</source>
-        <translation type="unfinished">应用失败，暂未支持</translation>
+        <translation>应用失败，暂未支持</translation>
     </message>
     <message>
         <source>Add Process</source>
@@ -951,7 +957,7 @@
     <message>
         <location filename="qml/Pages/PageSwapping.qml" line="29"/>
         <source>Add</source>
-        <translation type="unfinished">添加</translation>
+        <translation>添加</translation>
     </message>
     <message>
         <source>Add process successfully</source>
@@ -1136,12 +1142,12 @@
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="574"/>
         <source>Add process successfully</source>
-        <translation type="unfinished">成功添加进程</translation>
+        <translation>成功添加进程</translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="581"/>
         <source>Add process failed</source>
-        <translation type="unfinished">添加进程失败</translation>
+        <translation>添加进程失败</translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="591"/>
@@ -1156,12 +1162,12 @@
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="656"/>
         <source>Delete process successfully</source>
-        <translation type="unfinished">成功删除进程</translation>
+        <translation>成功删除进程</translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="659"/>
         <source>Delete process failed</source>
-        <translation type="unfinished">删除进程失败</translation>
+        <translation>删除进程失败</translation>
     </message>
 </context>
 <context>

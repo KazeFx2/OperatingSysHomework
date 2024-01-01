@@ -147,8 +147,12 @@ FluScrollablePage {
                         text: qsTr("Apply")
                         onClicked: {
                             CppPageSwapping.setCap(parseInt(max_n.text))
-                            max_n.text = ""
                             _max_n = CppPageSwapping.getMax()
+                            if (_max_n === parseInt(max_n.text)){
+                                showSuccess(qsTr("Apply successfully"))
+                                max_n.text = ""
+                            }else
+                                showError(qsTr("Apply failed"))
                         }
                     }
                 }
@@ -170,7 +174,7 @@ FluScrollablePage {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: parent.children[0].right
                         anchors.leftMargin: 10
-                        width: 100
+                        width: 120
                         color: FluColors.Transparent
                         Component.onCompleted: {
                             // TODO

@@ -77,6 +77,8 @@ General_Constrictor(PageSwapping, {
 
     void doOPT();
 
+    void doLRU_STACK();
+
     Q_INVOKABLE
     void updateNotify() {
         doSwap();
