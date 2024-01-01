@@ -1,2 +1,4 @@
 ScrollableItems 1.0 ScrollableItems.qml
 NamedUrlItem 1.0 NamedUrlItem.qml
+ModTabView 1.0 ModTabView.qml
+InputDialog 1.0 InputDialog.qml
