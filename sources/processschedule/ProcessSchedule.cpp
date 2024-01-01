@@ -46,6 +46,90 @@ bool ProcessSchedule::doFCFS() {
     return true;
 }
 
+bool ProcessSchedule::doPSA() {
+    int now = 0;
+    int left = listSize(pcb_list);
+    int mk[1000];
+    memset(mk, 0, sizeof(int) * left);
+    while (left) {
+        int index = 0, nearest = -1, n_tar = -1, tar = -1, n_p = -1, priority = -1;
+        FOREACH(PCB_node_t, i, pcb_list) {
+            if (mk[index]) {
+                index++;
+                continue;
+            }
+            if (i->pcb.submit_time <= now) {
+                if (priority == -1 || i->pcb.priority > priority) {
+                    priority = i->pcb.priority;
+                    tar = index;
+                }
+            } else if (priority == -1) {
+                if (nearest == -1 || i->pcb.submit_time < nearest ||
+                    (i->pcb.submit_time == nearest && i->pcb.priority > n_p)) {
+                    nearest = i->pcb.submit_time;
+                    n_tar = index;
+                    n_p = i->pcb.priority;
+                }
+            }
+            index++;
+        }
+        PCB_node_t *target;
+        if (tar != -1) {
+            target = (PCB_node_t *) *findNodeByIndex(&pcb_list, tar);
+            mk[tar] = 1;
+        } else {
+            target = (PCB_node_t *) *findNodeByIndex(&pcb_list, n_tar);
+            mk[n_tar] = 1;
+        }
+        target->pcb.start_time = (now > target->pcb.submit_time ? now : target->pcb.submit_time);
+        now = target->pcb.start_time + target->pcb.server_need;
+        left--;
+    }
+    return true;
+}
+
+bool ProcessSchedule::doSJF() {
+    int now = 0;
+    int left = listSize(pcb_list);
+    int mk[1000];
+    memset(mk, 0, sizeof(int) * left);
+    while (left) {
+        int index = 0, nearest = -1, n_tar = -1, tar = -1, n_s = -1, ser = -1;
+        FOREACH(PCB_node_t, i, pcb_list) {
+            if (mk[index]) {
+                index++;
+                continue;
+            }
+            if (i->pcb.submit_time <= now) {
+                if (ser == -1 || i->pcb.server_need < ser) {
+                    ser = i->pcb.server_need;
+                    tar = index;
+                }
+            } else if (ser == -1) {
+                if (nearest == -1 || i->pcb.submit_time < nearest ||
+                    (i->pcb.submit_time == nearest && i->pcb.server_need < n_s)) {
+                    nearest = i->pcb.submit_time;
+                    n_tar = index;
+                    n_s = i->pcb.server_need;
+                }
+            }
+            index++;
+        }
+        PCB_node_t *target;
+        if (tar != -1) {
+            target = (PCB_node_t *) *findNodeByIndex(&pcb_list, tar);
+            mk[tar] = 1;
+        } else {
+            target = (PCB_node_t *) *findNodeByIndex(&pcb_list, n_tar);
+            mk[n_tar] = 1;
+        }
+        target->pcb.start_time = (now > target->pcb.submit_time ? now : target->pcb.submit_time);
+        now = target->pcb.start_time + target->pcb.server_need;
+        left--;
+    }
+    return true;
+}
+
 bool ProcessSchedule::addProcess(QString name, int pid, int submit, int time_need, int priority) {
     if (checkConflict(pid))
         return false;
@@ -80,7 +164,36 @@ bool ProcessSchedule::deleteProcess(int pid) {
 }
 
 bool ProcessSchedule::doSchedule() {
-    doFCFS();
+    switch (strategy) {
+        case P_FCFS:
+            doFCFS();
+            break;
+        case P_PSA:
+            doPSA();
+            break;
+        case P_SJF:
+            doSJF();
+            break;
+        case P_HRRN:
+        case P_RR:
+        case P_MLFQ:
+        default:
+            return false;
+    }
+    // updateNotify();
+    return true;
+}
+
+bool ProcessSchedule::setStrategy(QString str) {
+    if (str == "FCFS") {
+        strategy = P_FCFS;
+    } else if (str == "PSA") {
+        strategy = P_PSA;
+    } else if (str == "SJF") {
+        strategy = P_SJF;
+    } else
+        return false;
+    updateNotify();
     return true;
 }
 

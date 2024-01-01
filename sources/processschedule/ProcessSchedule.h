@@ -69,9 +69,13 @@ private:
 
     bool doFCFS();
 
+    bool doSJF();
+
+    bool doPSA();
+
     void updateNotify() {
         m_update = !m_update;
-        doFCFS();
+        doSchedule();
         emit updateChanged();
     }
 
@@ -100,13 +104,17 @@ public:
     Q_INVOKABLE
     QVariantList getProcesses();
 
+    Q_INVOKABLE
+    bool setStrategy(QString strategy);
+
     void init(char *argv[]) {
-        for (int i = 1; i < 6; i++) {
+        int max = 6;
+        for (int i = 1; i < max; i++) {
             addProcess(
                     "name_" + QString(i + '0'),
                     i,
                     i,
-                    i,
+                    max - i,
                     i);
         }
     }

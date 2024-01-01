@@ -790,174 +790,185 @@
 <context>
     <name>ProcessSchedule</name>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="12"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="15"/>
         <source>Process Schedule</source>
         <translation>进程调度</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="103"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="106"/>
         <source>Processes</source>
         <translation>进程表</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="128"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="391"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="131"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="405"/>
         <source>Name</source>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="136"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="415"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="603"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="139"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="429"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="621"/>
         <source>PID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="146"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="454"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="149"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="469"/>
         <source>Priority</source>
         <translation>优先级</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="156"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="159"/>
         <source>SubmitTime</source>
         <translation>提交时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="166"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="169"/>
         <source>ServeTime</source>
         <translation>服务时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="176"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="179"/>
         <source>StartTime</source>
         <translation>开始时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="186"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="189"/>
         <source>FinishTime</source>
         <translation>结束时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="196"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="199"/>
         <source>ResponseTime</source>
         <translation>响应时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="206"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="209"/>
         <source>TurnaroundTime</source>
         <translation>周转时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="216"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="219"/>
         <source>W_TurnaroundTime</source>
         <oldsource>WeightTurnaroundTime</oldsource>
         <translation>带权周转时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="236"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="238"/>
         <source>Mean of Turnaround Time: {0}</source>
         <translation>平均周转时间: {0}</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="243"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="244"/>
         <source>Mean of Turnaround Time with Weight: {0}</source>
         <translation>平均带权周转时间: {0}</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="251"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="252"/>
         <source>Management</source>
         <translation>管理</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="274"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="275"/>
         <source>Clear All</source>
         <translation>清除全部</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="288"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="292"/>
         <source>Strategy</source>
         <translation>策略</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="345"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="351"/>
         <source>Apply</source>
         <translation>应用</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="357"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="356"/>
+        <source>Apply successfully</source>
+        <translation>应用成功</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="360"/>
+        <source>Apply failed, not supported</source>
+        <oldsource>Apply failed</oldsource>
+        <translation>应用失败，暂未支持</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="371"/>
         <source>Add Process</source>
         <oldsource>Add Processes</oldsource>
         <translation>添加进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="400"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="414"/>
         <source>Input the name</source>
         <translation>请输入进程名称</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="424"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="612"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="438"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="630"/>
         <source>Input the pid</source>
         <translation>请输入PID</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="463"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="478"/>
         <source>Input the priority</source>
         <translation>请输入进程优先级</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="479"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="495"/>
         <source>Serve Time</source>
         <translation>服务时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="488"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="504"/>
         <source>Input the serve time</source>
         <translation>请输入服务时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="518"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="535"/>
         <source>Submit Time</source>
         <translation>提交时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="527"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="544"/>
         <source>Input the submit time</source>
         <translation>请输入提交时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="542"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="560"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="552"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="570"/>
         <source>Add process successfully</source>
         <translation type="unfinished">成功添加进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="559"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="577"/>
         <source>Add process failed</source>
         <translation type="unfinished">添加进程失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="569"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="587"/>
         <source>Delete Process</source>
         <translation>删除进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="627"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="646"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="633"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="652"/>
         <source>Delete process successfully</source>
         <translation type="unfinished">成功删除进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="636"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="655"/>
         <source>Delete process failed</source>
         <translation type="unfinished">删除进程失败</translation>
     </message>

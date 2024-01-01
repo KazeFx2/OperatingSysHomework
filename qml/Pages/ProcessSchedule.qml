@@ -9,6 +9,9 @@ FluScrollablePage {
     property int sortTypeUp: -1
     property int sortTypeDown: -1
 
+    property double tdt: -1
+    property double tdwt: -1
+
     title: qsTr("Process Schedule")
     width: parent.width
     height: parent.height
@@ -232,15 +235,13 @@ FluScrollablePage {
                 FluText {
                     padding: 10
                     anchors.left: parent.left
-                    property string value: "null"
-                    text: Tools.format(qsTr("Mean of Turnaround Time: {0}"), value)
+                    text: Tools.format(qsTr("Mean of Turnaround Time: {0}"), root.tdt == -1 ? "null" : tdt.toString())
                 }
 
                 FluText {
                     padding: 10
                     anchors.right: parent.right
-                    property string value: "null"
-                    text: Tools.format(qsTr("Mean of Turnaround Time with Weight: {0}"), value)
+                    text: Tools.format(qsTr("Mean of Turnaround Time with Weight: {0}"), root.tdwt == -1 ? "null" : tdwt.toString())
                 }
             }
 
@@ -274,7 +275,10 @@ FluScrollablePage {
                     text: qsTr("Clear All")
                     onClicked: {
                         // TODO
-
+                        var tmp = table_view.dataSource
+                        for (var i = 0; i < tmp.length; i++) {
+                            CppProcessSchedule.deleteProcess(tmp[i].pid)
+                        }
                     }
                 }
 
@@ -303,6 +307,8 @@ FluScrollablePage {
 
                         FluComboBox {
                             id: strategy
+
+                            property int prev: 0
 
                             editable: false
                             anchors.left: parent.left
@@ -345,7 +351,14 @@ FluScrollablePage {
                         text: qsTr("Apply")
                         onClicked: {
                             // TODO
-
+                            var ret = CppProcessSchedule.setStrategy(strategy.currentText)
+                            if (ret) {
+                                showSuccess(qsTr("Apply successfully"))
+                                strategy.prev = strategy.currentIndex
+                            } else {
+                                showError(qsTr("Apply failed, not supported"))
+                                strategy.currentIndex = strategy.prev
+                            }
                         }
                     }
                 }
@@ -422,7 +435,8 @@ FluScrollablePage {
                         anchors.left: parent.children[0].right
                         width: 200
                         placeholderText: qsTr("Input the pid")
-                        validator: IntValidator {}
+                        validator: IntValidator {
+                        }
                     }
                 }
             }
@@ -461,7 +475,8 @@ FluScrollablePage {
                         anchors.right: parent.right
                         width: 200
                         placeholderText: qsTr("Input the priority")
-                        validator: IntValidator {}
+                        validator: IntValidator {
+                        }
                     }
                 }
 
@@ -486,7 +501,8 @@ FluScrollablePage {
                         anchors.left: parent.children[0].right
                         width: 200
                         placeholderText: qsTr("Input the serve time")
-                        validator: IntValidator {}
+                        validator: IntValidator {
+                        }
                     }
                 }
             }
@@ -525,7 +541,8 @@ FluScrollablePage {
                         anchors.right: parent.right
                         width: 200
                         placeholderText: qsTr("Input the submit time")
-                        validator: IntValidator {}
+                        validator: IntValidator {
+                        }
                     }
                 }
 
@@ -610,7 +627,8 @@ FluScrollablePage {
                         anchors.right: parent.right
                         width: 200
                         placeholderText: qsTr("Input the pid")
-                        validator: IntValidator {}
+                        validator: IntValidator {
+                        }
                     }
                 }
 
@@ -656,6 +674,9 @@ FluScrollablePage {
 
     function loadData() {
         const data = []
+        CppProcessSchedule.doSchedule()
+        var td = 0.0
+        var tdw = 0.0
         var cd = CppProcessSchedule.getProcesses()
         for (var i = 0; i < cd.length; i++) {
             var tmp = {
@@ -671,8 +692,19 @@ FluScrollablePage {
                 "turnaround_weight": cd[i].start === CppProcessSchedule.unset ? "null" : (cd[i].start + cd[i].serve - cd[i].submit) / cd[i].serve,
                 "minimumHeight": 50
             }
+            td += tmp["turnaround"]
+            tdw += tmp["turnaround_weight"]
             data.push(tmp)
         }
+        if (cd.length > 0) {
+            td /= cd.length
+            tdw /= cd.length
+        } else {
+            td = -1
+            tdw = -1
+        }
+        root.tdt = td
+        root.tdwt = tdw
         table_view.dataSource = data
     }
 }

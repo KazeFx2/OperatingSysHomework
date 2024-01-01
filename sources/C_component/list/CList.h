@@ -47,6 +47,6 @@ bool destroyList(list_t head);
 
 size_t listSize(list_t head);
 
-list_t sortBy(list_t old, compare_func fun, size_t data_size, bool asc);
+list_t sortBy(list_t old, compare_func func, size_t data_size, bool asc);
 
 #endif //QT_TEST_CLIST_H
