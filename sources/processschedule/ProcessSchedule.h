@@ -107,6 +107,25 @@ public:
     Q_INVOKABLE
     bool setStrategy(QString strategy);
 
+    Q_INVOKABLE
+    QString getStrategy() {
+        switch (strategy) {
+            case P_FCFS:
+                return "FCFS";
+            case P_SJF:
+                return "SJF";
+            case P_PSA:
+                return "PSA";
+            case P_HRRN:
+                return "HRRN";
+            case P_RR:
+                return "RR";
+            case P_MLFQ:
+                return "MLFQ";
+        }
+        return "";
+    }
+
     void init(char *argv[]) {
         int max = 6;
         for (int i = 1; i < max; i++) {

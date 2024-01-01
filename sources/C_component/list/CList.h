@@ -25,6 +25,8 @@ list_t initList();
 
 node_t **findNodeByIndex(list_t *head, size_t index);
 
+node_t *findPNodeByIndex(list_t head, size_t index);
+
 bool pushEnd(list_t head, const void *data, size_t data_size);
 
 bool pushExistEnd(list_t head, node_t *node);
@@ -38,6 +40,14 @@ bool addExistComparedBefore(list_t _head, node_t *node, compare_func func, bool 
 bool addComparedBefore(list_t _head, const void *data, size_t data_size, compare_func func, bool asc);
 
 bool removeNode(node_t *node);
+
+bool removeByIndex(list_t head, size_t index);
+
+bool swapNodes(node_t *a, node_t *b);
+
+bool swapNodesByIndex(list_t head, size_t a, size_t b);
+
+bool moveFromTo(list_t head, size_t from, size_t to);
 
 node_t *removeEnd(list_t head);
 

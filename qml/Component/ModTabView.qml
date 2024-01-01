@@ -6,10 +6,14 @@ import FluentUI 1.0
 Item {
     property int tabWidthBehavior : FluTabViewType.Equal
     property int closeButtonVisibility : FluTabViewType.Always
+    property bool colorful: false
     property int inner_w: 35
     property int itemWidth: 146
     property bool addButtonVisibility: true
+    property bool moveItem: true
     signal newPressed
+    signal itemMoved(var from, var to)
+    signal itemRemove(var idx)
     id:control
     implicitHeight: height
     implicitWidth: width
@@ -39,8 +43,8 @@ Item {
         visible: addButtonVisibility
         width: 34
         height: 34
-        x:Math.min(tab_nav.contentWidth,tab_nav.width)
-        anchors.top: parent.top
+        x: Math.min(tab_nav.contentWidth,tab_nav.width)
+        anchors.verticalCenter: parent.verticalCenter
         iconSource: FluentIcons.Add
         onClicked: {
             newPressed()
@@ -48,7 +52,7 @@ Item {
     }
     ListView{
         id:tab_nav
-        height: 34
+        height: Math.max(contentItem.childrenRect.height, 40)
         orientation: ListView.Horizontal
         anchors{
             top: parent.top
@@ -73,7 +77,7 @@ Item {
         }
         delegate:  Item{
             width: item_layout.width
-            height: item_container.height
+            height: item_layout.height
             z: item_mouse_drag.pressed ? 1000 : 1
             Item{
                 id:item_layout
@@ -82,7 +86,7 @@ Item {
                 Item{
                     id:item_container
                     property real timestamp: new Date().getTime()
-                    height: tab_nav.height
+                    height: item_text.height
                     width: {
                         if(tabWidthBehavior === FluTabViewType.Equal){
                             return Math.max(Math.min(d.maxEqualWidth,tab_nav.width/tab_nav.count), inner_w + item_btn_close.width)
@@ -109,14 +113,20 @@ Item {
                     }
                     MouseArea{
                         id:item_mouse_drag
+                        property int _from
+                        property int _to
                         anchors.fill: parent
-                        drag.target: item_container
-                        drag.axis: Drag.XAxis
+                        drag.target: moveItem ? item_container : drag.target
+                        drag.axis: moveItem ? Drag.XAxis : drag.axis
                         onWheel: (wheel)=>{
                                      if (wheel.angleDelta.y > 0) scroll_nav.decrease()
                                      else scroll_nav.increase()
                                  }
                         onPressed: {
+                            if (!moveItem)
+                                return
+                            _from = -1
+                            _to = -1
                             d.itemPress = true
                             item_container.timestamp = new Date().getTime();
                             d.dragBehavior = false;
@@ -127,6 +137,10 @@ Item {
                             item_container.y = pos.y
                         }
                         onReleased: {
+                            if (!moveItem)
+                                return
+                            if (_from !== -1 && _to !== -1)
+                                itemMoved(_from, _to)
                             d.itemPress = false
                             timer.stop()
                             var timeDiff = new Date().getTime() - item_container.timestamp
@@ -143,6 +157,8 @@ Item {
                             item_container.y = 0;
                         }
                         onPositionChanged: {
+                            if (!moveItem)
+                                return
                             var pos = tab_nav.mapFromItem(item_container, 0, 0)
                             updatePosition(pos)
                             if(pos.x<0){
@@ -184,6 +200,12 @@ Item {
                             }
                             if (idx!==-1 && idx >= firstIdx && idx <= lastIdx && d.dragIndex !== idx) {
                                 tab_model.move(d.dragIndex, idx, 1)
+                                if (_from === -1 || _to === -1) {
+                                    _from = d.dragIndex
+                                    _to = idx
+                                } else {
+                                    _to = idx
+                                }
                                 d.dragIndex = idx;
                             }
                         }
@@ -196,17 +218,17 @@ Item {
                                 return FluTheme.itemHoverColor
                             }
                             if(tab_nav.currentIndex === index){
-                                return FluTheme.itemCheckColor
+                                return colorful ? (_text.slice(0, 1) === "V" ? FluColors.Green.light : FluColors.Red.light) : FluTheme.itemCheckColor
                             }
-                            return FluTheme.itemCheckColor
+                            return colorful ? (_text.slice(0, 1) === "V" ? FluColors.Green.light : FluColors.Red.light) : FluTheme.itemCheckColor
                         }
                     }
                     RowLayout{
                         spacing: 0
-                        height: parent.height
+                        height: item_text.height
                         FluText{
                             id:item_text
-                            text: model.text
+                            text: _text
                             Layout.leftMargin: 10
                             visible: {
                                 if(tabWidthBehavior === FluTabViewType.Equal){
@@ -221,6 +243,8 @@ Item {
                                 return false
                             }
                             Layout.preferredWidth: visible ? item_container.width - item_btn_close.width : 0
+                            topPadding: 10
+                            bottomPadding: topPadding
                             elide: Text.ElideRight
                             Layout.alignment: Qt.AlignVCenter
                         }
@@ -244,6 +268,7 @@ Item {
                             verticalCenter: parent.verticalCenter
                         }
                         onClicked: {
+                            itemRemove(index)
                             tab_model.remove(index)
                         }
                     }
@@ -261,7 +286,7 @@ Item {
         }
     }
     function createTab(text){
-        return {text:text}
+        return {_text:text}
     }
     function appendTab(text){
         tab_model.append(createTab(text))

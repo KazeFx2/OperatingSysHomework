@@ -72,6 +72,8 @@ FluPopup {
                     top: text_message.bottom
                     horizontalCenter: parent.horizontalCenter
                 }
+                Keys.onEnterPressed: {positive_btn.clicked()}
+                Keys.onReturnPressed: {positive_btn.clicked()}
             }
             // Rectangle {
             //     width: parent.width
@@ -152,5 +154,8 @@ FluPopup {
                 positiveClicked(txt)
             }
         }
+    }
+    Component.onCompleted: {
+        txt.focus = true
     }
 }

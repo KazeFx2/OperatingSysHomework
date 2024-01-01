@@ -341,6 +341,11 @@ FluScrollablePage {
                                     text: "MLFQ"
                                 }
                             }
+
+                            Component.onCompleted: {
+                                var s = CppProcessSchedule.getStrategy()
+                                prev = currentIndex = strategy.indexOfValue(s)
+                            }
                         }
                     }
 

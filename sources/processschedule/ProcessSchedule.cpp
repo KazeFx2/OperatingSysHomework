@@ -4,8 +4,6 @@
 
 #include "ProcessSchedule.h"
 
-#include <utility>
-
 bool ProcessSchedule::checkConflict(int pid) {
     FOREACH(PCB_node_t, i, pcb_list) if (i->pcb.pid == pid) return true;
     return false;

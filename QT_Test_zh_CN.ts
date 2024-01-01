@@ -782,48 +782,67 @@
 <context>
     <name>PageSwapping</name>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="16"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="20"/>
         <source>Page Swapping</source>
         <translation>页面置换</translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="22"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="26"/>
         <source>Add Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="23"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="27"/>
         <source>Input the page number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="24"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="28"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="49"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="54"/>
         <source>Pages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="79"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="92"/>
         <source>Settings</source>
         <translation type="unfinished">设置</translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="112"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="125"/>
         <source>Max online pages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="193"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="147"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="226"/>
         <source>Apply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="206"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="247"/>
         <source>Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/PageSwapping.qml" line="291"/>
+        <source>Max n pages: </source>
+        <oldsource>Max n pages:</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/PageSwapping.qml" line="297"/>
+        <source>Pages faults: </source>
+        <oldsource>Pages faults:</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/PageSwapping.qml" line="303"/>
+        <source>Fault rate: </source>
+        <oldsource>Fault rate:</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -883,17 +902,19 @@
         <translation type="obsolete">清除全部</translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="134"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="164"/>
         <source>Strategy</source>
         <translation type="unfinished">策略</translation>
     </message>
     <message>
+        <location filename="qml/Pages/PageSwapping.qml" line="231"/>
         <source>Apply successfully</source>
-        <translation type="obsolete">应用成功</translation>
+        <translation type="unfinished">应用成功</translation>
     </message>
     <message>
+        <location filename="qml/Pages/PageSwapping.qml" line="234"/>
         <source>Apply failed, not supported</source>
-        <translation type="obsolete">应用失败，暂未支持</translation>
+        <translation type="unfinished">应用失败，暂未支持</translation>
     </message>
     <message>
         <source>Add Process</source>
@@ -928,7 +949,7 @@
         <translation type="obsolete">请输入提交时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="25"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="29"/>
         <source>Add</source>
         <translation type="unfinished">添加</translation>
     </message>
@@ -971,20 +992,20 @@
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="131"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="404"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="409"/>
         <source>Name</source>
         <translation>名称</translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="139"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="428"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="620"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="433"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="625"/>
         <source>PID</source>
         <translation></translation>
     </message>
     <message>
         <location filename="qml/Pages/ProcessSchedule.qml" line="149"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="468"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="473"/>
         <source>Priority</source>
         <translation>优先级</translation>
     </message>
@@ -1050,95 +1071,95 @@
         <translation>策略</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="351"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="356"/>
         <source>Apply</source>
         <translation>应用</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="356"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="361"/>
         <source>Apply successfully</source>
         <translation>应用成功</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="359"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="364"/>
         <source>Apply failed, not supported</source>
         <oldsource>Apply failed</oldsource>
         <translation>应用失败，暂未支持</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="370"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="375"/>
         <source>Add Process</source>
         <oldsource>Add Processes</oldsource>
         <translation>添加进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="413"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="418"/>
         <source>Input the name</source>
         <translation>请输入进程名称</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="437"/>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="629"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="442"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="634"/>
         <source>Input the pid</source>
         <translation>请输入PID</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="477"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="482"/>
         <source>Input the priority</source>
         <translation>请输入进程优先级</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="494"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="499"/>
         <source>Serve Time</source>
         <translation>服务时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="503"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="508"/>
         <source>Input the serve time</source>
         <translation>请输入服务时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="534"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="539"/>
         <source>Submit Time</source>
         <translation>提交时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="543"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="548"/>
         <source>Input the submit time</source>
         <translation>请输入提交时间</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="559"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="564"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="569"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="574"/>
         <source>Add process successfully</source>
         <translation type="unfinished">成功添加进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="576"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="581"/>
         <source>Add process failed</source>
         <translation type="unfinished">添加进程失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="586"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="591"/>
         <source>Delete Process</source>
         <translation>删除进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="645"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="650"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="651"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="656"/>
         <source>Delete process successfully</source>
         <translation type="unfinished">成功删除进程</translation>
     </message>
     <message>
-        <location filename="qml/Pages/ProcessSchedule.qml" line="654"/>
+        <location filename="qml/Pages/ProcessSchedule.qml" line="659"/>
         <source>Delete process failed</source>
         <translation type="unfinished">删除进程失败</translation>
     </message>

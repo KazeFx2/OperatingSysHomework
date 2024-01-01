@@ -13,6 +13,10 @@ FluScrollablePage {
     property double tdt: -1
     property double tdwt: -1
 
+    property int _max_n: CppPageSwapping.getMax()
+    property int faults: 0
+    property double fr: 0.0
+
     title: qsTr("Page Swapping")
     width: parent.width
     height: parent.height
@@ -26,7 +30,8 @@ FluScrollablePage {
         onNegativeClicked: (txt)=>{
                            }
         onPositiveClicked: (txt)=>{
-                               tab_view.appendTab(parseInt(txt.text))
+                               CppPageSwapping.push_back(parseInt(txt.text))
+                               tab_view.appendTab(txt.text)
                            }
         vali: RegExpValidator {regExp: /[0-9][0-9]/}
     }
@@ -64,12 +69,20 @@ FluScrollablePage {
 
             ModTabView{
                 id: tab_view
-                // closeButtonVisibility: FluTabViewType.Nerver
+                closeButtonVisibility: FluTabViewType.OnHover
                 width: parent.width
+                // moveItem: false
                 onNewPressed:{
                     page_in.text = ""
                     page_in.open()
                 }
+                onItemMoved: (from, to)=>{
+                                 console.log(from, to)
+                                 CppPageSwapping.move_from_to(from, to)
+                             }
+                onItemRemove: (index)=>{
+                                CppPageSwapping.remove_index(index)
+                              }
             }
 
             FluText {
@@ -113,13 +126,30 @@ FluScrollablePage {
                     }
 
                     FluTextBox {
+                        id: max_n
                         anchors {
                             left: parent.children[0].right
                             leftMargin: 10
                             verticalCenter: parent.verticalCenter
                         }
+                        placeholderText: _max_n.toString()
                         width: 100
                         validator: RegExpValidator {regExp: /[0-9]/}
+                    }
+
+                    FluFilledButton {
+                        anchors {
+                            left: parent.children[1].right
+                            leftMargin: 10
+                            verticalCenter: parent.verticalCenter
+                        }
+                        disabled: max_n.text === ""
+                        text: qsTr("Apply")
+                        onClicked: {
+                            CppPageSwapping.setCap(parseInt(max_n.text))
+                            max_n.text = ""
+                            _max_n = CppPageSwapping.getMax()
+                        }
                     }
                 }
 
@@ -160,28 +190,31 @@ FluScrollablePage {
                                 id: model
 
                                 ListElement {
-                                    text: "FCFS"
+                                    text: "FIFO"
                                 }
 
                                 ListElement {
-                                    text: "SJF"
+                                    text: "OPT"
                                 }
 
                                 ListElement {
-                                    text: "PSA"
+                                    text: "LRU_STACK"
                                 }
 
                                 ListElement {
-                                    text: "HRRN"
+                                    text: "LRU_OFFSET"
                                 }
 
                                 ListElement {
-                                    text: "RR"
+                                    text: "LFU"
                                 }
 
                                 ListElement {
-                                    text: "MLFQ"
+                                    text: "CLOCK"
                                 }
+                            }
+                            Component.onCompleted: {
+                                prev = currentIndex = indexOfValue(CppPageSwapping.getStrategy())
                             }
                         }
                     }
@@ -193,6 +226,14 @@ FluScrollablePage {
                         text: qsTr("Apply")
                         onClicked: {
                             // TODO
+                            var ret = CppPageSwapping.setStrategy(strategy.currentText)
+                            if (ret) {
+                                showSuccess(qsTr("Apply successfully"))
+                                strategy.prev = strategy.currentIndex
+                            } else {
+                                showError(qsTr("Apply failed, not supported"))
+                                strategy.currentIndex = strategy.prev
+                            }
                         }
                     }
                 }
@@ -221,15 +262,82 @@ FluScrollablePage {
 
             ModTabView{
                 id: res_view
+                colorful: true
                 closeButtonVisibility: FluTabViewType.Nerver
+                moveItem: false
                 width: parent.width
                 addButtonVisibility: false
                 onNewPressed:{
                 }
             }
+
+            Rectangle {
+
+                width: parent.width
+                height: childrenRect.height
+                color: FluColors.Transparent
+
+                Column {
+
+                    Rectangle {
+                        width: parent.width
+                        height: 10
+                        color: FluColors.Transparent
+                    }
+
+                    FluText {
+                        padding: 10
+                        font.bold: true
+                        text: qsTr("Max n pages: ") + _max_n.toString()
+                    }
+
+                    FluText {
+                        padding: 10
+                        font.bold: true
+                        text: qsTr("Pages faults: ") + faults.toString()
+                    }
+
+                    FluText {
+                        padding: 10
+                        font.bold: true
+                        text: qsTr("Fault rate: ") + fr.toString()
+                    }
+                }
+            }
         }
     }
 
+    Connections{
+        target: CppPageSwapping
+        onUpdate: {
+            updateRes()
+        }
+    }
+
+    function updateRes(){
+        var res = CppPageSwapping.getRes()
+        var page_fault = CppPageSwapping.getPageFault()
+        faults = page_fault
+        fr = faults / res.length
+        var dt = []
+        for (var i = 0; i < res.length; i++){
+            dt.push({_text: res[i]})
+        }
+        res_view.setTabList(dt)
+    }
+
+    function updatePages(){
+        var pages = CppPageSwapping.getPages()
+        var dt = []
+        for (var i = 0; i < pages.length; i++){
+            dt.push({_text: pages[i]})
+        }
+        tab_view.setTabList(dt)
+    }
+
     Component.onCompleted: {
+        CppPageSwapping.doSwap()
+        updatePages()
+        updateRes()
     }
 }
