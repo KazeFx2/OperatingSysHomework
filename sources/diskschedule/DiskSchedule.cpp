@@ -3,6 +3,7 @@
 //
 
 #include "DiskSchedule.h"
+#include <QDebug>
 
 bool DiskSchedule::setStrategy(QString str) {
     if (str == "FCFS") {
@@ -97,8 +98,53 @@ void DiskSchedule::doSSTF() {
 
 void DiskSchedule::doSCAN() {
     move_dist = 0;
-    int sc_pos = 0, mhead = head, left = now_req;
+    int sc_pos = 0, mhead = head;
     int mk[MAX_REQ];
     memset(mk, 0, sizeof(int) * now_req);
-
+    int direct;
+    int m_tar = -1, m_dist = -1;
+    for (int i = 0; i < now_req; i++) {
+        if (m_tar == -1 || m_dist == -1) {
+            m_tar = i, m_dist = abs(mhead - req[i]);
+        } else {
+            if (abs(mhead - req[i]) < m_dist) {
+                m_tar = i, m_dist = abs(mhead - req[i]);
+            }
+        }
+    }
+    if (req[m_tar] >= mhead)
+        direct = 1;
+    else
+        direct = -1;
+    // qDebug() << direct;
+    for (int j = 0; j < 2; j++) {
+        while (true) {
+            int now_best = -1, best_dist = -1;
+            for (int i = 0; i < now_req; i++) {
+                if (mk[i])
+                    continue;
+                if (direct == 1) {
+                    if (req[i] < mhead)
+                        continue;
+                } else {
+                    if (req[i] > mhead)
+                        continue;
+                }
+                if (now_best == -1 || best_dist == -1) {
+                    now_best = i, best_dist = abs(mhead - req[i]);
+                } else {
+                    if (abs(mhead - req[i]) < best_dist) {
+                        now_best = i, best_dist = abs(mhead - req[i]);
+                    }
+                }
+            }
+            if (now_best == -1)
+                break;
+            sc[sc_pos++] = req[now_best];
+            mk[now_best] = 1;
+            move_dist += best_dist;
+            mhead = req[now_best];
+        }
+        direct *= -1;
+    }
 }

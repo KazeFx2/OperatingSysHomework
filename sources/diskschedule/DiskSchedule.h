@@ -7,6 +7,7 @@
 
 #include "QtIncludes.h"
 #include <QObject>
+#include <vector>
 
 #define MAX_REQ 1000
 
@@ -54,6 +55,18 @@ General_Constrictor(DiskSchedule, {
         updateNotify();
     }
 
+    Q_INVOKABLE
+    void genRandomNH(int min, int max, int n) {
+        now_req = move_dist = 0;
+        this->min = min;
+        this->max = max;
+        while (n) {
+            addReq(rand() % (max - min) + min);
+            n--;
+        }
+        updateNotify();
+    }
+
     void init(char *argv[]) {}
 
     Q_INVOKABLE
@@ -61,6 +74,49 @@ General_Constrictor(DiskSchedule, {
 
     Q_INVOKABLE
     QString getStrategy();
+
+    Q_INVOKABLE
+    std::vector<int> getReq() {
+        std::vector<int> ret;
+        for (int i = 0; i < now_req; i++) {
+            ret.emplace_back(req[i]);
+        }
+        return ret;
+    }
+
+    Q_INVOKABLE
+    std::vector<int> getSc() {
+        std::vector<int> ret;
+        for (int i = 0; i < now_req; i++) {
+            ret.emplace_back(sc[i]);
+        }
+        return ret;
+    }
+
+    Q_INVOKABLE
+    int getTotal() {
+        return move_dist;
+    }
+
+    Q_INVOKABLE
+    int getN() {
+        return now_req;
+    }
+
+    Q_INVOKABLE
+    int getMin() { return min; }
+
+    Q_INVOKABLE
+    int getMax() { return max; }
+
+    Q_INVOKABLE
+    int getHead() { return head; }
+
+    Q_INVOKABLE
+    void setHead(int h) {
+        head = h;
+        updateNotify();
+    }
 
     void doFCFS();
 
@@ -70,6 +126,7 @@ General_Constrictor(DiskSchedule, {
 
     void doSchedule();
 
+    Q_INVOKABLE
     void updateNotify() {
         doSchedule();
         emit update();

@@ -13,6 +13,12 @@ FluScrollablePage {
     property double tdt: -1
     property double tdwt: -1
 
+    property int _min: 0
+    property int _max: 0
+    property int _head: 0
+    property int _dist: 0
+    property int _n: 0
+
     title: qsTr("Disk Schedule")
     width: parent.width
     height: parent.height
@@ -117,6 +123,7 @@ FluScrollablePage {
                             leftMargin: 10
                             verticalCenter: parent.verticalCenter
                         }
+                        placeholderText: _min.toString()
                         width: 100
                         validator: RegExpValidator {regExp: /[0-9][0-9][0-9]/}
                     }
@@ -147,6 +154,7 @@ FluScrollablePage {
                             leftMargin: 10
                             verticalCenter: parent.verticalCenter
                         }
+                        placeholderText: _max.toString()
                         width: 100
                         validator: RegExpValidator {regExp: /[0-9][0-9][0-9]/}
                     }
@@ -177,6 +185,7 @@ FluScrollablePage {
                             leftMargin: 10
                             verticalCenter: parent.verticalCenter
                         }
+                        placeholderText: _n.toString()
                         width: 80
                         validator: RegExpValidator {regExp: /[0-9][0-9]/}
                     }
@@ -187,10 +196,25 @@ FluScrollablePage {
                             leftMargin: 10
                             verticalCenter: parent.verticalCenter
                         }
-                        disabled: max_n.text === ""
+                        disabled: mag_min.text === "" || mag_max.text === "" || n_rand.text === ""
                         text: qsTr("Generate")
                         onClicked: {
-
+                            if (parseInt(n_rand.text) === 0)
+                                showError(qsTr("Random times can not be 0!"))
+                            else if (parseInt(mag_min.text) > _head || parseInt(mag_max.text) < _head)
+                                showError(qsTr("Head position must between the min magnetic track and the max magnetic track!"))
+                            else {
+                                var _mi = parseInt(mag_min.text)
+                                var _ma = parseInt(mag_max.text)
+                                var _n_ = parseInt(n_rand.text)
+                                CppDiskSchedule.genRandomNH(_mi, _ma, _n_)
+                                if (_min === _mi && _max === _ma && _n_ === _n) {
+                                    showSuccess(qsTr("Generate successfully!"))
+                                    mag_max.text = ""
+                                    mag_min.text = ""
+                                    n_rand.text = ""
+                                }
+                            }
                         }
                     }
                 }
@@ -229,6 +253,7 @@ FluScrollablePage {
                             leftMargin: 10
                             verticalCenter: parent.verticalCenter
                         }
+                        placeholderText: _head.toString()
                         width: 100
                         validator: RegExpValidator {regExp: /[0-9][0-9][0-9]/}
                     }
@@ -239,10 +264,18 @@ FluScrollablePage {
                             leftMargin: 10
                             verticalCenter: parent.verticalCenter
                         }
-                        disabled: max_n.text === ""
+                        disabled: start_pos.text === ""
                         text: qsTr("Apply")
                         onClicked: {
-
+                            if (_min > parseInt(start_pos.text) || _max < parseInt(start_pos.text)){
+                                showError(qsTr("Head position must between the min magnetic track and the max magnetic track!"))
+                            } else {
+                                CppDiskSchedule.setHead(parseInt(start_pos.text))
+                                if (_head === parseInt(start_pos.text)){
+                                    showSuccess(qsTr("Change head position successfully!"))
+                                    start_pos.text = ""
+                                }
+                            }
                         }
                     }
                 }
@@ -284,31 +317,31 @@ FluScrollablePage {
                                 id: model
 
                                 ListElement {
-                                    text: "FIFO"
+                                    text: "FCFS"
                                 }
 
                                 ListElement {
-                                    text: "OPT"
+                                    text: "SSTF"
                                 }
 
                                 ListElement {
-                                    text: "LRU_STACK"
+                                    text: "SCAN"
                                 }
 
                                 ListElement {
-                                    text: "LRU_OFFSET"
+                                    text: "C_SCAN"
                                 }
 
                                 ListElement {
-                                    text: "LFU"
+                                    text: "LOOK"
                                 }
 
                                 ListElement {
-                                    text: "CLOCK"
+                                    text: "C_LOOK"
                                 }
                             }
                             Component.onCompleted: {
-                                // prev = currentIndex = indexOfValue(CppPageSwapping.getStrategy())
+                                prev = currentIndex = indexOfValue(CppDiskSchedule.getStrategy())
                             }
                         }
                     }
@@ -320,10 +353,18 @@ FluScrollablePage {
                         text: qsTr("Apply")
                         onClicked: {
                             // TODO
+                            var ret = CppDiskSchedule.setStrategy(strategy.currentText)
+                            if (ret) {
+                                showSuccess(qsTr("Apply successfully"))
+                                strategy.prev = strategy.currentIndex
+                            } else {
+                                showError(qsTr("Apply failed, not supported"))
+                                strategy.currentIndex = strategy.prev
                             }
                         }
                     }
                 }
+            }
 
             FluText {
                 padding: 10
@@ -373,41 +414,70 @@ FluScrollablePage {
                     FluText {
                         padding: 10
                         font.bold: true
-                        text: qsTr("Magnetic head start position: ")
+                        text: qsTr("Magnetic head start position: ") + _head.toString()
                     }
 
                     FluText {
                         padding: 10
                         font.bold: true
-                        text: qsTr("Min magnetic track: ")
+                        text: qsTr("Min magnetic track: ") + _min.toString()
                     }
 
                     FluText {
                         padding: 10
                         font.bold: true
-                        text: qsTr("Max magnetic track: ")
+                        text: qsTr("Max magnetic track: ") + _max.toString()
                     }
 
                     FluText {
                         padding: 10
                         font.bold: true
-                        text: qsTr("Total distance: ")
+                        text: qsTr("Total distance: ") + _dist.toString()
                     }
 
                     FluText {
                         padding: 10
                         font.bold: true
-                        text: qsTr("Distance average: ")
+                        text: qsTr("Distance average: ") + (_dist / _n).toString()
                     }
                 }
             }
         }
     }
 
+    Connections {
+        target: CppDiskSchedule
+        onUpdate: {
+            updateAll()
+        }
+    }
+
+    function updateAll(){
+        var reqs = CppDiskSchedule.getReq()
+        var res = CppDiskSchedule.getSc()
+        var tt = CppDiskSchedule.getTotal()
+        var n = CppDiskSchedule.getN()
+        var min = CppDiskSchedule.getMin()
+        var max = CppDiskSchedule.getMax()
+        var head = CppDiskSchedule.getHead()
+        var dt = []
+        for (var i = 0; i< reqs.length; i++){
+            dt.push({_text: reqs[i].toString()})
+        }
+        tab_view.setTabList(dt)
+        dt = []
+        for (i = 0; i< res.length; i++){
+            dt.push({_text: res[i].toString()})
+        }
+        res_view.setTabList(dt)
+        _min = min
+        _max = max
+        _head = head
+        _n = n
+        _dist = tt
+    }
+
     Component.onCompleted: {
-        tab_view.appendTab("1")
-        res_view.appendTab("1")
-        tab_view.appendTab("1")
-        res_view.appendTab("1")
+        updateAll()
     }
 }

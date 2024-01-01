@@ -11,6 +11,7 @@
 #include "dynamicpartition/DynamicPartition.h"
 #include "processschedule/ProcessSchedule.h"
 #include "pageswapping/PageSwapping.h"
+#include "diskschedule/DiskSchedule.h"
 
 
 int main(int argc, char *argv[]) {
@@ -31,6 +32,7 @@ int main(int argc, char *argv[]) {
     DynamicPartition::getInstance()->init(argv);
     ProcessSchedule::getInstance()->init(argv);
     PageSwapping::getInstance()->init(argv);
+    DiskSchedule::getInstance()->init(argv);
 
     QGuiApplication app(argc, argv);
 
@@ -52,6 +54,7 @@ int main(int argc, char *argv[]) {
     engine.rootContext()->setContextProperty("CppDynamicPart", DynamicPartition::getInstance());
     engine.rootContext()->setContextProperty("CppProcessSchedule", ProcessSchedule::getInstance());
     engine.rootContext()->setContextProperty("CppPageSwapping", PageSwapping::getInstance());
+    engine.rootContext()->setContextProperty("CppDiskSchedule", DiskSchedule::getInstance());
     engine.rootContext()->setContextProperty("SettingsHelper", SettingsHelper::getInstance());
 
     const QUrl url(QStringLiteral("qrc:qml/main.qml"));

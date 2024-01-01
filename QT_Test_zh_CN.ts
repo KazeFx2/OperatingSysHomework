@@ -537,9 +537,9 @@
         <translation type="obsolete">平均带权周转时间: {0}</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DiskSchedule.qml" line="74"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="80"/>
         <source>Management</source>
-        <translation type="unfinished">管理</translation>
+        <translation>管理</translation>
     </message>
     <message>
         <source>Clear All</source>
@@ -558,76 +558,97 @@
         <translation type="obsolete">最大在线页数</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DiskSchedule.qml" line="35"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="41"/>
         <source>Magnetic track requests</source>
-        <translation type="unfinished"></translation>
+        <translation>磁道请求</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DiskSchedule.qml" line="110"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="116"/>
         <source>Min</source>
-        <translation type="unfinished"></translation>
+        <translation>最小磁道</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DiskSchedule.qml" line="140"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="147"/>
         <source>Max</source>
-        <translation type="unfinished"></translation>
+        <translation>最大磁道</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DiskSchedule.qml" line="170"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="178"/>
         <source>N Random</source>
         <oldsource>N random</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>随机次数</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DiskSchedule.qml" line="191"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="200"/>
         <source>Generate</source>
-        <translation type="unfinished"></translation>
+        <translation>生成</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DiskSchedule.qml" line="222"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="203"/>
+        <source>Random times can not be 0!</source>
+        <translation>随机次数不能为0！</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="205"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="271"/>
+        <source>Head position must between the min magnetic track and the max magnetic track!</source>
+        <translation>磁头位置必须在最小磁道和最大磁道数之间！</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="212"/>
+        <source>Generate successfully!</source>
+        <translation>生成成功！</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="246"/>
         <source>Magnetic head position</source>
-        <translation type="unfinished"></translation>
+        <translation>磁头位置</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DiskSchedule.qml" line="243"/>
-        <location filename="qml/Pages/DiskSchedule.qml" line="320"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="268"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="353"/>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>应用</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DiskSchedule.qml" line="258"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="275"/>
+        <source>Change head position successfully!</source>
+        <translation>更改磁头位置成功！</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="291"/>
         <source>Strategy</source>
-        <translation type="unfinished">策略</translation>
+        <translation>策略</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DiskSchedule.qml" line="332"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="373"/>
         <source>Results</source>
-        <translation type="unfinished">结果</translation>
+        <translation>结果</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DiskSchedule.qml" line="376"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="417"/>
         <source>Magnetic head start position: </source>
-        <translation type="unfinished"></translation>
+        <translation>磁头开始位置: </translation>
     </message>
     <message>
-        <location filename="qml/Pages/DiskSchedule.qml" line="382"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="423"/>
         <source>Min magnetic track: </source>
-        <translation type="unfinished"></translation>
+        <translation>最小磁道: </translation>
     </message>
     <message>
-        <location filename="qml/Pages/DiskSchedule.qml" line="388"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="429"/>
         <source>Max magnetic track: </source>
-        <translation type="unfinished"></translation>
+        <translation>最大磁道: </translation>
     </message>
     <message>
-        <location filename="qml/Pages/DiskSchedule.qml" line="394"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="435"/>
         <source>Total distance: </source>
-        <translation type="unfinished"></translation>
+        <translation>总移动距离: </translation>
     </message>
     <message>
-        <location filename="qml/Pages/DiskSchedule.qml" line="400"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="441"/>
         <source>Distance average: </source>
-        <translation type="unfinished"></translation>
+        <translation>平均移动距离: </translation>
     </message>
     <message>
         <source>Max n pages: </source>
@@ -642,12 +663,14 @@
         <translation type="obsolete">缺页率: </translation>
     </message>
     <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="358"/>
         <source>Apply successfully</source>
-        <translation type="obsolete">应用成功</translation>
+        <translation>应用成功</translation>
     </message>
     <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="361"/>
         <source>Apply failed, not supported</source>
-        <translation type="obsolete">应用失败，暂未支持</translation>
+        <translation>应用失败，暂未支持</translation>
     </message>
     <message>
         <source>Add Process</source>
@@ -710,7 +733,7 @@
         <translation type="obsolete">删除进程失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DiskSchedule.qml" line="16"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="22"/>
         <source>Disk Schedule</source>
         <translation>磁盘调度</translation>
     </message>
