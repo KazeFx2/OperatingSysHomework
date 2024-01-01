@@ -4,7 +4,6 @@
 #include <QQuickWindow>
 #include <QLocale>
 #include <QTranslator>
-#include <QIcon>
 
 #include "AppInfo.h"
 #include "helper/SettingsHelper.h"
@@ -13,7 +12,6 @@
 #include "processschedule/ProcessSchedule.h"
 #include "pageswapping/PageSwapping.h"
 
-#include <iostream>
 
 int main(int argc, char *argv[]) {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)

@@ -49,6 +49,7 @@ FluWindow {
 
         darkText: qsTr("SwitchTheme")
         showDark: true
+
         darkClickListener: (button) => {
             if (FluTheme.dark)
                 FluTheme.darkMode = FluThemeType.Light;

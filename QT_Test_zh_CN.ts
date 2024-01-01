@@ -483,6 +483,146 @@
     </message>
 </context>
 <context>
+    <name>DiskSchedule</name>
+    <message>
+        <source>Process Schedule</source>
+        <translation type="obsolete">进程调度</translation>
+    </message>
+    <message>
+        <source>Processes</source>
+        <translation type="obsolete">进程表</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="obsolete">名称</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="obsolete">优先级</translation>
+    </message>
+    <message>
+        <source>SubmitTime</source>
+        <translation type="obsolete">提交时间</translation>
+    </message>
+    <message>
+        <source>ServeTime</source>
+        <translation type="obsolete">服务时间</translation>
+    </message>
+    <message>
+        <source>StartTime</source>
+        <translation type="obsolete">开始时间</translation>
+    </message>
+    <message>
+        <source>FinishTime</source>
+        <translation type="obsolete">结束时间</translation>
+    </message>
+    <message>
+        <source>ResponseTime</source>
+        <translation type="obsolete">响应时间</translation>
+    </message>
+    <message>
+        <source>TurnaroundTime</source>
+        <translation type="obsolete">周转时间</translation>
+    </message>
+    <message>
+        <source>W_TurnaroundTime</source>
+        <translation type="obsolete">带权周转时间</translation>
+    </message>
+    <message>
+        <source>Mean of Turnaround Time: {0}</source>
+        <translation type="obsolete">平均周转时间: {0}</translation>
+    </message>
+    <message>
+        <source>Mean of Turnaround Time with Weight: {0}</source>
+        <translation type="obsolete">平均带权周转时间: {0}</translation>
+    </message>
+    <message>
+        <source>Management</source>
+        <translation type="obsolete">管理</translation>
+    </message>
+    <message>
+        <source>Clear All</source>
+        <translation type="obsolete">清除全部</translation>
+    </message>
+    <message>
+        <source>Strategy</source>
+        <translation type="obsolete">策略</translation>
+    </message>
+    <message>
+        <source>Apply successfully</source>
+        <translation type="obsolete">应用成功</translation>
+    </message>
+    <message>
+        <source>Apply failed, not supported</source>
+        <translation type="obsolete">应用失败，暂未支持</translation>
+    </message>
+    <message>
+        <source>Add Process</source>
+        <translation type="obsolete">添加进程</translation>
+    </message>
+    <message>
+        <source>Input the name</source>
+        <translation type="obsolete">请输入进程名称</translation>
+    </message>
+    <message>
+        <source>Input the pid</source>
+        <translation type="obsolete">请输入PID</translation>
+    </message>
+    <message>
+        <source>Input the priority</source>
+        <translation type="obsolete">请输入进程优先级</translation>
+    </message>
+    <message>
+        <source>Serve Time</source>
+        <translation type="obsolete">服务时间</translation>
+    </message>
+    <message>
+        <source>Input the serve time</source>
+        <translation type="obsolete">请输入服务时间</translation>
+    </message>
+    <message>
+        <source>Submit Time</source>
+        <translation type="obsolete">提交时间</translation>
+    </message>
+    <message>
+        <source>Input the submit time</source>
+        <translation type="obsolete">请输入提交时间</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="obsolete">添加</translation>
+    </message>
+    <message>
+        <source>Add process successfully</source>
+        <translation type="obsolete">成功添加进程</translation>
+    </message>
+    <message>
+        <source>Add process failed</source>
+        <translation type="obsolete">添加进程失败</translation>
+    </message>
+    <message>
+        <source>Delete Process</source>
+        <translation type="obsolete">删除进程</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="obsolete">删除</translation>
+    </message>
+    <message>
+        <source>Delete process successfully</source>
+        <translation type="obsolete">成功删除进程</translation>
+    </message>
+    <message>
+        <source>Delete process failed</source>
+        <translation type="obsolete">删除进程失败</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="15"/>
+        <source>Disk Schedule</source>
+        <translation>磁盘调度</translation>
+    </message>
+</context>
+<context>
     <name>DynamicPartitions</name>
     <message>
         <location filename="qml/Pages/DynamicPartitions.qml" line="50"/>
@@ -777,6 +917,11 @@
         <location filename="qml/NavItems/OriginalItems.qml" line="43"/>
         <source>Page Swapping</source>
         <translation>页面置换</translation>
+    </message>
+    <message>
+        <location filename="qml/NavItems/OriginalItems.qml" line="53"/>
+        <source>Disk Schedule</source>
+        <translation>磁盘调度</translation>
     </message>
 </context>
 <context>

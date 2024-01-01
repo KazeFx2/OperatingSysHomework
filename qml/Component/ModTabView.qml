@@ -41,7 +41,7 @@ Item {
     FluIconButton{
         id:btn_new
         visible: addButtonVisibility
-        width: 34
+        width: addButtonVisibility ? 34 : 0
         height: 34
         x: Math.min(tab_nav.contentWidth,tab_nav.width)
         anchors.verticalCenter: parent.verticalCenter
@@ -58,7 +58,7 @@ Item {
             top: parent.top
             left: parent.left
             right: parent.right
-            rightMargin: 34
+            rightMargin: btn_new.width
         }
         interactive: false
         model: tab_model

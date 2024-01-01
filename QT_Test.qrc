@@ -25,6 +25,7 @@
         <file>qml/Pages/BankAlgorithm_SysStatus.qml</file>
         <file>qml/Pages/BankAlgorithm_PMalloced.qml</file>
         <file>qml/Pages/BankAlgorithm_PNeed.qml</file>
+        <file>qml/Pages/DiskSchedule.qml</file>
         <file>src/js/tools.js</file>
         <file>qml/Component/ModTabView.qml</file>
         <file>qml/Component/InputDialog.qml</file>

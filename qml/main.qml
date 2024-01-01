@@ -19,7 +19,6 @@ Item {
             "/": "qrc:/qml/MainWindow.qml"
         };
         FluApp.initialRoute = "/";
-        FluApp.httpInterceptor = interceptor;
         FluApp.run();
     }
 
@@ -37,25 +36,6 @@ Item {
         }
 
         target: FluApp
-    }
-
-    FluHttpInterceptor {
-        id: interceptor
-
-        // ?
-        function onIntercept(request) {
-            if (request.method === "get")
-                request.params["method"] = "get";
-
-            if (request.method === "post")
-                request.params["method"] = "post";
-
-            request.headers["token"] = "yyds";
-            request.headers["os"] = "pc";
-            console.debug(JSON.stringify(request));
-            return request;
-        }
-
     }
 
 }

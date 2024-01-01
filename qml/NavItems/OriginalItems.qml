@@ -48,4 +48,14 @@ FluObject {
              navigationView.push(url)
          }
     }
+
+    FluPaneItem{
+        title: qsTr("Disk Schedule")
+        // menuDelegate: paneItemMenu
+        icon: FluentIcons.TaskView
+        url: "qrc:/qml/Pages/DiskSchedule.qml"
+        onTap: {
+            navigationView.push(url)
+        }
+    }
 }
