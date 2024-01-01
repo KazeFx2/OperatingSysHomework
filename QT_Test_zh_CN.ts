@@ -537,16 +537,109 @@
         <translation type="obsolete">平均带权周转时间: {0}</translation>
     </message>
     <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="74"/>
         <source>Management</source>
-        <translation type="obsolete">管理</translation>
+        <translation type="unfinished">管理</translation>
     </message>
     <message>
         <source>Clear All</source>
         <translation type="obsolete">清除全部</translation>
     </message>
     <message>
+        <source>Pages</source>
+        <translation type="obsolete">页时序</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation type="obsolete">设置</translation>
+    </message>
+    <message>
+        <source>Max online pages</source>
+        <translation type="obsolete">最大在线页数</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="35"/>
+        <source>Magnetic track requests</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="110"/>
+        <source>Min</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="140"/>
+        <source>Max</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="170"/>
+        <source>N Random</source>
+        <oldsource>N random</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="191"/>
+        <source>Generate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="222"/>
+        <source>Magnetic head position</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="243"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="320"/>
+        <source>Apply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="258"/>
         <source>Strategy</source>
-        <translation type="obsolete">策略</translation>
+        <translation type="unfinished">策略</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="332"/>
+        <source>Results</source>
+        <translation type="unfinished">结果</translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="376"/>
+        <source>Magnetic head start position: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="382"/>
+        <source>Min magnetic track: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="388"/>
+        <source>Max magnetic track: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="394"/>
+        <source>Total distance: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/Pages/DiskSchedule.qml" line="400"/>
+        <source>Distance average: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max n pages: </source>
+        <translation type="obsolete">最大在线页数: </translation>
+    </message>
+    <message>
+        <source>Pages faults: </source>
+        <translation type="obsolete">缺页错误数: </translation>
+    </message>
+    <message>
+        <source>Fault rate: </source>
+        <translation type="obsolete">缺页率: </translation>
     </message>
     <message>
         <source>Apply successfully</source>
@@ -617,7 +710,7 @@
         <translation type="obsolete">删除进程失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/DiskSchedule.qml" line="15"/>
+        <location filename="qml/Pages/DiskSchedule.qml" line="16"/>
         <source>Disk Schedule</source>
         <translation>磁盘调度</translation>
     </message>
@@ -973,24 +1066,24 @@
         <translation>应用失败</translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="251"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="250"/>
         <source>Results</source>
         <translation>结果</translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="295"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="294"/>
         <source>Max n pages: </source>
         <oldsource>Max n pages:</oldsource>
         <translation>最大在线页数: </translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="301"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="300"/>
         <source>Pages faults: </source>
         <oldsource>Pages faults:</oldsource>
         <translation>缺页错误数: </translation>
     </message>
     <message>
-        <location filename="qml/Pages/PageSwapping.qml" line="307"/>
+        <location filename="qml/Pages/PageSwapping.qml" line="306"/>
         <source>Fault rate: </source>
         <oldsource>Fault rate:</oldsource>
         <translation>缺页率: </translation>

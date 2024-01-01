@@ -243,7 +243,6 @@ FluScrollablePage {
                 }
             }
 
-
             FluText {
                 padding: 10
                 font.bold: true
