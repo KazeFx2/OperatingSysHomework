@@ -31,7 +31,7 @@ FluScrollablePage {
                            }
         onPositiveClicked: (txt)=>{
                                CppPageSwapping.push_back(parseInt(txt.text))
-                               tab_view.appendTab(txt.text)
+                               tab_view.appendTab(parseInt(txt.text))
                            }
         vali: RegExpValidator {regExp: /[0-9][0-9]/}
     }
