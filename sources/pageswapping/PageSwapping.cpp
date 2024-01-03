@@ -158,7 +158,7 @@ void PageSwapping::doLRU_STACK() {
             QueueRightPush(cap, capacity, used, pageNum);
         } else {
             tmp += "V\n";
-            StackToTop(cap, capacity, pageNum);
+            StackToTop(cap, used, pageNum);
         }
         int j = 0;
         for (j = 0; j < used; j++) {
